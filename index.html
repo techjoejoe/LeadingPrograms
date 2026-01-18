@@ -496,10 +496,11 @@
     }
 
     .program-logo {
-      max-width: 200px;
+      max-width: 250px;
+      width: 100%;
       height: auto;
-      margin-bottom: 15px;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+      display: block;
+      margin: 0 auto;
     }
 
     .option-title {
@@ -1813,10 +1814,13 @@
 
         <div class="option-card">
           <div class="visual-circle blue">
-            <img src="essentials-logo-graphite.png" alt="Leading Essentials" class="program-logo">
+            <div class="timeline-label-text">Weeks 1 & 2</div>
+            <div class="option-icon">📚</div>
+            <div class="option-title">Leading<br>Essentials</div>
           </div>
           
           <div class="option-details">
+            <img src="essentials-logo-graphite.png" alt="Leading Essentials" class="program-logo" style="margin-bottom: 20px;">
             <h3>Leading Essentials</h3>
             <p>A development course to prepare Operations leaders to represent Paylocity professionally, manage employees effectively, learn Team Lead expectations, and apply employment law knowledge. Includes accountability frameworks, task prioritization, and performance management techniques.</p>
             <button class="cta-button blue" onclick="openLeadingEssentials()">📖 Get Details</button>
@@ -1875,10 +1879,12 @@
 
           <div class="option-card">
             <div class="visual-circle green">
-              <img src="advantage-logo-graphite.png" alt="Leading Advantage" class="program-logo">
+              <div class="option-icon">⚡</div>
+              <div class="option-title">Leading<br>Advantage</div>
             </div>
             
             <div class="option-details">
+              <img src="advantage-logo-graphite.png" alt="Leading Advantage" class="program-logo" style="margin-bottom: 20px;">
               <h3>Leading Advantage</h3>
               <p>Advanced leadership development program to accelerate your growth and impact as a leader.</p>
               <button class="cta-button green" onclick="openLeadingAdvantage()">⚡ View Details</button>
