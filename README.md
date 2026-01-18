@@ -6,7 +6,8 @@ A modern, interactive website for leadership training programs at Paylocity.
 
 - **Home** (`index.html`) - Main landing page with navigation to training paths
 - **New Leader** (`new-leader.html`) - Journey for new leaders with onboarding options
-- **Resources** (`resources.html`) - Leadership playbooks and resources dashboard
+- **Leading Exploration** (`leading-exploration.html`) - Self-paced leadership development (green-themed)
+- **Leading Now** (`leading-now.html`) - Action-oriented leadership skills (orange-themed)
 - **Programs** (`programs.html`) - Overview of leadership development programs
 - **Continuing Education** (`continuing-education.html`) - Ongoing leadership learning paths
 
@@ -67,7 +68,8 @@ https://YOUR-USERNAME.github.io/leading-website/
 leading-website/
 ├── index.html                    # Home page
 ├── new-leader.html              # New Leader Journey page
-├── resources.html               # Resources/Playbooks page
+├── leading-exploration.html     # Leading Exploration (green-themed)
+├── leading-now.html             # Leading Now (orange-themed)
 ├── programs.html                # Programs page
 ├── continuing-education.html    # Continuing Education page
 ├── logo.png                     # Leading logo
