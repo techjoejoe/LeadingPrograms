@@ -154,13 +154,18 @@
       color: white;
     }
     
-    .tab:nth-child(3) { /* Leadership Development */
+    .tab:nth-child(3) { /* Playbooks */
+      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
+      color: white;
+    }
+    
+    .tab:nth-child(4) { /* Leadership Development */
       background: linear-gradient(135deg, var(--brand-green), #90ee90);
       color: white;
     }
     
-    .tab:nth-child(4) { /* Continuing Education */
-      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
+    .tab:nth-child(5) { /* Continuing Education */
+      background: linear-gradient(135deg, var(--brand-red), #ff6b9d);
       color: white;
     }
 
@@ -659,6 +664,213 @@
       margin-bottom: 15px;
     }
 
+    /* FAQ Floating Button */
+    .faq-button {
+      position: fixed;
+      bottom: 120px;
+      right: 40px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand-yellow), #ffd700);
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      opacity: 1;
+      transition: all 0.3s ease;
+      z-index: 998;
+      font-weight: 700;
+    }
+
+    .faq-button:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 15px 40px rgba(0,0,0,.3);
+    }
+
+    /* FAQ Modal */
+    .faq-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .faq-modal.active {
+      display: flex;
+    }
+
+    .faq-content {
+      background: var(--bg);
+      border-radius: var(--radius);
+      max-width: 900px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+      position: relative;
+    }
+
+    .faq-header {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(135deg, var(--brand-yellow), #ffd700);
+      padding: 30px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .faq-header h2 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--ink);
+    }
+
+    .faq-close {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: var(--ink);
+    }
+
+    .faq-close:hover {
+      background: rgba(255,255,255,0.5);
+      transform: rotate(90deg);
+    }
+
+    .faq-body {
+      padding: 30px;
+    }
+
+    .faq-category {
+      margin-bottom: 30px;
+    }
+
+    .faq-category-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--brand-orange);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .faq-item {
+      background: var(--bg-light);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      transition: all 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background: var(--bg-gray);
+    }
+
+    .faq-question.active {
+      background: var(--bg-gray);
+      color: var(--brand-blue);
+    }
+
+    .faq-toggle {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .faq-question.active .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 20px;
+    }
+
+    .faq-answer.active {
+      max-height: 500px;
+      padding: 0 20px 20px 20px;
+    }
+
+    .faq-answer p {
+      color: var(--ink-2);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .faq-answer ul {
+      margin: 10px 0 0 20px;
+      color: var(--ink-2);
+    }
+
+    .faq-answer li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .faq-contacts {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .faq-contacts h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: var(--brand-blue);
+    }
+
+    .faq-contacts p {
+      margin: 5px 0;
+      color: var(--ink-2);
+    }
+
+    .faq-contacts strong {
+      color: var(--ink);
+    }
+
     /* Back to Top Button */
     .back-to-top {
       position: fixed;
@@ -739,6 +951,35 @@
       .bubble-5, .bubble-6 {
         display: none;
       }
+
+      .faq-button {
+        bottom: 100px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+
+      .faq-modal {
+        padding: 10px;
+      }
+
+      .faq-header {
+        padding: 20px;
+      }
+
+      .faq-header h2 {
+        font-size: 1.5rem;
+      }
+
+      .faq-body {
+        padding: 20px 15px;
+      }
+
+      .faq-question {
+        padding: 15px;
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
@@ -756,6 +997,10 @@
         <a class="tab" href="#new-leader" data-section="new-leader">
           <span>🎯</span>
           <span>New Leader</span>
+        </a>
+        <a class="tab" href="#playbooks" data-section="playbooks">
+          <span>📖</span>
+          <span>Playbooks</span>
         </a>
         <a class="tab" href="#leadership-development" data-section="leadership-development">
           <span>🌱</span>
@@ -1089,6 +1334,159 @@
     </div>
   </section>
 
+  <!-- FAQ Floating Button -->
+  <div class="faq-button" onclick="openFAQ()" title="Frequently Asked Questions">
+    ❓
+  </div>
+
+  <!-- FAQ Modal -->
+  <div class="faq-modal" id="faqModal" onclick="closeFAQOnBackdrop(event)">
+    <div class="faq-content" onclick="event.stopPropagation()">
+      <div class="faq-header">
+        <h2>💡 Frequently Asked Questions</h2>
+        <button class="faq-close" onclick="closeFAQ()">✕</button>
+      </div>
+      
+      <div class="faq-body">
+        <!-- Leadership Contacts -->
+        <div class="faq-contacts">
+          <h3>👥 Leadership Development Contacts for Operations</h3>
+          <p><strong>Sophia Valentin:</strong> Program Manager</p>
+          <p><strong>Angela Ostermann:</strong> Sr. Manager</p>
+          <p><strong>Matty Braden:</strong> Sr. Director</p>
+        </div>
+
+        <!-- General FAQs -->
+        <div class="faq-category">
+          <div class="faq-category-title">📋 General Questions</div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>What are the approved reasons to miss training?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>PTO</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>What happens if I can't attend a training I am scheduled for?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>Email LDCommunications, copy your Manager and Director and include the reason why. If possible, the LDCommunications team will reschedule your session.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>Are there any makeup sessions for Leading Essentials?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>No. It is important for new leaders to take these sessions within their first six months of tenure. The multi-day session must be taken in its entirety to get credit for the course. If you miss any one of the days, you will be re-enrolled in the next session. If you have PTO any days of the experience, please email LDCommunications for potential rescheduling.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>Are there any makeup sessions for Leading Now?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>Yes. There are placeholders for live makeup sessions the Monday after the full week. If a leader misses the live sessions and the makeup sessions, he or she will be assigned an LMS module that will require completion.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leading Advantage FAQs -->
+        <div class="faq-category">
+          <div class="faq-category-title">⚡ Leading Advantage FAQs</div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>What happens if I am in a program and can't attend one of the sessions?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>If you are in a Leading Advantage cohort, contact Sophia Valentin for arrangements.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>How many people are selected for each Leading Advantage cohort?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>The number of participants for each fiscal year are determined at the start of each fiscal year and is based on business need.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>How do I qualify to participate in Leading Advantage?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              <ul>
+                <li>Share your interest of pursuing leadership with your direct leader and discuss your interest in Leading Advantage.</li>
+                <li>Leverage the Leading Exploration experience to validate your interest.</li>
+                <li>Complete the self-assessment in Leading Exploration and compare your entries with your managers entries to identify strengths and opportunities.</li>
+                <li>Work with your direct leader to contribute your identified strengths and improve any identified opportunities.</li>
+                <li>Team Leads and Managers should bring their sponsorship of your participation in the program to their Director/Sr. Director team and include why.</li>
+                <li>If you have earned sponsorship, the Manager should submit a nomination on your behalf.</li>
+                <li>Cohort decisions are finalized and communicated in August and February, respectively.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>What does the nomination process look like?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>To nominate you, your leader will complete a survey that assesses your capabilities in key skills needed for Operations leaders. In partnership with Ops Leadership, the Program Office will review all nominations and progress the highest qualified individuals to round two. Nominees who make it to round two will receive a survey with five essay questions, your responses will be scored by our HRBP teams. The top scoring nominees by business unit will be accepted into the program.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>What if I am not selected to participate in Leading Advantage? Can I re-apply?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>Yes! Please do not be discouraged if you are not selected, there are limited seats. We encourage you to re-apply for the next cohort. Leaders can reach out to the leadership development contacts to avoid resubmitting nomination assuming their assessment remains the same. In the meantime, leverage Leading Exploration to take ownership of your development.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>What if I am nominated for Leading Advantage and I don't want to participate?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>Do not complete the survey that will be assigned to you and discuss your career plans with your leader.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>What is my leader's role in my development as a Leading Advantage participant?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>A big part of the Leading Advantage program is on the job experience of the lesson topics. Your leader will work with you to provide opportunities to practice these skills on the job. They may also serve as a mentor and an advisor, providing you feedback to aid in your development.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <p>&copy; 2025 Leading. Empowering leaders at every stage.</p>
     <p>Questions? Contact the L&D team at Paylocity</p>
@@ -1142,6 +1540,52 @@
     // Initialize on load
     updateActiveNav();
     updateBackToTop();
+
+    // FAQ Functions
+    function openFAQ() {
+      document.getElementById('faqModal').classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    function closeFAQ() {
+      document.getElementById('faqModal').classList.remove('active');
+      document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    function closeFAQOnBackdrop(event) {
+      if (event.target.id === 'faqModal') {
+        closeFAQ();
+      }
+    }
+
+    function toggleFAQ(element) {
+      const answer = element.nextElementSibling;
+      const allQuestions = document.querySelectorAll('.faq-question');
+      const allAnswers = document.querySelectorAll('.faq-answer');
+      
+      // Close all other FAQs
+      allQuestions.forEach(q => {
+        if (q !== element) {
+          q.classList.remove('active');
+        }
+      });
+      allAnswers.forEach(a => {
+        if (a !== answer) {
+          a.classList.remove('active');
+        }
+      });
+      
+      // Toggle current FAQ
+      element.classList.toggle('active');
+      answer.classList.toggle('active');
+    }
+
+    // Close FAQ modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeFAQ();
+      }
+    });
   </script>
 </body>
 </html>
