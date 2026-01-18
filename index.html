@@ -1317,6 +1317,99 @@
       border-left-color: var(--brand-orange);
     }
 
+    /* Leading Essentials Modal */
+    .leading-essentials-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .leading-essentials-modal.active {
+      display: flex;
+    }
+
+    .leading-essentials-content {
+      background: var(--bg);
+      border-radius: var(--radius);
+      max-width: 800px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+      position: relative;
+    }
+
+    .leading-essentials-header {
+      background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);
+      padding: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative;
+    }
+
+    .leading-essentials-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: white;
+    }
+
+    .leading-essentials-close:hover {
+      background: rgba(255,255,255,0.5);
+      transform: rotate(90deg);
+    }
+
+    .leading-essentials-header h2 {
+      margin: 0 0 10px 0;
+      font-size: 2.5rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .leading-essentials-header p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .leading-essentials-body {
+      padding: 40px;
+    }
+
+    .info-block.blue-block {
+      border-left-color: var(--brand-blue);
+    }
+
+    .info-block.blue-block h3 {
+      color: var(--brand-blue);
+    }
+
+    .info-block.blue-highlight {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      border-left-color: var(--brand-blue);
+    }
+
     /* Leading Advantage Modal */
     .leading-advantage-modal {
       position: fixed;
@@ -1579,6 +1672,18 @@
       .nlo-body {
         padding: 20px 15px;
       }
+
+      .leading-essentials-header {
+        padding: 25px 20px;
+      }
+
+      .leading-essentials-header h2 {
+        font-size: 1.8rem;
+      }
+
+      .leading-essentials-body {
+        padding: 20px 15px;
+      }
     }
   </style>
 </head>
@@ -1705,7 +1810,7 @@
           <div class="option-details">
             <h3>Leading Essentials</h3>
             <p>A development course to prepare Operations leaders to represent Paylocity professionally, manage employees effectively, learn Team Lead expectations, and apply employment law knowledge. Includes accountability frameworks, task prioritization, and performance management techniques.</p>
-            <button class="cta-button blue">📖 Start Leading Essentials</button>
+            <button class="cta-button blue" onclick="openLeadingEssentials()">📖 View Details</button>
           </div>
         </div>
       </div>
@@ -1870,6 +1975,74 @@
               <span>NLO Experience Hub</span>
             </a>
             <a href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-orange), #ffb347);">
+              <span>📖</span>
+              <span>Best Practices Guide</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leading Essentials Modal -->
+  <div class="leading-essentials-modal" id="leadingEssentialsModal" onclick="closeLeadingEssentialsOnBackdrop(event)">
+    <div class="leading-essentials-content" onclick="event.stopPropagation()">
+      <div class="leading-essentials-header">
+        <button class="leading-essentials-close" onclick="closeLeadingEssentials()">✕</button>
+        <h2>📖 Leading Essentials</h2>
+        <p>Rapid preparation for new Operations leaders</p>
+      </div>
+      
+      <div class="leading-essentials-body">
+        <div class="info-block blue-highlight">
+          <h3>👥 Who Should Attend</h3>
+          <p><strong>New leaders in Operations</strong> with 2-6 months tenure in their leadership role.</p>
+        </div>
+
+        <div class="info-block blue-block">
+          <h3>💻 How It Works</h3>
+          <p>Both <strong>in-person</strong> and <strong>virtual</strong> sessions are offered.</p>
+        </div>
+
+        <div class="info-block blue-block">
+          <h3>⏱️ Time Commitment</h3>
+          <p><strong>In-Person:</strong> 3 days, 8 hours each (24 hours total)</p>
+          <p style="margin-top: 10px;"><strong>Virtual:</strong> 4 days, 6 hours each (24 hours total)</p>
+        </div>
+
+        <div class="info-block blue-block">
+          <h3>📅 When Sessions Are Offered</h3>
+          <p>Classes are offered <strong>quarterly</strong></p>
+          <p style="margin-top: 10px;"><strong>Enrollment:</strong> New leaders are automatically enrolled in a session based on location and hire date.</p>
+        </div>
+
+        <div class="info-block blue-highlight">
+          <h3>📚 What You'll Learn</h3>
+          <p>This course is designed to quickly prepare new Operations leaders to manage their employees and demonstrate professionalism and to represent Paylocity in all they do.</p>
+          <p style="margin-top: 15px;"><strong>New leaders will learn:</strong></p>
+          <ul>
+            <li>The expectations of a Team Lead, and how those expectations translate into managing situations related to employment law</li>
+            <li>Techniques for fostering accountability on their teams through leading by example</li>
+            <li>How to prioritize competing priorities</li>
+            <li>Upskilling SOAR program</li>
+            <li>Handling and managing Escalations</li>
+            <li>Playbooks review</li>
+            <li>How to leverage delegation and use it as a development opportunity</li>
+            <li>Performance management techniques including soft skills and related system/tools</li>
+            <li>The standard for delivering on our client commitment and how to coach to those behaviors</li>
+          </ul>
+          <p style="margin-top: 15px;"><strong>Hands-On Experience:</strong></p>
+          <p>Participants will gain experience role-playing common employee scenarios faced in Operations under the guidance of a seasoned leader and people relations partner.</p>
+        </div>
+
+        <div class="info-block blue-block">
+          <h3>🎯 Resources</h3>
+          <div class="resource-links">
+            <a href="https://paylocity1.sharepoint.com/:x:/s/TalentManagementDocuments/EXF3awnorRZNnPJl5EiyvigBZrcQ43zBGIZL0YnFT5MnVA?e=Ms1GA3" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);">
+              <span>📅</span>
+              <span>Program Calendar</span>
+            </a>
+            <a href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);">
               <span>📖</span>
               <span>Best Practices Guide</span>
             </a>
@@ -2401,6 +2574,7 @@
         closeLeadingExploration();
         closeLeadingAdvantage();
         closeNLO();
+        closeLeadingEssentials();
       }
     });
 
@@ -2418,6 +2592,23 @@
     function closeNLOOnBackdrop(event) {
       if (event.target.id === 'nloModal') {
         closeNLO();
+      }
+    }
+
+    // Leading Essentials Modal Functions
+    function openLeadingEssentials() {
+      document.getElementById('leadingEssentialsModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLeadingEssentials() {
+      document.getElementById('leadingEssentialsModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeLeadingEssentialsOnBackdrop(event) {
+      if (event.target.id === 'leadingEssentialsModal') {
+        closeLeadingEssentials();
       }
     }
 
