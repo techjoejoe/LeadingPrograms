@@ -1224,6 +1224,99 @@
       border-left-color: var(--brand-green);
     }
 
+    /* New Leader Onboarding Modal */
+    .nlo-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .nlo-modal.active {
+      display: flex;
+    }
+
+    .nlo-content {
+      background: var(--bg);
+      border-radius: var(--radius);
+      max-width: 800px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+      position: relative;
+    }
+
+    .nlo-header {
+      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
+      padding: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative;
+    }
+
+    .nlo-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: white;
+    }
+
+    .nlo-close:hover {
+      background: rgba(255,255,255,0.5);
+      transform: rotate(90deg);
+    }
+
+    .nlo-header h2 {
+      margin: 0 0 10px 0;
+      font-size: 2.5rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .nlo-header p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .nlo-body {
+      padding: 40px;
+    }
+
+    .info-block.orange-block {
+      border-left-color: var(--brand-orange);
+    }
+
+    .info-block.orange-block h3 {
+      color: var(--brand-orange);
+    }
+
+    .info-block.orange-highlight {
+      background: linear-gradient(135deg, #fff5eb 0%, #ffe8d1 100%);
+      border-left-color: var(--brand-orange);
+    }
+
     /* Leading Advantage Modal */
     .leading-advantage-modal {
       position: fixed;
@@ -1474,6 +1567,18 @@
       .leading-advantage-body {
         padding: 20px 15px;
       }
+
+      .nlo-header {
+        padding: 25px 20px;
+      }
+
+      .nlo-header h2 {
+        font-size: 1.8rem;
+      }
+
+      .nlo-body {
+        padding: 20px 15px;
+      }
     }
   </style>
 </head>
@@ -1586,7 +1691,7 @@
           <div class="option-details">
             <h3>New Leader Onboarding</h3>
             <p>Paylocity's universal leadership tools, processes, and resources. Inclusive of all departments (Sales, P&T, Ops, Etc). A comprehensive foundation for new leaders across the organization.</p>
-            <button class="cta-button orange">🚀 Start Onboarding</button>
+            <button class="cta-button orange" onclick="openNewLeaderOnboarding()">🚀 View Details</button>
           </div>
         </div>
 
@@ -1768,6 +1873,71 @@
       </div>
     </div>
   </section>
+
+  <!-- New Leader Onboarding Modal -->
+  <div class="nlo-modal" id="nloModal" onclick="closeNLOOnBackdrop(event)">
+    <div class="nlo-content" onclick="event.stopPropagation()">
+      <div class="nlo-header">
+        <button class="nlo-close" onclick="closeNLO()">✕</button>
+        <h2>🚀 New Leader Onboarding</h2>
+        <p>Foundation for leadership success at Paylocity</p>
+      </div>
+      
+      <div class="nlo-body">
+        <div class="info-block orange-highlight">
+          <h3>👥 Who Should Attend</h3>
+          <p><strong>New leaders at Paylocity</strong> - Enterprise-wide program for:</p>
+          <ul>
+            <li>External hires in leadership roles</li>
+            <li>Internal promotions to leadership positions</li>
+            <li>All departments and functions</li>
+          </ul>
+        </div>
+
+        <div class="info-block orange-block">
+          <h3>💻 How It Works</h3>
+          <p>Virtual Instructor-Led Sessions</p>
+        </div>
+
+        <div class="info-block orange-block">
+          <h3>⏱️ Time Commitment</h3>
+          <p><strong>Duration:</strong> 2 days, 5 hours each day (10 hours total)</p>
+        </div>
+
+        <div class="info-block orange-block">
+          <h3>📅 When Sessions Are Offered</h3>
+          <p>Classes are offered <strong>monthly</strong></p>
+          <p style="margin-top: 10px;"><strong>Enrollment:</strong> New leaders are automatically enrolled in a session based on their hire date.</p>
+        </div>
+
+        <div class="info-block orange-highlight">
+          <h3>📚 What You'll Learn</h3>
+          <p>The New Leader Onboarding experience provides newly promoted (or newly hired) people leaders an orientation that includes:</p>
+          <ul>
+            <li><strong>Foundational managerial and leadership skills</strong></li>
+            <li><strong>Employment law guidelines</strong></li>
+            <li><strong>Employee policy overviews</strong></li>
+            <li><strong>Insight on Paylocity's culture</strong></li>
+          </ul>
+          <p style="margin-top: 15px;">This comprehensive program quickly prepares leaders to confidently lead their teams from day one.</p>
+        </div>
+
+        <div class="info-block orange-block">
+          <h3>🎯 Resources</h3>
+          <div class="resource-links">
+            <a href="https://paylocity1.sharepoint.com/sites/LeadershipResourceHub2/SitePages/New-Leader.aspx" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-orange), #ffb347);">
+              <span>🏠</span>
+              <span>NLO Experience Hub</span>
+            </a>
+            <a href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-orange), #ffb347);">
+              <span>📖</span>
+              <span>Best Practices Guide</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Leading Exploration Modal -->
   <div class="leading-exploration-modal" id="leadingExplorationModal" onclick="closeLeadingExplorationOnBackdrop(event)">
@@ -2282,7 +2452,7 @@
       answer.classList.toggle('active');
     }
 
-    // Close FAQ modal with Escape key
+    // Close modals with Escape key
     document.addEventListener('keydown', function(event) {
       if (event.key === 'Escape') {
         closeFAQ();
@@ -2290,8 +2460,26 @@
         closeProfDev();
         closeLeadingExploration();
         closeLeadingAdvantage();
+        closeNLO();
       }
     });
+
+    // New Leader Onboarding Modal Functions
+    function openNewLeaderOnboarding() {
+      document.getElementById('nloModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeNLO() {
+      document.getElementById('nloModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeNLOOnBackdrop(event) {
+      if (event.target.id === 'nloModal') {
+        closeNLO();
+      }
+    }
 
     // Leading Exploration Modal Functions
     function openLeadingExploration() {
