@@ -871,6 +871,138 @@
       color: var(--ink);
     }
 
+    /* Leading Now Modal */
+    .leading-now-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .leading-now-modal.active {
+      display: flex;
+    }
+
+    .leading-now-content {
+      background: var(--bg);
+      border-radius: var(--radius);
+      max-width: 800px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+      position: relative;
+    }
+
+    .leading-now-header {
+      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
+      padding: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative;
+    }
+
+    .leading-now-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: white;
+    }
+
+    .leading-now-close:hover {
+      background: rgba(255,255,255,0.5);
+      transform: rotate(90deg);
+    }
+
+    .leading-now-header h2 {
+      margin: 0 0 10px 0;
+      font-size: 2.5rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .leading-now-header p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .leading-now-body {
+      padding: 40px;
+    }
+
+    .info-block {
+      margin-bottom: 30px;
+      padding: 25px;
+      background: var(--bg-light);
+      border-radius: 12px;
+      border-left: 4px solid var(--brand-orange);
+      transition: all 0.3s ease;
+    }
+
+    .info-block:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-block h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--brand-orange);
+      margin: 0 0 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .info-block p {
+      color: var(--ink-2);
+      line-height: 1.7;
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .info-block ul {
+      color: var(--ink-2);
+      line-height: 1.7;
+      margin: 10px 0 0 20px;
+      font-size: 1.05rem;
+    }
+
+    .info-block li {
+      margin-bottom: 8px;
+    }
+
+    .info-block strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #fff5eb 0%, #ffe8d1 100%);
+      border-left-color: var(--brand-orange);
+    }
+
     /* Back to Top Button */
     .back-to-top {
       position: fixed;
@@ -978,6 +1110,31 @@
 
       .faq-question {
         padding: 15px;
+        font-size: 0.95rem;
+      }
+
+      .leading-now-header {
+        padding: 25px 20px;
+      }
+
+      .leading-now-header h2 {
+        font-size: 1.8rem;
+      }
+
+      .leading-now-body {
+        padding: 20px 15px;
+      }
+
+      .info-block {
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .info-block h3 {
+        font-size: 1.1rem;
+      }
+
+      .info-block p, .info-block ul {
         font-size: 0.95rem;
       }
     }
@@ -1255,7 +1412,7 @@
           <div class="option-details">
             <h3>Leading Now</h3>
             <p>Real-time leadership development for current challenges. Stay sharp with practical tools and strategies for today's leadership environment.</p>
-            <button class="cta-button orange">🎯 Explore Leading Now</button>
+            <button class="cta-button orange" onclick="openLeadingNow()">🎯 Explore Leading Now</button>
           </div>
         </div>
 
@@ -1333,6 +1490,66 @@
       </div>
     </div>
   </section>
+
+  <!-- Leading Now Modal -->
+  <div class="leading-now-modal" id="leadingNowModal" onclick="closeLeadingNowOnBackdrop(event)">
+    <div class="leading-now-content" onclick="event.stopPropagation()">
+      <div class="leading-now-header">
+        <button class="leading-now-close" onclick="closeLeadingNow()">✕</button>
+        <h2>🔥 Leading Now</h2>
+        <p>Real-time leadership development for today's challenges</p>
+      </div>
+      
+      <div class="leading-now-body">
+        <div class="info-block highlight-box">
+          <h3>👥 Who Should Attend</h3>
+          <p><strong>Required:</strong> Team Leads, Managers, and Sr. Managers<br>
+          <strong>All leaders are welcome!</strong></p>
+        </div>
+
+        <div class="info-block">
+          <h3>💻 How It Works</h3>
+          <p>Virtual Instructor-Led Sessions</p>
+        </div>
+
+        <div class="info-block">
+          <h3>⏱️ Time Commitment</h3>
+          <p><strong>Duration:</strong> 2 hours per session</p>
+        </div>
+
+        <div class="info-block">
+          <h3>📅 When & How Often</h3>
+          <p><strong>Starting:</strong> February<br>
+          <strong>Frequency:</strong> First full week of every other month (except November, December, and January for year-end focus)</p>
+          <p style="margin-top: 15px;"><strong>Daily Session Times (CST):</strong></p>
+          <ul>
+            <li>9:00 AM - 11:00 AM</li>
+            <li>11:30 AM - 1:30 PM</li>
+            <li>2:00 PM - 4:00 PM</li>
+          </ul>
+        </div>
+
+        <div class="info-block">
+          <h3>📝 How to Register</h3>
+          <p>Every month, the next month's topic and self-enrollment links are posted to the <strong>TL+ Community group</strong>.</p>
+          <p style="margin-top: 10px;"><em>Note: If required leaders do not self-enroll, L&D will auto-enroll them in a session.</em></p>
+        </div>
+
+        <div class="info-block highlight-box">
+          <h3>📚 What You'll Learn</h3>
+          <p>This continuing education series provides Operations leaders with the tools and information needed to navigate real-time business challenges.</p>
+          <p style="margin-top: 15px;"><strong>Topics are determined by the Operations Sr. Leadership team and change each month.</strong></p>
+          <p style="margin-top: 15px;"><strong>Example Topics:</strong></p>
+          <ul>
+            <li>Navigating the performance management cycle</li>
+            <li>Conducting mid-year reviews</li>
+            <li>Setting strategic goals</li>
+            <li>Addressing real-time business issues and challenges</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- FAQ Floating Button -->
   <div class="faq-button" onclick="openFAQ()" title="Frequently Asked Questions">
@@ -1584,8 +1801,26 @@
     document.addEventListener('keydown', function(event) {
       if (event.key === 'Escape') {
         closeFAQ();
+        closeLeadingNow();
       }
     });
+
+    // Leading Now Modal Functions
+    function openLeadingNow() {
+      document.getElementById('leadingNowModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLeadingNow() {
+      document.getElementById('leadingNowModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeLeadingNowOnBackdrop(event) {
+      if (event.target.id === 'leadingNowModal') {
+        closeLeadingNow();
+      }
+    }
   </script>
 </body>
 </html>
