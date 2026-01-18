@@ -504,6 +504,9 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow-sm);
       text-align: left;
+      display: flex;
+      flex-direction: column;
+      min-height: 280px;
     }
 
     .option-details h3 {
@@ -518,6 +521,7 @@
       color: var(--ink-2);
       line-height: 1.6;
       margin-bottom: 25px;
+      flex-grow: 1;
     }
 
     .option-details ul {
@@ -1127,6 +1131,179 @@
       font-size: 1.5rem;
     }
 
+    /* Leading Exploration Modal */
+    .leading-exploration-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .leading-exploration-modal.active {
+      display: flex;
+    }
+
+    .leading-exploration-content {
+      background: var(--bg);
+      border-radius: var(--radius);
+      max-width: 800px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+      position: relative;
+    }
+
+    .leading-exploration-header {
+      background: linear-gradient(135deg, var(--brand-green), #90ee90);
+      padding: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative;
+    }
+
+    .leading-exploration-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: white;
+    }
+
+    .leading-exploration-close:hover {
+      background: rgba(255,255,255,0.5);
+      transform: rotate(90deg);
+    }
+
+    .leading-exploration-header h2 {
+      margin: 0 0 10px 0;
+      font-size: 2.5rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .leading-exploration-header p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .leading-exploration-body {
+      padding: 40px;
+    }
+
+    .info-block.green-block {
+      border-left-color: var(--brand-green);
+    }
+
+    .info-block.green-block h3 {
+      color: var(--brand-green);
+    }
+
+    .info-block.green-highlight {
+      background: linear-gradient(135deg, #f0fff4 0%, #dcffdc 100%);
+      border-left-color: var(--brand-green);
+    }
+
+    /* Leading Advantage Modal */
+    .leading-advantage-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .leading-advantage-modal.active {
+      display: flex;
+    }
+
+    .leading-advantage-content {
+      background: var(--bg);
+      border-radius: var(--radius);
+      max-width: 800px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+      position: relative;
+    }
+
+    .leading-advantage-header {
+      background: linear-gradient(135deg, var(--brand-green), #90ee90);
+      padding: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative;
+    }
+
+    .leading-advantage-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: white;
+    }
+
+    .leading-advantage-close:hover {
+      background: rgba(255,255,255,0.5);
+      transform: rotate(90deg);
+    }
+
+    .leading-advantage-header h2 {
+      margin: 0 0 10px 0;
+      font-size: 2.5rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .leading-advantage-header p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .leading-advantage-body {
+      padding: 40px;
+    }
+
     /* Back to Top Button */
     .back-to-top {
       position: fixed;
@@ -1281,6 +1458,21 @@
       .resource-link {
         padding: 12px 16px;
         font-size: 0.9rem;
+      }
+
+      .leading-exploration-header,
+      .leading-advantage-header {
+        padding: 25px 20px;
+      }
+
+      .leading-exploration-header h2,
+      .leading-advantage-header h2 {
+        font-size: 1.8rem;
+      }
+
+      .leading-exploration-body,
+      .leading-advantage-body {
+        padding: 20px 15px;
       }
     }
   </style>
@@ -1458,7 +1650,7 @@
             <div class="option-details">
               <h3>Leading Exploration</h3>
               <p>A comprehensive self-paced leadership development program for aspiring leaders.</p>
-              <button class="cta-button green">🎯 Go to E-Learnings</button>
+              <button class="cta-button green" onclick="openLeadingExploration()">🔍 View Details</button>
             </div>
           </div>
 
@@ -1471,7 +1663,7 @@
             <div class="option-details">
               <h3>Leading Advantage</h3>
               <p>Advanced leadership development program to accelerate your growth and impact as a leader.</p>
-              <button class="cta-button green">🚀 Start Program</button>
+              <button class="cta-button green" onclick="openLeadingAdvantage()">⚡ View Details</button>
             </div>
           </div>
         </div>
@@ -1574,67 +1766,149 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="dashboard-grid" style="margin-top: 60px;">
-        <div class="info-card what-card">
-          <div class="card-icon">Ongoing</div>
-          <h2 class="card-title">Continuous Learning</h2>
-          <div class="card-content">
-            <p>Leadership is a journey, not a destination. Our continuing education programs help you:</p>
-            <ul>
-              <li>Stay current with evolving leadership practices</li>
-              <li>Deepen your expertise in specific areas</li>
-              <li>Network with other leaders across the organization</li>
-              <li>Maintain your leadership edge</li>
-            </ul>
-          </div>
+  <!-- Leading Exploration Modal -->
+  <div class="leading-exploration-modal" id="leadingExplorationModal" onclick="closeLeadingExplorationOnBackdrop(event)">
+    <div class="leading-exploration-content" onclick="event.stopPropagation()">
+      <div class="leading-exploration-header">
+        <button class="leading-exploration-close" onclick="closeLeadingExploration()">✕</button>
+        <h2>🔍 Leading Exploration</h2>
+        <p>Self-Discovery Kit for aspiring leaders</p>
+      </div>
+      
+      <div class="leading-exploration-body">
+        <div class="info-block green-highlight">
+          <h3>👥 Who Should Participate</h3>
+          <p>Individual contributors in Operations who are interested in a leadership role and want to take immediate action to prepare for an opportunity.</p>
         </div>
 
-        <div class="info-card who-card">
-          <div class="card-icon">Advanced</div>
-          <h2 class="card-title">For Experienced Leaders</h2>
-          <div class="card-content">
-            <p><strong>Designed for:</strong></p>
-            <ul>
-              <li>Current people leaders looking to enhance their skills</li>
-              <li>Leaders transitioning to more senior roles</li>
-              <li>Anyone committed to ongoing professional development</li>
-              <li>Leaders seeking to stay ahead in their field</li>
-            </ul>
-          </div>
+        <div class="info-block green-block">
+          <h3>💻 How It Works</h3>
+          <p>Self-paced e-learning & coaching with direct leader</p>
         </div>
 
-        <div class="info-card how-card">
-          <div class="card-icon">Flexible</div>
-          <h2 class="card-title">Multiple Formats</h2>
-          <div class="card-content">
-            <p><strong>Learning options include:</strong></p>
-            <ul>
-              <li>Live workshops and seminars</li>
-              <li>On-demand video learning</li>
-              <li>Coaching and mentorship opportunities</li>
-              <li>Leadership cohorts and communities of practice</li>
-              <li>External conferences and certifications</li>
-            </ul>
-          </div>
+        <div class="info-block green-block">
+          <h3>⏱️ Time Commitment</h3>
+          <p>Collectively, all content is about <strong>four hours</strong>.</p>
+          <p style="margin-top: 10px;">Consumed at learner's pace - complete when it works best for you!</p>
         </div>
 
-        <div class="info-card when-card">
-          <div class="card-icon">Anytime</div>
-          <h2 class="card-title">Always Available</h2>
-          <div class="card-content">
-            <p><strong>Flexible scheduling:</strong></p>
-            <ul>
-              <li>Access resources 24/7</li>
-              <li>Join live sessions throughout the year</li>
-              <li>Self-paced learning on your schedule</li>
-              <li>New content added regularly</li>
-            </ul>
+        <div class="info-block green-highlight">
+          <h3>📚 What You'll Learn</h3>
+          <p>Unlock your leadership potential with the Leading Exploration: Self-Discovery Kit, a practical curriculum for aspiring Paylocity leaders.</p>
+          <p style="margin-top: 15px;"><strong>This mixed media course includes:</strong></p>
+          <ul>
+            <li>Self-paced videos, assessments, and hands-on exercises</li>
+            <li><strong>"So, You Want to Be a Leader?"</strong> - Understand the realities of leadership</li>
+            <li><strong>Leader Readiness Assessment</strong> - Evaluate your strengths and growth areas</li>
+            <li>Essential topics: Crucial Conversations, Getting Things Done, and Situational Leadership</li>
+            <li><strong>Self-Discovery Worksheet</strong> - Guide yourself through self-assessment, skill development, and goal setting</li>
+          </ul>
+          <p style="margin-top: 15px;"><strong>Your Journey:</strong></p>
+          <ul>
+            <li>Complete the self-assessment</li>
+            <li>Discuss your findings with your manager</li>
+            <li>Take charge of your career development</li>
+            <li>Embrace continuous learning, practical experiences, and networking</li>
+          </ul>
+          <p style="margin-top: 15px;"><em>Confidently prepare for future leadership roles!</em></p>
+        </div>
+
+        <div class="info-block green-block">
+          <h3>🎯 Get Started</h3>
+          <div class="resource-links">
+            <a href="https://2000learning.paylocity.com/LMS/TrainingDescription/10261/1" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-green), #90ee90);">
+              <span>📖</span>
+              <span>Access E-Learnings</span>
+            </a>
+            <a href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-green), #90ee90);">
+              <span>📋</span>
+              <span>Best Practices Guide</span>
+            </a>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Leading Advantage Modal -->
+  <div class="leading-advantage-modal" id="leadingAdvantageModal" onclick="closeLeadingAdvantageOnBackdrop(event)">
+    <div class="leading-advantage-content" onclick="event.stopPropagation()">
+      <div class="leading-advantage-header">
+        <button class="leading-advantage-close" onclick="closeLeadingAdvantage()">✕</button>
+        <h2>⚡ Leading Advantage</h2>
+        <p>Six-month journey to your first leadership position</p>
+      </div>
+      
+      <div class="leading-advantage-body">
+        <div class="info-block green-highlight">
+          <h3>👥 Who Can Participate</h3>
+          <p>Individual contributors who have leadership aspirations and are <strong>nominated and selected</strong> by their leadership team to participate in the program.</p>
+        </div>
+
+        <div class="info-block green-block">
+          <h3>💻 How It Works</h3>
+          <p>Virtual Instructor-Led Training and On-The-Job Experiences</p>
+        </div>
+
+        <div class="info-block green-block">
+          <h3>⏱️ Program Duration</h3>
+          <p>The program is <strong>six months long</strong></p>
+        </div>
+
+        <div class="info-block green-block">
+          <h3>📅 When Programs Run</h3>
+          <p>The program runs <strong>two times each year</strong> with kickoffs in:</p>
+          <ul>
+            <li><strong>September Cohort</strong> - Kickoff in September</li>
+            <li><strong>March Cohort</strong> - Kickoff in March</li>
+          </ul>
+        </div>
+
+        <div class="info-block green-block">
+          <h3>📝 Nomination Process</h3>
+          <p><strong>Nomination Window:</strong> The nomination survey is open and available year-round.</p>
+          <ul>
+            <li><strong>September Cohort:</strong> Nomination cut-off date <strong>June 30th</strong></li>
+            <li><strong>March Cohort:</strong> Nomination cut-off date <strong>December 31st</strong></li>
+          </ul>
+          <p style="margin-top: 15px;"><strong>Enrollment:</strong> Those who are selected to participate in the program will be auto-enrolled in program activities.</p>
+          
+          <div class="resource-links">
+            <a href="https://corp.url.paylocity.com/m/surveys/link/7zt91dprx3em0zentnn?q=e228853f02f54fb582ff24a39c34d9f3" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-green), #90ee90);">
+              <span>📝</span>
+              <span>Nomination Survey</span>
+            </a>
+            <a href="https://paylocity1.sharepoint.com/:x:/s/TalentManagementDocuments/EXF3awnorRZNnPJl5EiyvigBZrcQ43zBGIZL0YnFT5MnVA?e=Ms1GA3" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-green), #90ee90);">
+              <span>📅</span>
+              <span>Program Calendar</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="info-block green-highlight">
+          <h3>📚 What You'll Learn</h3>
+          <p>Leading Advantage is a six-month learning journey of instructor-led training and on-the-job experiences designed to provide participants the professional growth and insight needed to successfully interview for and potentially earn their first leadership position.</p>
+          <p style="margin-top: 15px;"><strong>The Learning Journey:</strong></p>
+          <ul>
+            <li><strong>Months 1-2:</strong> Leading Self</li>
+            <li><strong>Months 3-4:</strong> Leading Teams</li>
+            <li><strong>Months 5-6:</strong> Leading the Business</li>
+          </ul>
+          <p style="margin-top: 15px;">The learners will have a <strong>capstone experience</strong> to share what they have learned and accomplished throughout the journey.</p>
+          
+          <div class="resource-links" style="margin-top: 20px;">
+            <a href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-green), #90ee90);">
+              <span>📖</span>
+              <span>Best Practices Guide</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Leading Now Modal -->
   <div class="leading-now-modal" id="leadingNowModal" onclick="closeLeadingNowOnBackdrop(event)">
@@ -2014,8 +2288,44 @@
         closeFAQ();
         closeLeadingNow();
         closeProfDev();
+        closeLeadingExploration();
+        closeLeadingAdvantage();
       }
     });
+
+    // Leading Exploration Modal Functions
+    function openLeadingExploration() {
+      document.getElementById('leadingExplorationModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLeadingExploration() {
+      document.getElementById('leadingExplorationModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeLeadingExplorationOnBackdrop(event) {
+      if (event.target.id === 'leadingExplorationModal') {
+        closeLeadingExploration();
+      }
+    }
+
+    // Leading Advantage Modal Functions
+    function openLeadingAdvantage() {
+      document.getElementById('leadingAdvantageModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLeadingAdvantage() {
+      document.getElementById('leadingAdvantageModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeLeadingAdvantageOnBackdrop(event) {
+      if (event.target.id === 'leadingAdvantageModal') {
+        closeLeadingAdvantage();
+      }
+    }
 
     // Leading Now Modal Functions
     function openLeadingNow() {
