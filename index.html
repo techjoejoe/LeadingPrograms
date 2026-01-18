@@ -1003,6 +1003,130 @@
       border-left-color: var(--brand-orange);
     }
 
+    /* Professional Development Modal */
+    .prof-dev-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .prof-dev-modal.active {
+      display: flex;
+    }
+
+    .prof-dev-content {
+      background: var(--bg);
+      border-radius: var(--radius);
+      max-width: 800px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+      position: relative;
+    }
+
+    .prof-dev-header {
+      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
+      padding: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative;
+    }
+
+    .prof-dev-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: white;
+    }
+
+    .prof-dev-close:hover {
+      background: rgba(255,255,255,0.5);
+      transform: rotate(90deg);
+    }
+
+    .prof-dev-header h2 {
+      margin: 0 0 10px 0;
+      font-size: 2.5rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .prof-dev-header p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .prof-dev-body {
+      padding: 40px;
+    }
+
+    .info-block.purple-block {
+      border-left-color: var(--brand-purple);
+    }
+
+    .info-block.purple-block h3 {
+      color: var(--brand-purple);
+    }
+
+    .info-block.purple-highlight {
+      background: linear-gradient(135deg, #f5f0ff 0%, #e9dcff 100%);
+      border-left-color: var(--brand-purple);
+    }
+
+    .resource-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .resource-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 20px;
+      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
+      color: white;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(144, 19, 254, 0.2);
+    }
+
+    .resource-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(144, 19, 254, 0.3);
+      filter: brightness(1.1);
+    }
+
+    .resource-link span:first-child {
+      font-size: 1.5rem;
+    }
+
     /* Back to Top Button */
     .back-to-top {
       position: fixed;
@@ -1136,6 +1260,27 @@
 
       .info-block p, .info-block ul {
         font-size: 0.95rem;
+      }
+
+      .prof-dev-header {
+        padding: 25px 20px;
+      }
+
+      .prof-dev-header h2 {
+        font-size: 1.8rem;
+      }
+
+      .prof-dev-body {
+        padding: 20px 15px;
+      }
+
+      .resource-links {
+        grid-template-columns: 1fr;
+      }
+
+      .resource-link {
+        padding: 12px 16px;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -1425,7 +1570,7 @@
           <div class="option-details">
             <h3>Paylocity's Professional Development</h3>
             <p>Comprehensive professional development resources and programs to support your continuous growth at Paylocity.</p>
-            <button class="cta-button purple">📚 View Programs</button>
+            <button class="cta-button purple" onclick="openProfDev()">📚 View Programs</button>
           </div>
         </div>
       </div>
@@ -1546,6 +1691,72 @@
             <li>Setting strategic goals</li>
             <li>Addressing real-time business issues and challenges</li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Professional Development Modal -->
+  <div class="prof-dev-modal" id="profDevModal" onclick="closeProfDevOnBackdrop(event)">
+    <div class="prof-dev-content" onclick="event.stopPropagation()">
+      <div class="prof-dev-header">
+        <button class="prof-dev-close" onclick="closeProfDev()">✕</button>
+        <h2>🎓 Professional Development</h2>
+        <p>Enterprise-wide courses to refine your workplace skills</p>
+      </div>
+      
+      <div class="prof-dev-body">
+        <div class="info-block purple-highlight">
+          <h3>👥 Who Can Participate</h3>
+          <p><strong>Paylocity Enterprise Wide</strong><br>
+          All Paylocity employees are welcome to self-enroll in any available class!</p>
+        </div>
+
+        <div class="info-block purple-block">
+          <h3>💻 How It Works</h3>
+          <p>Virtual Instructor-Led Sessions</p>
+        </div>
+
+        <div class="info-block purple-block">
+          <h3>⏱️ Time Commitment</h3>
+          <p>Varies by topic, typically 2 hours per session</p>
+        </div>
+
+        <div class="info-block purple-block">
+          <h3>📝 How to Register</h3>
+          <p><strong>Three convenient ways to enroll:</strong></p>
+          <ul>
+            <li>Access the <strong>Enterprise Calendar</strong> on ESS</li>
+            <li>Visit the <strong>Virtual PCTY Events! Community Group</strong></li>
+            <li>Use the <strong>Schedule and Registration link</strong> below</li>
+          </ul>
+          
+          <div class="resource-links">
+            <a href="https://paylocity1-my.sharepoint.com/:b:/g/personal/rkash_paylocity_com/ERiDY0iOyadDg1e-qakDFtwB4Fux7ho9EIso_qoB_iwauQ?e=rkYfTl" target="_blank" class="resource-link">
+              <span>📅</span>
+              <span>Schedule & Registration</span>
+            </a>
+            <a href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf" target="_blank" class="resource-link">
+              <span>📖</span>
+              <span>Best Practices Guide</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="info-block purple-highlight">
+          <h3>📚 What You'll Learn</h3>
+          <p>Professional Development courses help refine core skills needed to thrive in the workplace. Leverage these courses to own your development and focus on topics you're most interested in!</p>
+          <p style="margin-top: 15px;"><strong>Example Topics Include:</strong></p>
+          <ul>
+            <li>Crucial Conversations</li>
+            <li>Emotional Intelligence</li>
+            <li>Managing Up, Down, & Around</li>
+            <li>Growth Mindset</li>
+            <li>Discovering Your Next Destination</li>
+            <li>Delegation</li>
+            <li>...and many more!</li>
+          </ul>
+          <p style="margin-top: 15px;"><em>Offerings vary based on time of year, so keep checking in to stay current on your development!</em></p>
         </div>
       </div>
     </div>
@@ -1802,6 +2013,7 @@
       if (event.key === 'Escape') {
         closeFAQ();
         closeLeadingNow();
+        closeProfDev();
       }
     });
 
@@ -1819,6 +2031,23 @@
     function closeLeadingNowOnBackdrop(event) {
       if (event.target.id === 'leadingNowModal') {
         closeLeadingNow();
+      }
+    }
+
+    // Professional Development Modal Functions
+    function openProfDev() {
+      document.getElementById('profDevModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProfDev() {
+      document.getElementById('profDevModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeProfDevOnBackdrop(event) {
+      if (event.target.id === 'profDevModal') {
+        closeProfDev();
       }
     }
   </script>
