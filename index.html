@@ -23,7 +23,6 @@
       --shadow: 0 10px 24px rgba(0,0,0,.10);
       --shadow-sm: 0 4px 12px rgba(0,0,0,.08);
     }
-
     @media (prefers-color-scheme: dark) {
       :root {
         --ink: #ffffff;
@@ -34,2094 +33,302 @@
         --line: #404040;
       }
     }
-
-    * { 
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    body { 
-      font: 16px/1.55 system-ui, -apple-system, sans-serif; 
-      color: var(--ink); 
-      background: var(--bg); 
-      overflow-x: hidden;
-    }
-    
-    a { 
-      color: var(--brand-blue); 
-      text-decoration: none; 
-      transition: color 0.2s ease; 
-    }
-    
-    a:hover { 
-      color: var(--brand-orange); 
-    }
-
-    /* Header - Sticky Navigation */
-    header { 
-      position: sticky; 
-      top: 0; 
-      z-index: 1000; 
-      padding: 20px; 
-      background: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 100%);
-      border-bottom: 3px solid transparent;
-      background-image: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 100%), 
-                        linear-gradient(90deg, var(--brand-blue), var(--brand-green), var(--brand-orange), var(--brand-purple), var(--brand-red), var(--brand-yellow));
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 8px 32px rgba(0,0,0,.1);
-    }
-    
-    .nav { 
-      display: flex; 
-      gap: 20px; 
-      align-items: center; 
-      justify-content: space-between; 
-      max-width: 1400px; 
-      margin: 0 auto;
-    }
-
-    .brand { 
-      display: flex; 
-      align-items: center; 
-      gap: 12px;
-      font-size: 28px; 
-      font-weight: 700; 
-      color: var(--ink);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    .brand:hover {
-      transform: scale(1.05) rotate(2deg);
-    }
-
-    .brand-logo {
-      height: 70px;
-      width: auto;
-      object-fit: contain;
-      transition: all 0.3s ease;
-      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
-    }
-
-    .brand:hover .brand-logo {
-      transform: rotate(-2deg);
-      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25)) brightness(1.1);
-    }
-
-    .tabs { 
-      display: flex; 
-      gap: 12px; 
-      flex-wrap: wrap; 
-      padding: 8px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 50px;
-      backdrop-filter: blur(10px);
-    }
-    
-    .tab { 
-      padding: 12px 20px; 
-      border-radius: 30px; 
-      font-weight: 700; 
-      font-size: 14px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 2px solid transparent;
-      background: var(--bg);
-      color: var(--ink);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-
-    .tab:nth-child(1) { /* Home */
-      background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);
-      color: white;
-    }
-    
-    .tab:nth-child(2) { /* New Leader */
-      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
-      color: white;
-    }
-    
-    .tab:nth-child(3) { /* Playbooks */
-      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
-      color: white;
-    }
-    
-    .tab:nth-child(4) { /* Leadership Development */
-      background: linear-gradient(135deg, var(--brand-green), #90ee90);
-      color: white;
-    }
-    
-    .tab:nth-child(5) { /* Continuing Education */
-      background: linear-gradient(135deg, var(--brand-red), #ff6b9d);
-      color: white;
-    }
-
-    .tab:hover { 
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-      filter: brightness(1.1) saturate(1.2);
-    }
-
-    .tab.active {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 
-        0 6px 20px rgba(0,0,0,0.15),
-        0 0 0 3px rgba(255,255,255,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.2);
-    }
-
-    /* Section Styling */
-    section {
-      min-height: 100vh;
-      padding: 100px 20px;
-      position: relative;
-      scroll-margin-top: 120px;
-    }
-
-    .section-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Home Section */
-    #home {
-      background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 50%, var(--bg-gray) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-logo {
-      height: 250px;
-      width: auto;
-      object-fit: contain;
-      margin-bottom: 30px;
-      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15));
-      animation: fadeInDown 1s ease-out;
-    }
-
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero-content {
-      text-align: center;
-      z-index: 10;
-    }
-
-    .hero-content p {
-      font-size: 1.3rem;
-      color: var(--ink-2);
-      margin-bottom: 40px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Floating Bubbles */
-    .bubble {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.3;
-      animation: float 20s ease-in-out infinite;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 
-        0 0 20px currentColor,
-        0 0 40px currentColor,
-        inset 0 0 20px rgba(255,255,255,0.2);
-      filter: blur(0.5px);
-    }
-
-    .bubble::after {
-      content: '→';
-      color: white;
-      font-size: 2em;
-      font-weight: 900;
-      opacity: 1;
-      text-shadow: 0 0 10px currentColor;
-      filter: brightness(1.5);
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(30px, -30px) rotate(90deg); }
-      50% { transform: translate(-20px, 20px) rotate(180deg); }
-      75% { transform: translate(40px, 10px) rotate(270deg); }
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font: 16px/1.55 system-ui, -apple-system, sans-serif; color: var(--ink); background: var(--bg); overflow-x: hidden; }
+    a { color: var(--brand-blue); text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: var(--brand-orange); }
+    header { position: sticky; top: 0; z-index: 1000; padding: 20px; background: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 100%); border-bottom: 3px solid transparent; background-image: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 100%), linear-gradient(90deg, var(--brand-blue), var(--brand-green), var(--brand-orange), var(--brand-purple), var(--brand-red), var(--brand-yellow)); background-origin: border-box; background-clip: padding-box, border-box; backdrop-filter: blur(15px); box-shadow: 0 8px 32px rgba(0,0,0,.1); }
+    .nav { display: flex; gap: 20px; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; }
+    .brand { display: flex; align-items: center; gap: 12px; font-size: 28px; font-weight: 700; color: var(--ink); transition: transform 0.3s ease; cursor: pointer; }
+    .brand:hover { transform: scale(1.05) rotate(2deg); }
+    .brand-logo { height: 70px; width: auto; object-fit: contain; transition: all 0.3s ease; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15)); }
+    .brand:hover .brand-logo { transform: rotate(-2deg); filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25)) brightness(1.1); }
+    .tabs { display: flex; gap: 12px; flex-wrap: wrap; padding: 8px; background: rgba(255,255,255,0.1); border-radius: 50px; backdrop-filter: blur(10px); }
+    .tab { padding: 12px 20px; border-radius: 30px; font-weight: 700; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 2px solid transparent; background: var(--bg); color: var(--ink); display: flex; align-items: center; gap: 8px; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .tab:nth-child(1) { background: linear-gradient(135deg, var(--brand-blue), #7bb3f0); color: white; }
+    .tab:nth-child(2) { background: linear-gradient(135deg, var(--brand-orange), #ffb347); color: white; }
+    .tab:nth-child(3) { background: linear-gradient(135deg, var(--brand-purple), #b19cd9); color: white; }
+    .tab:nth-child(4) { background: linear-gradient(135deg, var(--brand-green), #90ee90); color: white; }
+    .tab:nth-child(5) { background: linear-gradient(135deg, var(--brand-red), #ff6b9d); color: white; }
+    .tab:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 8px 25px rgba(0,0,0,0.2); filter: brightness(1.1) saturate(1.2); }
+    .tab.active { transform: translateY(-2px) scale(1.02); box-shadow: 0 6px 20px rgba(0,0,0,0.15), 0 0 0 3px rgba(255,255,255,0.3), inset 0 1px 0 rgba(255,255,255,0.2); }
+    section { min-height: 100vh; padding: 100px 20px; position: relative; scroll-margin-top: 120px; }
+    .section-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+    #home { background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 50%, var(--bg-gray) 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .hero-logo { height: 250px; width: auto; object-fit: contain; margin-bottom: 30px; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15)); animation: fadeInDown 1s ease-out; }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-content { text-align: center; z-index: 10; }
+    .hero-content p { font-size: 1.3rem; color: var(--ink-2); margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .bubble { position: absolute; border-radius: 50%; opacity: 0.3; animation: float 20s ease-in-out infinite; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, inset 0 0 20px rgba(255,255,255,0.2); filter: blur(0.5px); }
+    .bubble::after { content: '→'; color: white; font-size: 2em; font-weight: 900; opacity: 1; text-shadow: 0 0 10px currentColor; filter: brightness(1.5); }
+    @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(30px, -30px) rotate(90deg); } 50% { transform: translate(-20px, 20px) rotate(180deg); } 75% { transform: translate(40px, 10px) rotate(270deg); } }
     .bubble-1 { width: 80px; height: 80px; background: var(--brand-blue); color: var(--brand-blue); top: 15%; left: 10%; animation-delay: 0s; }
     .bubble-2 { width: 120px; height: 120px; background: var(--brand-yellow); color: var(--brand-yellow); top: 20%; right: 15%; animation-delay: -5s; }
     .bubble-3 { width: 60px; height: 60px; background: var(--brand-red); color: var(--brand-red); bottom: 25%; left: 8%; animation-delay: -10s; }
     .bubble-4 { width: 100px; height: 100px; background: var(--brand-green); color: var(--brand-green); bottom: 35%; right: 20%; animation-delay: -3s; }
     .bubble-5 { width: 150px; height: 150px; background: var(--brand-purple); color: var(--brand-purple); top: 50%; left: 50%; animation-delay: -8s; }
     .bubble-6 { width: 70px; height: 70px; background: var(--brand-orange); color: var(--brand-orange); top: 40%; left: 25%; animation-delay: -12s; }
-
-    /* Section-specific bubbles for individual cards */
-    .card-bubbles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .card-bubble {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.25;
-      animation: float 20s ease-in-out infinite;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 
-        0 0 20px currentColor,
-        0 0 40px currentColor,
-        inset 0 0 20px rgba(255,255,255,0.2);
-      filter: blur(0.5px);
-    }
-
-    .card-bubble::after {
-      content: '→';
-      color: white;
-      font-size: 2em;
-      font-weight: 900;
-      opacity: 1;
-      text-shadow: 0 0 10px currentColor;
-      filter: brightness(1.5);
-    }
-
-    /* Color variants for card bubbles */
-    .card-bubble.yellow-bubble {
-      background: var(--brand-yellow);
-      color: var(--brand-yellow);
-    }
-
-    .card-bubble.blue-bubble {
-      background: var(--brand-blue);
-      color: var(--brand-blue);
-    }
-
-    .card-bubble.green-bubble {
-      background: var(--brand-green);
-      color: var(--brand-green);
-    }
-
-    .card-bubble.purple-bubble {
-      background: var(--brand-purple);
-      color: var(--brand-purple);
-    }
-
-    .card-bubble.orange-bubble {
-      background: var(--brand-orange);
-      color: var(--brand-orange);
-    }
-
-    .card-bubble.red-bubble {
-      background: var(--brand-red);
-      color: var(--brand-red);
-    }
-
-    /* Section bubbles (removed) */
-    .section-bubbles {
-      display: none;
-    }
-
-    /* Path Options */
-    .path-options {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      margin-top: 60px;
-    }
-
-    .path-card {
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .path-card:hover {
-      transform: translateY(-10px);
-    }
-
-    .path-circle {
-      width: 250px;
-      height: 250px;
-      margin: 0 auto 20px;
-      border-radius: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 700;
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .path-circle:hover {
-      transform: scale(1.05);
-      box-shadow: 0 15px 40px rgba(0,0,0,.2);
-    }
-
-    .path-circle.orange {
-      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
-    }
-
-    .path-circle.blue {
-      background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);
-    }
-
-    .path-icon {
-      font-size: 4rem;
-      margin-bottom: 15px;
-    }
-
-    .path-title {
-      font-size: 1.3rem;
-      line-height: 1.2;
-      padding: 0 20px;
-    }
-
-    /* Section Headers */
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .section-header h2 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    .section-header.orange h2 {
-      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .section-header.green h2 {
-      background: linear-gradient(135deg, var(--brand-green), #90ee90);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .section-header.purple h2 {
-      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .section-header p {
-      font-size: 1.2rem;
-      color: var(--ink-2);
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* Stats Grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-      margin-bottom: 60px;
-    }
-
-    .stat-card {
-      text-align: center;
-      padding: 30px;
-      background: var(--bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.3s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow);
-    }
-
-    .stat-number {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .stat-number.orange {
-      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .stat-number.green {
-      background: linear-gradient(135deg, var(--brand-green), #90ee90);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .stat-label {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 5px;
-    }
-
-    .stat-description {
-      font-size: 0.9rem;
-      color: var(--ink-2);
-    }
-
-    /* Options Grid */
-    .options-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 50px;
-      align-items: stretch;
-    }
-
-    .option-card {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .visual-circle {
-      width: 280px;
-      height: 280px;
-      margin: 0 auto 30px;
-      border-radius: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
-    }
-
-    .visual-circle:hover {
-      transform: scale(1.05) rotate(5deg);
-      box-shadow: 0 15px 40px rgba(0,0,0,.2);
-    }
-
-    .visual-circle.orange {
-      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
-    }
-
-    .visual-circle.blue {
-      background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);
-    }
-
-    .visual-circle.green {
-      background: linear-gradient(135deg, var(--brand-green), #90ee90);
-    }
-
-    .visual-circle.purple {
-      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
-    }
-
-    .timeline-label-text {
-      font-size: 0.9rem;
-      font-weight: 600;
-      opacity: 0.9;
-      margin-bottom: 10px;
-    }
-
-    .option-icon {
-      font-size: 4rem;
-      margin-bottom: 15px;
-    }
-
-    .program-logo {
-      max-width: 250px;
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-    }
-
-    .option-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      line-height: 1.2;
-      padding: 0 15px;
-    }
-
-    .option-details {
-      padding: 30px;
-      background: var(--bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      min-height: 320px;
-    }
-
-    .option-details h3 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-      color: var(--ink);
-    }
-
-    .option-details p {
-      font-size: 1.1rem;
-      color: var(--ink-2);
-      line-height: 1.6;
-      margin-bottom: 25px;
-      flex-grow: 1;
-    }
-
-    .option-details ul {
-      margin: 15px 0 25px 20px;
-      color: var(--ink-2);
-    }
-
-    .option-details li {
-      margin-bottom: 10px;
-      line-height: 1.6;
-    }
-
-    /* Info Cards for Dashboard Style */
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .info-card {
-      background: var(--bg);
-      border-radius: var(--radius);
-      padding: 30px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
-    }
-
-    .info-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow);
-    }
-
-    .info-card.what-card {
-      border-top: 4px solid var(--brand-blue);
-    }
-
-    .info-card.who-card {
-      border-top: 4px solid var(--brand-green);
-    }
-
-    .info-card.how-card {
-      border-top: 4px solid var(--brand-orange);
-    }
-
-    .info-card.when-card {
-      border-top: 4px solid var(--brand-purple);
-    }
-
-    .card-icon {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .card-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-      color: var(--ink);
-    }
-
-    .card-content p {
-      color: var(--ink-2);
-      line-height: 1.6;
-      margin-bottom: 15px;
-    }
-
-    .card-content ul {
-      margin: 10px 0 0 20px;
-      color: var(--ink-2);
-    }
-
-    .card-content li {
-      margin-bottom: 8px;
-      line-height: 1.5;
-    }
-
-    /* CTA Buttons */
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 1rem;
-      color: white;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      border: none;
-      cursor: pointer;
-    }
-
-    .cta-button.orange {
-      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
-    }
-
-    .cta-button.blue {
-      background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);
-    }
-
-    .cta-button.green {
-      background: linear-gradient(135deg, var(--brand-green), #90ee90);
-    }
-
-    .cta-button.purple {
-      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
-    }
-
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-      filter: brightness(1.1);
-    }
-
-    /* Section Specific Backgrounds */
-    #new-leader {
-      background: linear-gradient(to bottom, var(--bg) 0%, #fff5eb 100%);
-    }
-
-    #leadership-development {
-      background: linear-gradient(to bottom, #f0fff4 0%, var(--bg) 100%);
-    }
-
-    #continuing-education {
-      background: linear-gradient(to bottom, #f5f0ff 0%, var(--bg) 100%);
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 60px 20px;
-      background: var(--bg-light);
-      border-top: 1px solid var(--line);
-    }
-
-    footer p {
-      color: var(--ink-2);
-      margin-bottom: 15px;
-    }
-
-    /* FAQ Floating Button */
-    .faq-button {
-      position: fixed;
-      bottom: 120px;
-      right: 40px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--brand-yellow), #ffd700);
-      color: var(--ink);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      opacity: 1;
-      transition: all 0.3s ease;
-      z-index: 998;
-      font-weight: 700;
-    }
-
-    .faq-button:hover {
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 15px 40px rgba(0,0,0,.3);
-    }
-
-    /* FAQ Modal */
-    .faq-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(5px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      padding: 20px;
-    }
-
-    .faq-modal.active {
-      display: flex;
-    }
-
-    .faq-content {
-      background: var(--bg);
-      border-radius: var(--radius);
-      max-width: 900px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,.3);
-      position: relative;
-    }
-
-    .faq-header {
-      position: sticky;
-      top: 0;
-      background: linear-gradient(135deg, var(--brand-yellow), #ffd700);
-      padding: 30px;
-      border-radius: var(--radius) var(--radius) 0 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10;
-    }
-
-    .faq-header h2 {
-      margin: 0;
-      font-size: 2rem;
-      color: var(--ink);
-    }
-
-    .faq-close {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      color: var(--ink);
-    }
-
-    .faq-close:hover {
-      background: rgba(255,255,255,0.5);
-      transform: rotate(90deg);
-    }
-
-    .faq-body {
-      padding: 30px;
-    }
-
-    .faq-category {
-      margin-bottom: 30px;
-    }
-
-    .faq-category-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--brand-orange);
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .faq-item {
-      background: var(--bg-light);
-      border-radius: 12px;
-      margin-bottom: 12px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .faq-item:hover {
-      box-shadow: var(--shadow-sm);
-    }
-
-    .faq-question {
-      padding: 20px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      font-weight: 600;
-      color: var(--ink);
-      transition: all 0.3s ease;
-    }
-
-    .faq-question:hover {
-      background: var(--bg-gray);
-    }
-
-    .faq-question.active {
-      background: var(--bg-gray);
-      color: var(--brand-blue);
-    }
-
-    .faq-toggle {
-      font-size: 1.5rem;
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-    }
-
-    .faq-question.active .faq-toggle {
-      transform: rotate(180deg);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      padding: 0 20px;
-    }
-
-    .faq-answer.active {
-      max-height: 500px;
-      padding: 0 20px 20px 20px;
-    }
-
-    .faq-answer p {
-      color: var(--ink-2);
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .faq-answer ul {
-      margin: 10px 0 0 20px;
-      color: var(--ink-2);
-    }
-
-    .faq-answer li {
-      margin-bottom: 8px;
-      line-height: 1.5;
-    }
-
-    .faq-contacts {
-      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-    }
-
-    .faq-contacts h3 {
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-      color: var(--brand-blue);
-    }
-
-    .faq-contacts p {
-      margin: 5px 0;
-      color: var(--ink-2);
-    }
-
-    .faq-contacts strong {
-      color: var(--ink);
-    }
-
-    /* Leading Now Modal */
-    .leading-now-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(5px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      padding: 20px;
-    }
-
-    .leading-now-modal.active {
-      display: flex;
-    }
-
-    .leading-now-content {
-      background: var(--bg);
-      border-radius: var(--radius);
-      max-width: 800px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,.3);
-      position: relative;
-    }
-
-    .leading-now-header {
-      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
-      padding: 40px;
-      border-radius: var(--radius) var(--radius) 0 0;
-      position: relative;
-    }
-
-    .leading-now-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      color: white;
-    }
-
-    .leading-now-close:hover {
-      background: rgba(255,255,255,0.5);
-      transform: rotate(90deg);
-    }
-
-    .leading-now-header h2 {
-      margin: 0 0 10px 0;
-      font-size: 2.5rem;
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .leading-now-header p {
-      margin: 0;
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .leading-now-body {
-      padding: 40px;
-    }
-
-    .info-block {
-      margin-bottom: 30px;
-      padding: 25px;
-      background: var(--bg-light);
-      border-radius: 12px;
-      border-left: 4px solid var(--brand-orange);
-      transition: all 0.3s ease;
-    }
-
-    .info-block:hover {
-      transform: translateX(5px);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .info-block h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--brand-orange);
-      margin: 0 0 10px 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .info-block p {
-      color: var(--ink-2);
-      line-height: 1.7;
-      margin: 0;
-      font-size: 1.05rem;
-    }
-
-    .info-block ul {
-      color: var(--ink-2);
-      line-height: 1.7;
-      margin: 10px 0 0 20px;
-      font-size: 1.05rem;
-    }
-
-    .info-block li {
-      margin-bottom: 8px;
-    }
-
-    .info-block strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    .highlight-box {
-      background: linear-gradient(135deg, #fff5eb 0%, #ffe8d1 100%);
-      border-left-color: var(--brand-orange);
-    }
-
-    /* Professional Development Modal */
-    .prof-dev-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(5px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      padding: 20px;
-    }
-
-    .prof-dev-modal.active {
-      display: flex;
-    }
-
-    .prof-dev-content {
-      background: var(--bg);
-      border-radius: var(--radius);
-      max-width: 800px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,.3);
-      position: relative;
-    }
-
-    .prof-dev-header {
-      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
-      padding: 40px;
-      border-radius: var(--radius) var(--radius) 0 0;
-      position: relative;
-    }
-
-    .prof-dev-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      color: white;
-    }
-
-    .prof-dev-close:hover {
-      background: rgba(255,255,255,0.5);
-      transform: rotate(90deg);
-    }
-
-    .prof-dev-header h2 {
-      margin: 0 0 10px 0;
-      font-size: 2.5rem;
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .prof-dev-header p {
-      margin: 0;
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .prof-dev-body {
-      padding: 40px;
-    }
-
-    .info-block.purple-block {
-      border-left-color: var(--brand-purple);
-    }
-
-    .info-block.purple-block h3 {
-      color: var(--brand-purple);
-    }
-
-    .info-block.purple-highlight {
-      background: linear-gradient(135deg, #f5f0ff 0%, #e9dcff 100%);
-      border-left-color: var(--brand-purple);
-    }
-
-    .resource-links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .resource-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 15px 20px;
-      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
-      color: white;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(144, 19, 254, 0.2);
-    }
-
-    .resource-link:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(144, 19, 254, 0.3);
-      filter: brightness(1.1);
-    }
-
-    .resource-link span:first-child {
-      font-size: 1.5rem;
-    }
-
-    /* Leading Exploration Modal */
-    .leading-exploration-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(5px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      padding: 20px;
-    }
-
-    .leading-exploration-modal.active {
-      display: flex;
-    }
-
-    .leading-exploration-content {
-      background: var(--bg);
-      border-radius: var(--radius);
-      max-width: 800px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,.3);
-      position: relative;
-    }
-
-    .leading-exploration-header {
-      background: linear-gradient(135deg, var(--brand-green), #90ee90);
-      padding: 40px;
-      border-radius: var(--radius) var(--radius) 0 0;
-      position: relative;
-    }
-
-    .leading-exploration-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      color: white;
-    }
-
-    .leading-exploration-close:hover {
-      background: rgba(255,255,255,0.5);
-      transform: rotate(90deg);
-    }
-
-    .leading-exploration-header h2 {
-      margin: 0 0 10px 0;
-      font-size: 2.5rem;
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .leading-exploration-header p {
-      margin: 0;
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .leading-exploration-body {
-      padding: 40px;
-    }
-
-    .info-block.green-block {
-      border-left-color: var(--brand-green);
-    }
-
-    .info-block.green-block h3 {
-      color: var(--brand-green);
-    }
-
-    .info-block.green-highlight {
-      background: linear-gradient(135deg, #f0fff4 0%, #dcffdc 100%);
-      border-left-color: var(--brand-green);
-    }
-
-    /* New Leader Onboarding Modal */
-    .nlo-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(5px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      padding: 20px;
-    }
-
-    .nlo-modal.active {
-      display: flex;
-    }
-
-    .nlo-content {
-      background: var(--bg);
-      border-radius: var(--radius);
-      max-width: 800px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,.3);
-      position: relative;
-    }
-
-    .nlo-header {
-      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
-      padding: 40px;
-      border-radius: var(--radius) var(--radius) 0 0;
-      position: relative;
-    }
-
-    .nlo-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      color: white;
-    }
-
-    .nlo-close:hover {
-      background: rgba(255,255,255,0.5);
-      transform: rotate(90deg);
-    }
-
-    .nlo-header h2 {
-      margin: 0 0 10px 0;
-      font-size: 2.5rem;
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .nlo-header p {
-      margin: 0;
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .nlo-body {
-      padding: 40px;
-    }
-
-    .info-block.orange-block {
-      border-left-color: var(--brand-orange);
-    }
-
-    .info-block.orange-block h3 {
-      color: var(--brand-orange);
-    }
-
-    .info-block.orange-highlight {
-      background: linear-gradient(135deg, #fff5eb 0%, #ffe8d1 100%);
-      border-left-color: var(--brand-orange);
-    }
-
-    /* Leading Essentials Modal */
-    .leading-essentials-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(5px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      padding: 20px;
-    }
-
-    .leading-essentials-modal.active {
-      display: flex;
-    }
-
-    .leading-essentials-content {
-      background: var(--bg);
-      border-radius: var(--radius);
-      max-width: 800px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,.3);
-      position: relative;
-    }
-
-    .leading-essentials-header {
-      background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);
-      padding: 40px;
-      border-radius: var(--radius) var(--radius) 0 0;
-      position: relative;
-    }
-
-    .leading-essentials-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      color: white;
-    }
-
-    .leading-essentials-close:hover {
-      background: rgba(255,255,255,0.5);
-      transform: rotate(90deg);
-    }
-
-    .leading-essentials-header h2 {
-      margin: 0 0 10px 0;
-      font-size: 2.5rem;
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .leading-essentials-header p {
-      margin: 0;
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .leading-essentials-body {
-      padding: 40px;
-    }
-
-    .info-block.blue-block {
-      border-left-color: var(--brand-blue);
-    }
-
-    .info-block.blue-block h3 {
-      color: var(--brand-blue);
-    }
-
-    .info-block.blue-highlight {
-      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-      border-left-color: var(--brand-blue);
-    }
-
-    /* Leading Advantage Modal */
-    .leading-advantage-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(5px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      padding: 20px;
-    }
-
-    .leading-advantage-modal.active {
-      display: flex;
-    }
-
-    .leading-advantage-content {
-      background: var(--bg);
-      border-radius: var(--radius);
-      max-width: 800px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,.3);
-      position: relative;
-    }
-
-    .leading-advantage-header {
-      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
-      padding: 40px;
-      border-radius: var(--radius) var(--radius) 0 0;
-      position: relative;
-    }
-
-    .leading-advantage-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      color: white;
-    }
-
-    .leading-advantage-close:hover {
-      background: rgba(255,255,255,0.5);
-      transform: rotate(90deg);
-    }
-
-    .leading-advantage-header h2 {
-      margin: 0 0 10px 0;
-      font-size: 2.5rem;
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .leading-advantage-header p {
-      margin: 0;
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .leading-advantage-body {
-      padding: 40px;
-    }
-
-    /* Back to Top Button */
-    .back-to-top {
-      position: fixed;
-      bottom: 40px;
-      right: 40px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--brand-purple), var(--brand-blue));
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(100px);
-      transition: all 0.3s ease;
-      z-index: 999;
-    }
-
-    .back-to-top.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .back-to-top:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0,0,0,.3);
-    }
-
-    /* Responsive Design */
+    .card-bubbles { position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+    .card-bubble { position: absolute; border-radius: 50%; opacity: 0.25; animation: float 20s ease-in-out infinite; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, inset 0 0 20px rgba(255,255,255,0.2); filter: blur(0.5px); }
+    .card-bubble::after { content: '→'; color: white; font-size: 2em; font-weight: 900; opacity: 1; text-shadow: 0 0 10px currentColor; filter: brightness(1.5); }
+    .card-bubble.yellow-bubble { background: var(--brand-yellow); color: var(--brand-yellow); }
+    .card-bubble.blue-bubble { background: var(--brand-blue); color: var(--brand-blue); }
+    .card-bubble.green-bubble { background: var(--brand-green); color: var(--brand-green); }
+    .card-bubble.purple-bubble { background: var(--brand-purple); color: var(--brand-purple); }
+    .card-bubble.orange-bubble { background: var(--brand-orange); color: var(--brand-orange); }
+    .card-bubble.red-bubble { background: var(--brand-red); color: var(--brand-red); }
+    .section-bubbles { display: none; }
+    .path-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
+    .path-card { text-align: center; cursor: pointer; transition: transform 0.3s ease; }
+    .path-card:hover { transform: translateY(-10px); }
+    .path-circle { width: 250px; height: 250px; margin: 0 auto 20px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-weight: 700; box-shadow: var(--shadow); transition: all 0.3s ease; position: relative; }
+    .path-circle:hover { transform: scale(1.05); box-shadow: 0 15px 40px rgba(0,0,0,.2); }
+    .path-circle.orange { background: linear-gradient(135deg, var(--brand-orange), #ffb347); }
+    .path-circle.blue { background: linear-gradient(135deg, var(--brand-blue), #7bb3f0); }
+    .path-icon { font-size: 4rem; margin-bottom: 15px; }
+    .path-title { font-size: 1.3rem; line-height: 1.2; padding: 0 20px; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-header h2 { font-size: 3rem; font-weight: 700; margin-bottom: 20px; }
+    .section-header.orange h2 { background: linear-gradient(135deg, var(--brand-orange), #ffb347); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-header.green h2 { background: linear-gradient(135deg, var(--brand-green), #90ee90); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-header.purple h2 { background: linear-gradient(135deg, var(--brand-purple), #b19cd9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-header p { font-size: 1.2rem; color: var(--ink-2); max-width: 700px; margin: 0 auto; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 60px; }
+    .stat-card { text-align: center; padding: 30px; background: var(--bg); border-radius: var(--radius); box-shadow: var(--shadow-sm); transition: transform 0.3s ease; }
+    .stat-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .stat-number { font-size: 3rem; font-weight: 800; margin-bottom: 10px; display: block; }
+    .stat-number.orange { background: linear-gradient(135deg, var(--brand-orange), #ffb347); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-number.green { background: linear-gradient(135deg, var(--brand-green), #90ee90); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-label { font-size: 1.1rem; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+    .stat-description { font-size: 0.9rem; color: var(--ink-2); }
+    .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 50px; align-items: stretch; }
+    .option-card { text-align: center; display: flex; flex-direction: column; height: 100%; position: relative; overflow: hidden; }
+    .visual-circle { width: 280px; height: 280px; margin: 0 auto 30px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; box-shadow: var(--shadow); transition: all 0.3s ease; }
+    .visual-circle:hover { transform: scale(1.05) rotate(5deg); box-shadow: 0 15px 40px rgba(0,0,0,.2); }
+    .visual-circle.orange { background: linear-gradient(135deg, var(--brand-orange), #ffb347); }
+    .visual-circle.blue { background: linear-gradient(135deg, var(--brand-blue), #7bb3f0); }
+    .visual-circle.green { background: linear-gradient(135deg, var(--brand-green), #90ee90); }
+    .visual-circle.purple { background: linear-gradient(135deg, var(--brand-purple), #b19cd9); }
+    .timeline-label-text { font-size: 0.9rem; font-weight: 600; opacity: 0.9; margin-bottom: 10px; }
+    .option-icon { font-size: 4rem; margin-bottom: 15px; }
+    .program-logo { max-width: 250px; width: 100%; height: auto; display: block; margin: 0 auto; }
+    .option-title { font-size: 1.5rem; font-weight: 700; line-height: 1.2; padding: 0 15px; }
+    .option-details { padding: 30px; background: var(--bg); border-radius: var(--radius); box-shadow: var(--shadow-sm); text-align: left; display: flex; flex-direction: column; min-height: 320px; }
+    .option-details h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 15px; color: var(--ink); }
+    .option-details p { font-size: 1.1rem; color: var(--ink-2); line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
+    .option-details ul { margin: 15px 0 25px 20px; color: var(--ink-2); }
+    .option-details li { margin-bottom: 10px; line-height: 1.6; }
+    .cta-button { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 30px; font-weight: 700; font-size: 1rem; color: white; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: none; cursor: pointer; }
+    .cta-button.orange { background: linear-gradient(135deg, var(--brand-orange), #ffb347); }
+    .cta-button.blue { background: linear-gradient(135deg, var(--brand-blue), #7bb3f0); }
+    .cta-button.green { background: linear-gradient(135deg, var(--brand-green), #90ee90); }
+    .cta-button.purple { background: linear-gradient(135deg, var(--brand-purple), #b19cd9); }
+    .cta-button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); filter: brightness(1.1); }
+    #new-leader { background: linear-gradient(to bottom, var(--bg) 0%, #fff5eb 100%); }
+    #leadership-development { background: linear-gradient(to bottom, #f0fff4 0%, var(--bg) 100%); }
+    #continuing-education { background: linear-gradient(to bottom, #f5f0ff 0%, var(--bg) 100%); }
+    footer { text-align: center; padding: 60px 20px; background: var(--bg-light); border-top: 1px solid var(--line); }
+    footer p { color: var(--ink-2); margin-bottom: 15px; }
+    .faq-button { position: fixed; bottom: 120px; right: 40px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--brand-yellow), #ffd700); color: var(--ink); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: var(--shadow); cursor: pointer; opacity: 1; transition: all 0.3s ease; z-index: 998; font-weight: 700; }
+    .faq-button:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 15px 40px rgba(0,0,0,.3); }
+    .faq-modal, .leading-now-modal, .prof-dev-modal, .leading-exploration-modal, .leading-advantage-modal, .nlo-modal, .leading-essentials-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); display: none; align-items: center; justify-content: center; z-index: 9999; padding: 20px; }
+    .faq-modal.active, .leading-now-modal.active, .prof-dev-modal.active, .leading-exploration-modal.active, .leading-advantage-modal.active, .nlo-modal.active, .leading-essentials-modal.active { display: flex; }
+    .faq-content, .leading-now-content, .prof-dev-content, .leading-exploration-content, .leading-advantage-content, .nlo-content, .leading-essentials-content { background: var(--bg); border-radius: var(--radius); max-width: 800px; width: 100%; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.3); position: relative; }
+    .faq-content { max-width: 900px; }
+    .faq-header { position: sticky; top: 0; background: linear-gradient(135deg, var(--brand-yellow), #ffd700); padding: 30px; border-radius: var(--radius) var(--radius) 0 0; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+    .faq-header h2 { margin: 0; font-size: 2rem; color: var(--ink); }
+    .faq-close, .leading-now-close, .prof-dev-close, .leading-exploration-close, .leading-advantage-close, .nlo-close, .leading-essentials-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; color: white; }
+    .faq-close { position: relative; top: auto; right: auto; color: var(--ink); }
+    .faq-close:hover, .leading-now-close:hover, .prof-dev-close:hover, .leading-exploration-close:hover, .leading-advantage-close:hover, .nlo-close:hover, .leading-essentials-close:hover { background: rgba(255,255,255,0.5); transform: rotate(90deg); }
+    .faq-body, .leading-now-body, .prof-dev-body, .leading-exploration-body, .leading-advantage-body, .nlo-body, .leading-essentials-body { padding: 40px; }
+    .faq-body { padding: 30px; }
+    .faq-category { margin-bottom: 30px; }
+    .faq-category-title { font-size: 1.3rem; font-weight: 700; color: var(--brand-orange); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+    .faq-item { background: var(--bg-light); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.3s ease; }
+    .faq-item:hover { box-shadow: var(--shadow-sm); }
+    .faq-question { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 15px; font-weight: 600; color: var(--ink); transition: all 0.3s ease; }
+    .faq-question:hover { background: var(--bg-gray); }
+    .faq-question.active { background: var(--bg-gray); color: var(--brand-blue); }
+    .faq-toggle { font-size: 1.5rem; transition: transform 0.3s ease; flex-shrink: 0; }
+    .faq-question.active .faq-toggle { transform: rotate(180deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 20px; }
+    .faq-answer.active { max-height: 500px; padding: 0 20px 20px 20px; }
+    .faq-answer p { color: var(--ink-2); line-height: 1.6; margin: 0; }
+    .faq-answer ul { margin: 10px 0 0 20px; color: var(--ink-2); }
+    .faq-answer li { margin-bottom: 8px; line-height: 1.5; }
+    .faq-contacts { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+    .faq-contacts h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--brand-blue); }
+    .faq-contacts p { margin: 5px 0; color: var(--ink-2); }
+    .faq-contacts strong { color: var(--ink); }
+    .leading-now-header { background: linear-gradient(135deg, var(--brand-orange), #ffb347); padding: 40px; border-radius: var(--radius) var(--radius) 0 0; position: relative; }
+    .prof-dev-header { background: linear-gradient(135deg, var(--brand-red), #ff6b9d); padding: 40px; border-radius: var(--radius) var(--radius) 0 0; position: relative; }
+    .leading-exploration-header { background: linear-gradient(135deg, var(--brand-green), #90ee90); padding: 40px; border-radius: var(--radius) var(--radius) 0 0; position: relative; }
+    .leading-advantage-header { background: linear-gradient(135deg, var(--brand-purple), #b19cd9); padding: 40px; border-radius: var(--radius) var(--radius) 0 0; position: relative; }
+    .nlo-header { background: linear-gradient(135deg, var(--brand-orange), #ffb347); padding: 40px; border-radius: var(--radius) var(--radius) 0 0; position: relative; }
+    .leading-essentials-header { background: linear-gradient(135deg, var(--brand-blue), #7bb3f0); padding: 40px; border-radius: var(--radius) var(--radius) 0 0; position: relative; }
+    .leading-now-header h2, .prof-dev-header h2, .leading-exploration-header h2, .leading-advantage-header h2, .nlo-header h2, .leading-essentials-header h2 { margin: 0 0 10px 0; font-size: 2.5rem; color: white; display: flex; align-items: center; gap: 15px; }
+    .leading-now-header p, .prof-dev-header p, .leading-exploration-header p, .leading-advantage-header p, .nlo-header p, .leading-essentials-header p { margin: 0; font-size: 1.1rem; color: rgba(255,255,255,0.9); }
+    .info-block { margin-bottom: 30px; padding: 25px; background: var(--bg-light); border-radius: 12px; border-left: 4px solid var(--brand-orange); transition: all 0.3s ease; }
+    .info-block:hover { transform: translateX(5px); box-shadow: var(--shadow-sm); }
+    .info-block h3 { font-size: 1.3rem; font-weight: 700; color: var(--brand-orange); margin: 0 0 10px 0; display: flex; align-items: center; gap: 10px; }
+    .info-block p { color: var(--ink-2); line-height: 1.7; margin: 0; font-size: 1.05rem; }
+    .info-block ul { color: var(--ink-2); line-height: 1.7; margin: 10px 0 0 20px; font-size: 1.05rem; }
+    .info-block li { margin-bottom: 8px; }
+    .info-block strong { color: var(--ink); font-weight: 600; }
+    .highlight-box { background: linear-gradient(135deg, #fff5eb 0%, #ffe8d1 100%); border-left-color: var(--brand-orange); }
+    .info-block.purple-block { border-left-color: var(--brand-purple); }
+    .info-block.purple-block h3 { color: var(--brand-purple); }
+    .info-block.purple-highlight { background: linear-gradient(135deg, #f5f0ff 0%, #e9dcff 100%); border-left-color: var(--brand-purple); }
+    .info-block.red-block { border-left-color: var(--brand-red); }
+    .info-block.red-block h3 { color: var(--brand-red); }
+    .info-block.red-highlight { background: linear-gradient(135deg, #fff0f0 0%, #ffe0e0 100%); border-left-color: var(--brand-red); }
+    .info-block.green-block { border-left-color: var(--brand-green); }
+    .info-block.green-block h3 { color: var(--brand-green); }
+    .info-block.green-highlight { background: linear-gradient(135deg, #f0fff4 0%, #dcffdc 100%); border-left-color: var(--brand-green); }
+    .info-block.blue-block { border-left-color: var(--brand-blue); }
+    .info-block.blue-block h3 { color: var(--brand-blue); }
+    .info-block.blue-highlight { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left-color: var(--brand-blue); }
+    .info-block.orange-block { border-left-color: var(--brand-orange); }
+    .info-block.orange-block h3 { color: var(--brand-orange); }
+    .info-block.orange-highlight { background: linear-gradient(135deg, #fff5eb 0%, #ffe8d1 100%); border-left-color: var(--brand-orange); }
+    .resource-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px; }
+    .resource-link { display: flex; align-items: center; gap: 10px; padding: 15px 20px; background: linear-gradient(135deg, var(--brand-purple), #b19cd9); color: white; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(144, 19, 254, 0.2); }
+    .resource-link:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(144, 19, 254, 0.3); filter: brightness(1.1); }
+    .resource-link span:first-child { font-size: 1.5rem; }
+    .back-to-top { position: fixed; bottom: 40px; right: 40px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--brand-purple), var(--brand-blue)); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: var(--shadow); cursor: pointer; opacity: 0; transform: translateY(100px); transition: all 0.3s ease; z-index: 999; }
+    .back-to-top.visible { opacity: 1; transform: translateY(0); }
+    .back-to-top:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,.3); }
     @media (max-width: 768px) {
-      .nav {
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .tabs {
-        gap: 8px;
-        justify-content: center;
-      }
-
-      .brand-logo {
-        height: 50px;
-      }
-
-      .hero-logo {
-        height: 150px;
-      }
-
-      .hero-content p {
-        font-size: 1.1rem;
-      }
-
-      section {
-        padding: 60px 15px;
-      }
-
-      .section-header h2 {
-        font-size: 2rem;
-      }
-
-      .path-circle, .visual-circle {
-        width: 200px;
-        height: 200px;
-      }
-
-      .path-icon, .option-icon {
-        font-size: 3rem;
-      }
-
-      .options-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .bubble-5, .bubble-6 {
-        display: none;
-      }
-
-      .faq-button {
-        bottom: 100px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
-      }
-
-      .faq-modal {
-        padding: 10px;
-      }
-
-      .faq-header {
-        padding: 20px;
-      }
-
-      .faq-header h2 {
-        font-size: 1.5rem;
-      }
-
-      .faq-body {
-        padding: 20px 15px;
-      }
-
-      .faq-question {
-        padding: 15px;
-        font-size: 0.95rem;
-      }
-
-      .leading-now-header {
-        padding: 25px 20px;
-      }
-
-      .leading-now-header h2 {
-        font-size: 1.8rem;
-      }
-
-      .leading-now-body {
-        padding: 20px 15px;
-      }
-
-      .info-block {
-        padding: 20px;
-        margin-bottom: 20px;
-      }
-
-      .info-block h3 {
-        font-size: 1.1rem;
-      }
-
-      .info-block p, .info-block ul {
-        font-size: 0.95rem;
-      }
-
-      .prof-dev-header {
-        padding: 25px 20px;
-      }
-
-      .prof-dev-header h2 {
-        font-size: 1.8rem;
-      }
-
-      .prof-dev-body {
-        padding: 20px 15px;
-      }
-
-      .resource-links {
-        grid-template-columns: 1fr;
-      }
-
-      .resource-link {
-        padding: 12px 16px;
-        font-size: 0.9rem;
-      }
-
-      .leading-exploration-header,
-      .leading-advantage-header {
-        padding: 25px 20px;
-      }
-
-      .leading-exploration-header h2,
-      .leading-advantage-header h2 {
-        font-size: 1.8rem;
-      }
-
-      .leading-exploration-body,
-      .leading-advantage-body {
-        padding: 20px 15px;
-      }
-
-      .nlo-header {
-        padding: 25px 20px;
-      }
-
-      .nlo-header h2 {
-        font-size: 1.8rem;
-      }
-
-      .nlo-body {
-        padding: 20px 15px;
-      }
-
-      .leading-essentials-header {
-        padding: 25px 20px;
-      }
-
-      .leading-essentials-header h2 {
-        font-size: 1.8rem;
-      }
-
-      .leading-essentials-body {
-        padding: 20px 15px;
-      }
+      .nav { flex-direction: column; gap: 15px; }
+      .tabs { gap: 8px; justify-content: center; }
+      .brand-logo { height: 50px; }
+      .hero-logo { height: 150px; }
+      .hero-content p { font-size: 1.1rem; }
+      section { padding: 60px 15px; }
+      .section-header h2 { font-size: 2rem; }
+      .path-circle, .visual-circle { width: 200px; height: 200px; }
+      .path-icon, .option-icon { font-size: 3rem; }
+      .options-grid { grid-template-columns: 1fr; }
+      .bubble-5, .bubble-6 { display: none; }
+      .faq-button { bottom: 100px; right: 20px; width: 50px; height: 50px; font-size: 1.5rem; }
+      .faq-header h2, .leading-now-header h2, .prof-dev-header h2, .leading-exploration-header h2, .leading-advantage-header h2, .nlo-header h2, .leading-essentials-header h2 { font-size: 1.8rem; }
+      .faq-body, .leading-now-body, .prof-dev-body, .leading-exploration-body, .leading-advantage-body, .nlo-body, .leading-essentials-body { padding: 20px 15px; }
+      .info-block { padding: 20px; margin-bottom: 20px; }
+      .info-block h3 { font-size: 1.1rem; }
+      .info-block p, .info-block ul { font-size: 0.95rem; }
+      .resource-links { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <header>
     <nav class="nav">
-      <a href="#home" class="brand">
-        <img src="logo.png" alt="Leading Logo" class="brand-logo">
-      </a>
+      <a href="#home" class="brand"><img src="logo.png" alt="Leading Logo" class="brand-logo"></a>
       <div class="tabs">
-        <a class="tab active" href="#home" data-section="home">
-          <span>🏠</span>
-          <span>Home</span>
-        </a>
-        <a class="tab" href="#new-leader" data-section="new-leader">
-          <span>🎯</span>
-          <span>New Leader</span>
-        </a>
-        <a class="tab" href="#playbooks" data-section="playbooks">
-          <span>📖</span>
-          <span>Playbooks</span>
-        </a>
-        <a class="tab" href="#leadership-development" data-section="leadership-development">
-          <span>🌱</span>
-          <span>Leadership Development</span>
-        </a>
-        <a class="tab" href="#continuing-education" data-section="continuing-education">
-          <span>⭐</span>
-          <span>Continuing Education</span>
-        </a>
+        <a class="tab active" href="#home" data-section="home"><span>🏠</span><span>Home</span></a>
+        <a class="tab" href="#new-leader" data-section="new-leader"><span>🎯</span><span>New Leader</span></a>
+        <a class="tab" href="#playbooks" data-section="playbooks"><span>📖</span><span>Playbooks</span></a>
+        <a class="tab" href="#leadership-development" data-section="leadership-development"><span>🌱</span><span>Leadership Development</span></a>
+        <a class="tab" href="#continuing-education" data-section="continuing-education"><span>⭐</span><span>Continuing Education</span></a>
       </div>
     </nav>
   </header>
 
-  <!-- Home Section -->
   <section id="home">
-    <div class="bubble bubble-1"></div>
-    <div class="bubble bubble-2"></div>
-    <div class="bubble bubble-3"></div>
-    <div class="bubble bubble-4"></div>
-    <div class="bubble bubble-5"></div>
-    <div class="bubble bubble-6"></div>
-
+    <div class="bubble bubble-1"></div><div class="bubble bubble-2"></div><div class="bubble bubble-3"></div><div class="bubble bubble-4"></div><div class="bubble bubble-5"></div><div class="bubble bubble-6"></div>
     <div class="hero-content">
       <img src="logo.png" alt="Leading Logo" class="hero-logo">
       <p>Your roadmap to leadership success. Follow our structured path from foundational skills to confident leadership.</p>
-      
       <div class="path-options">
         <div class="path-card" onclick="document.querySelector('#new-leader').scrollIntoView({behavior: 'smooth'})">
-          <div class="path-circle orange">
-            <div class="path-icon">🎯</div>
-            <div class="path-title">Get Started In Your<br>Early Career</div>
-          </div>
+          <div class="path-circle orange"><div class="path-icon">🎯</div><div class="path-title">Get Started In Your<br>Early Career</div></div>
         </div>
-
         <div class="path-card" onclick="document.querySelector('#continuing-education').scrollIntoView({behavior: 'smooth'})">
-          <div class="path-circle blue">
-            <div class="path-icon">📚</div>
-            <div class="path-title">Get Continuing<br>Leader Education</div>
-          </div>
+          <div class="path-circle blue"><div class="path-icon">📚</div><div class="path-title">Get Continuing<br>Leader Education</div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- New Leader Section -->
   <section id="new-leader">
-    <div class="section-bubbles">
-      <div class="section-bubble" style="width: 80px; height: 80px; top: 10%; left: 5%; animation-delay: 0s;"></div>
-      <div class="section-bubble" style="width: 120px; height: 120px; top: 15%; right: 10%; animation-delay: -5s;"></div>
-      <div class="section-bubble" style="width: 60px; height: 60px; bottom: 20%; left: 8%; animation-delay: -10s;"></div>
-      <div class="section-bubble" style="width: 100px; height: 100px; bottom: 25%; right: 15%; animation-delay: -3s;"></div>
-    </div>
     <div class="section-content">
-      <div class="section-header orange">
-        <h2>New Leader Journey</h2>
-        <p>Your roadmap to leadership success. Follow our structured path from foundational skills to confident leadership.</p>
-      </div>
-
+      <div class="section-header orange"><h2>New Leader Journey</h2><p>Your roadmap to leadership success. Follow our structured path from foundational skills to confident leadership.</p></div>
       <div class="stats-grid">
-        <div class="stat-card">
-          <span class="stat-number orange">90</span>
-          <div class="stat-label">Days to Confidence</div>
-          <div class="stat-description">Structured learning path</div>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number orange">94%</span>
-          <div class="stat-label">Success Rate</div>
-          <div class="stat-description">Leaders who complete the journey</div>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number orange">500+</span>
-          <div class="stat-label">New Leaders</div>
-          <div class="stat-description">Trained this year</div>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number orange">4.8</span>
-          <div class="stat-label">Average Rating</div>
-          <div class="stat-description">Program satisfaction</div>
-        </div>
+        <div class="stat-card"><span class="stat-number orange">90</span><div class="stat-label">Days to Confidence</div><div class="stat-description">Structured learning path</div></div>
+        <div class="stat-card"><span class="stat-number orange">94%</span><div class="stat-label">Success Rate</div><div class="stat-description">Leaders who complete the journey</div></div>
+        <div class="stat-card"><span class="stat-number orange">500+</span><div class="stat-label">New Leaders</div><div class="stat-description">Trained this year</div></div>
+        <div class="stat-card"><span class="stat-number orange">4.8</span><div class="stat-label">Average Rating</div><div class="stat-description">Program satisfaction</div></div>
       </div>
-
-      <div class="section-header">
-        <h3 style="font-size: 2rem; margin-top: 40px; color: var(--ink);">Choose Your Starting Point</h3>
-        <p>Two proven paths to leadership success, designed for your schedule and learning style.</p>
-      </div>
-
+      <div class="section-header"><h3 style="font-size: 2rem; margin-top: 40px; color: var(--ink);">Choose Your Starting Point</h3><p>Two proven paths to leadership success, designed for your schedule and learning style.</p></div>
       <div class="options-grid">
         <div class="option-card">
-          <div class="card-bubbles">
-            <div class="card-bubble yellow-bubble" style="width: 60px; height: 60px; top: 5%; left: 5%; animation-delay: 0s;"></div>
-            <div class="card-bubble yellow-bubble" style="width: 80px; height: 80px; top: 60%; left: 10%; animation-delay: -5s;"></div>
-            <div class="card-bubble yellow-bubble" style="width: 50px; height: 50px; bottom: 10%; left: 15%; animation-delay: -10s;"></div>
-          </div>
-          <div class="visual-circle orange" style="background: linear-gradient(135deg, var(--brand-yellow), #ffd700);">
-            <div class="timeline-label-text">1st Month</div>
-            <div class="option-icon">🎯</div>
-            <div class="option-title">New Leader<br>Onboarding</div>
-          </div>
-          
-          <div class="option-details">
-            <img src="edge-logo-graphite.png" alt="New Leader Onboarding" class="program-logo" style="margin-bottom: 20px;">
-            <h3>New Leader Onboarding</h3>
-            <p>Paylocity's universal leadership tools, processes, and resources. Inclusive of all departments (Sales, P&T, Ops, Etc). A comprehensive foundation for new leaders across the organization.</p>
-            <button class="cta-button orange" onclick="openNewLeaderOnboarding()" style="background: linear-gradient(135deg, var(--brand-yellow), #ffd700);">🚀 View Details</button>
-          </div>
+          <div class="card-bubbles"><div class="card-bubble yellow-bubble" style="width: 60px; height: 60px; top: 5%; left: 5%;"></div><div class="card-bubble yellow-bubble" style="width: 80px; height: 80px; top: 60%; left: 10%;"></div></div>
+          <div class="visual-circle orange" style="background: linear-gradient(135deg, var(--brand-yellow), #ffd700);"><div class="timeline-label-text">1st Month</div><div class="option-icon">🎯</div><div class="option-title">New Leader<br>Onboarding</div></div>
+          <div class="option-details"><img src="edge-logo-graphite.png" alt="New Leader Onboarding" class="program-logo" style="margin-bottom: 20px;"><h3>New Leader Onboarding</h3><p>Paylocity's universal leadership tools, processes, and resources. Inclusive of all departments.</p><button class="cta-button orange" onclick="openNewLeaderOnboarding()" style="background: linear-gradient(135deg, var(--brand-yellow), #ffd700);">🚀 View Details</button></div>
         </div>
-
         <div class="option-card">
-          <div class="card-bubbles">
-            <div class="card-bubble blue-bubble" style="width: 65px; height: 65px; top: 8%; right: 5%; animation-delay: -2s;"></div>
-            <div class="card-bubble blue-bubble" style="width: 75px; height: 75px; top: 55%; right: 10%; animation-delay: -7s;"></div>
-            <div class="card-bubble blue-bubble" style="width: 55px; height: 55px; bottom: 12%; right: 15%; animation-delay: -12s;"></div>
-          </div>
-          <div class="visual-circle blue">
-            <div class="timeline-label-text">Weeks 1 & 2</div>
-            <div class="option-icon">📚</div>
-            <div class="option-title">Leading<br>Essentials</div>
-          </div>
-          
-          <div class="option-details">
-            <img src="essentials-logo-graphite.png" alt="Leading Essentials" class="program-logo" style="margin-bottom: 20px;">
-            <h3>Leading Essentials</h3>
-            <p>A development course to prepare Operations leaders to represent Paylocity professionally, manage employees effectively, learn Team Lead expectations, and apply employment law knowledge. Includes accountability frameworks, task prioritization, and performance management techniques.</p>
-            <button class="cta-button blue" onclick="openLeadingEssentials()">🔍 View Details</button>
-          </div>
+          <div class="card-bubbles"><div class="card-bubble blue-bubble" style="width: 65px; height: 65px; top: 8%; right: 5%;"></div><div class="card-bubble blue-bubble" style="width: 75px; height: 75px; top: 55%; right: 10%;"></div></div>
+          <div class="visual-circle blue"><div class="timeline-label-text">Weeks 1 & 2</div><div class="option-icon">📚</div><div class="option-title">Leading<br>Essentials</div></div>
+          <div class="option-details"><img src="essentials-logo-graphite.png" alt="Leading Essentials" class="program-logo" style="margin-bottom: 20px;"><h3>Leading Essentials</h3><p>A development course to prepare Operations leaders to represent Paylocity professionally.</p><button class="cta-button blue" onclick="openLeadingEssentials()">🔍 View Details</button></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Leadership Development Section -->
   <section id="leadership-development">
-    <div class="section-bubbles">
-      <div class="section-bubble" style="width: 90px; height: 90px; top: 12%; left: 7%; animation-delay: -2s;"></div>
-      <div class="section-bubble" style="width: 110px; height: 110px; top: 18%; right: 12%; animation-delay: -7s;"></div>
-      <div class="section-bubble" style="width: 70px; height: 70px; bottom: 15%; left: 10%; animation-delay: -12s;"></div>
-      <div class="section-bubble" style="width: 95px; height: 95px; bottom: 30%; right: 8%; animation-delay: -4s;"></div>
-    </div>
     <div class="section-content">
-      <div class="section-header green">
-        <h2>Leadership Development</h2>
-        <p>Self-paced programs designed to help aspiring leaders develop their skills and prepare for leadership roles.</p>
+      <div class="section-header green"><h2>Leadership Development</h2><p>Self-paced programs designed to help aspiring leaders develop their skills.</p></div>
+      <div class="stats-grid">
+        <div class="stat-card"><span class="stat-number green">~4</span><div class="stat-label">Total Hours</div><div class="stat-description">Self-paced learning</div></div>
+        <div class="stat-card"><span class="stat-number green">100%</span><div class="stat-label">Self-Paced</div><div class="stat-description">Learn at your speed</div></div>
+        <div class="stat-card"><span class="stat-number green">4</span><div class="stat-label">Key Areas</div><div class="stat-description">What, Who, How, When</div></div>
+        <div class="stat-card"><span class="stat-number green">∞</span><div class="stat-label">Access</div><div class="stat-description">Available anytime</div></div>
       </div>
-
-      <!-- Leading Exploration -->
-      <div style="margin-bottom: 80px;">
-        <div class="stats-grid">
-          <div class="stat-card">
-            <span class="stat-number green">~4</span>
-            <div class="stat-label">Total Hours</div>
-            <div class="stat-description">Self-paced learning</div>
-          </div>
-          <div class="stat-card">
-            <span class="stat-number green">100%</span>
-            <div class="stat-label">Self-Paced</div>
-            <div class="stat-description">Learn at your speed</div>
-          </div>
-          <div class="stat-card">
-            <span class="stat-number green">4</span>
-            <div class="stat-label">Key Areas</div>
-            <div class="stat-description">What, Who, How, When</div>
-          </div>
-          <div class="stat-card">
-            <span class="stat-number green">∞</span>
-            <div class="stat-label">Access</div>
-            <div class="stat-description">Available anytime</div>
-          </div>
+      <div class="options-grid" style="margin-top: 60px;">
+        <div class="option-card">
+          <div class="card-bubbles"><div class="card-bubble green-bubble" style="width: 62px; height: 62px; top: 6%; left: 6%;"></div><div class="card-bubble green-bubble" style="width: 78px; height: 78px; top: 58%; left: 12%;"></div></div>
+          <div class="visual-circle green"><div class="option-icon">🔍</div><div class="option-title">Leading<br>Exploration</div></div>
+          <div class="option-details"><img src="exploration-logo-graphite.png" alt="Leading Exploration" class="program-logo" style="margin-bottom: 20px;"><h3>Leading Exploration</h3><p>A comprehensive self-paced leadership development program for aspiring leaders.</p><button class="cta-button green" onclick="openLeadingExploration()">🔍 View Details</button></div>
         </div>
-
-        <div class="options-grid" style="margin-top: 60px;">
-          <div class="option-card">
-            <div class="card-bubbles">
-              <div class="card-bubble green-bubble" style="width: 62px; height: 62px; top: 6%; left: 6%; animation-delay: -1s;"></div>
-              <div class="card-bubble green-bubble" style="width: 78px; height: 78px; top: 58%; left: 12%; animation-delay: -6s;"></div>
-              <div class="card-bubble green-bubble" style="width: 52px; height: 52px; bottom: 11%; left: 18%; animation-delay: -11s;"></div>
-            </div>
-            <div class="visual-circle green">
-              <div class="option-icon">🔍</div>
-              <div class="option-title">Leading<br>Exploration</div>
-            </div>
-            
-            <div class="option-details">
-              <img src="exploration-logo-graphite.png" alt="Leading Exploration" class="program-logo" style="margin-bottom: 20px;">
-              <h3>Leading Exploration</h3>
-              <p>A comprehensive self-paced leadership development program for aspiring leaders.</p>
-              <button class="cta-button green" onclick="openLeadingExploration()">🔍 View Details</button>
-            </div>
-          </div>
-
-          <div class="option-card">
-            <div class="card-bubbles">
-              <div class="card-bubble purple-bubble" style="width: 68px; height: 68px; top: 7%; right: 6%; animation-delay: -3s;"></div>
-              <div class="card-bubble purple-bubble" style="width: 82px; height: 82px; top: 57%; right: 11%; animation-delay: -8s;"></div>
-              <div class="card-bubble purple-bubble" style="width: 58px; height: 58px; bottom: 13%; right: 17%; animation-delay: -13s;"></div>
-            </div>
-            <div class="visual-circle purple" style="background: linear-gradient(135deg, var(--brand-purple), #b19cd9);">
-              <div class="option-icon">⚡</div>
-              <div class="option-title">Leading<br>Advantage</div>
-            </div>
-            
-            <div class="option-details">
-              <img src="advantage-logo-graphite.png" alt="Leading Advantage" class="program-logo" style="margin-bottom: 20px;">
-              <h3>Leading Advantage</h3>
-              <p>Advanced leadership development program to accelerate your growth and impact as a leader.</p>
-              <button class="cta-button purple" onclick="openLeadingAdvantage()">⚡ View Details</button>
-            </div>
-          </div>
+        <div class="option-card">
+          <div class="card-bubbles"><div class="card-bubble purple-bubble" style="width: 68px; height: 68px; top: 7%; right: 6%;"></div><div class="card-bubble purple-bubble" style="width: 82px; height: 82px; top: 57%; right: 11%;"></div></div>
+          <div class="visual-circle purple"><div class="option-icon">⚡</div><div class="option-title">Leading<br>Advantage</div></div>
+          <div class="option-details"><img src="advantage-logo-graphite.png" alt="Leading Advantage" class="program-logo" style="margin-bottom: 20px;"><h3>Leading Advantage</h3><p>Advanced leadership development program to accelerate your growth.</p><button class="cta-button purple" onclick="openLeadingAdvantage()">⚡ View Details</button></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Continuing Education Section -->
   <section id="continuing-education">
-    <div class="section-bubbles">
-      <div class="section-bubble orange-bubble" style="width: 85px; height: 85px; top: 8%; left: 6%; animation-delay: -1s;"></div>
-      <div class="section-bubble red-bubble" style="width: 115px; height: 115px; top: 20%; right: 9%; animation-delay: -6s;"></div>
-      <div class="section-bubble orange-bubble" style="width: 75px; height: 75px; bottom: 18%; left: 12%; animation-delay: -11s;"></div>
-      <div class="section-bubble red-bubble" style="width: 90px; height: 90px; bottom: 28%; right: 14%; animation-delay: -3.5s;"></div>
-    </div>
     <div class="section-content">
-      <div class="section-header purple">
-        <h2>Leadership Continuing Education</h2>
-        <p>Ongoing development opportunities for experienced leaders to continue growing and refining their skills.</p>
-      </div>
-
+      <div class="section-header purple"><h2>Leadership Continuing Education</h2><p>Ongoing development opportunities for experienced leaders.</p></div>
       <div class="options-grid">
         <div class="option-card">
-          <div class="card-bubbles">
-            <div class="card-bubble orange-bubble" style="width: 64px; height: 64px; top: 5%; left: 7%; animation-delay: -2s;"></div>
-            <div class="card-bubble orange-bubble" style="width: 76px; height: 76px; top: 56%; left: 13%; animation-delay: -7s;"></div>
-            <div class="card-bubble orange-bubble" style="width: 54px; height: 54px; bottom: 14%; left: 19%; animation-delay: -12s;"></div>
-          </div>
-          <div class="visual-circle orange">
-            <div class="option-icon">🔥</div>
-            <div class="option-title">Leading<br>Now</div>
-          </div>
-          
-          <div class="option-details">
-            <img src="now-logo-graphite.png" alt="Leading Now" class="program-logo" style="margin-bottom: 20px;">
-            <h3>Leading Now</h3>
-            <p>Real-time leadership development for current challenges. Stay sharp with practical tools and strategies for today's leadership environment.</p>
-            <button class="cta-button orange" onclick="openLeadingNow()">🔍 View Details</button>
-          </div>
+          <div class="card-bubbles"><div class="card-bubble orange-bubble" style="width: 64px; height: 64px; top: 5%; left: 7%;"></div><div class="card-bubble orange-bubble" style="width: 76px; height: 76px; top: 56%; left: 13%;"></div></div>
+          <div class="visual-circle orange"><div class="option-icon">🔥</div><div class="option-title">Leading<br>Now</div></div>
+          <div class="option-details"><img src="now-logo-graphite.png" alt="Leading Now" class="program-logo" style="margin-bottom: 20px;"><h3>Leading Now</h3><p>Real-time leadership development for current challenges.</p><button class="cta-button orange" onclick="openLeadingNow()">🔍 View Details</button></div>
         </div>
-
         <div class="option-card">
-          <div class="card-bubbles">
-            <div class="card-bubble red-bubble" style="width: 66px; height: 66px; top: 6%; right: 7%; animation-delay: -3s;"></div>
-            <div class="card-bubble red-bubble" style="width: 80px; height: 80px; top: 54%; right: 12%; animation-delay: -8s;"></div>
-            <div class="card-bubble red-bubble" style="width: 56px; height: 56px; bottom: 15%; right: 18%; animation-delay: -13s;"></div>
-          </div>
-          <div class="visual-circle red" style="background: linear-gradient(135deg, var(--brand-red), #ff6b9d); color: white;">
-            <div class="option-icon">🎓</div>
-            <div class="option-title">Professional<br>Development</div>
-          </div>
-          
-          <div class="option-details">
-            <h3>Paylocity's Professional Development</h3>
-            <p>Comprehensive professional development resources and programs to support your continuous growth at Paylocity.</p>
-            <button class="cta-button red" onclick="openProfDev()" style="background: linear-gradient(135deg, var(--brand-red), #ff6b9d);">🔍 View Details</button>
-          </div>
+          <div class="card-bubbles"><div class="card-bubble red-bubble" style="width: 66px; height: 66px; top: 6%; right: 7%;"></div><div class="card-bubble red-bubble" style="width: 80px; height: 80px; top: 54%; right: 12%;"></div></div>
+          <div class="visual-circle red" style="background: linear-gradient(135deg, var(--brand-red), #ff6b9d); color: white;"><div class="option-icon">🎓</div><div class="option-title">Professional<br>Development</div></div>
+          <div class="option-details"><h3>Paylocity's Professional Development</h3><p>Comprehensive professional development resources and programs.</p><button class="cta-button red" onclick="openProfDev()" style="background: linear-gradient(135deg, var(--brand-red), #ff6b9d);">🔍 View Details</button></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- New Leader Onboarding Modal -->
+  <!-- NLO Modal -->
   <div class="nlo-modal" id="nloModal" onclick="closeNLOOnBackdrop(event)">
     <div class="nlo-content" onclick="event.stopPropagation()">
-      <div class="nlo-header">
-        <button class="nlo-close" onclick="closeNLO()">✕</button>
-        <h2>🚀 New Leader Onboarding</h2>
-        <p>Foundation for leadership success at Paylocity</p>
-      </div>
-      
+      <div class="nlo-header"><button class="nlo-close" onclick="closeNLO()">✕</button><h2>🚀 New Leader Onboarding</h2><p>Foundation for leadership success at Paylocity</p></div>
       <div class="nlo-body">
-        <div class="info-block orange-highlight">
-          <h3>👥 Who Should Attend</h3>
-          <p><strong>New leaders at Paylocity</strong> - Enterprise-wide program for:</p>
-          <ul>
-            <li>External hires in leadership roles</li>
-            <li>Internal promotions to leadership positions</li>
-            <li>All departments and functions</li>
-          </ul>
-        </div>
-
-        <div class="info-block orange-block">
-          <h3>💻 How It Works</h3>
-          <p>Virtual Instructor-Led Sessions</p>
-        </div>
-
-        <div class="info-block orange-block">
-          <h3>⏱️ Time Commitment</h3>
-          <p><strong>Duration:</strong> 2 days, 5 hours each day (10 hours total)</p>
-        </div>
-
-        <div class="info-block orange-block">
-          <h3>📅 When Sessions Are Offered</h3>
-          <p>Classes are offered <strong>monthly</strong></p>
-          <p style="margin-top: 10px;"><strong>Enrollment:</strong> New leaders are automatically enrolled in a session based on their hire date.</p>
-        </div>
-
-        <div class="info-block orange-highlight">
-          <h3>📚 What You'll Learn</h3>
-          <p>The New Leader Onboarding experience provides newly promoted (or newly hired) people leaders an orientation that includes:</p>
-          <ul>
-            <li><strong>Foundational managerial and leadership skills</strong></li>
-            <li><strong>Employment law guidelines</strong></li>
-            <li><strong>Employee policy overviews</strong></li>
-            <li><strong>Insight on Paylocity's culture</strong></li>
-          </ul>
-          <p style="margin-top: 15px;">This comprehensive program quickly prepares leaders to confidently lead their teams from day one.</p>
-        </div>
-
-        <div class="info-block orange-block">
-          <h3>🎯 Resources</h3>
-          <div class="resource-links">
-            <a href="https://paylocity1.sharepoint.com/sites/LeadershipResourceHub2/SitePages/New-Leader.aspx" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-orange), #ffb347);">
-              <span>🏠</span>
-              <span>NLO Experience Hub</span>
-            </a>
-            <a href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-orange), #ffb347);">
-              <span>📖</span>
-              <span>Best Practices Guide</span>
-            </a>
-          </div>
-        </div>
+        <div class="info-block orange-highlight"><h3>👥 Who Should Attend</h3><p><strong>New leaders at Paylocity</strong> - Enterprise-wide program for external hires and internal promotions.</p></div>
+        <div class="info-block orange-block"><h3>💻 How It Works</h3><p>Virtual Instructor-Led Sessions</p></div>
+        <div class="info-block orange-block"><h3>⏱️ Time Commitment</h3><p><strong>Duration:</strong> 2 days, 5 hours each day (10 hours total)</p></div>
+        <div class="info-block orange-block"><h3>📅 When Sessions Are Offered</h3><p>Classes are offered <strong>monthly</strong>. New leaders are automatically enrolled based on hire date.</p></div>
+        <div class="info-block orange-highlight"><h3>📚 What You'll Learn</h3><p>Foundational managerial skills, employment law guidelines, employee policy overviews, and Paylocity culture.</p></div>
+        <div class="info-block orange-block"><h3>🎯 Resources</h3><div class="resource-links"><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-orange), #ffb347);"><span>🏠</span><span>NLO Experience Hub</span></a><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-orange), #ffb347);"><span>📖</span><span>Best Practices Guide</span></a></div></div>
       </div>
     </div>
   </div>
@@ -2129,67 +336,13 @@
   <!-- Leading Essentials Modal -->
   <div class="leading-essentials-modal" id="leadingEssentialsModal" onclick="closeLeadingEssentialsOnBackdrop(event)">
     <div class="leading-essentials-content" onclick="event.stopPropagation()">
-      <div class="leading-essentials-header">
-        <button class="leading-essentials-close" onclick="closeLeadingEssentials()">✕</button>
-        <h2>📖 Leading Essentials</h2>
-        <p>Rapid preparation for new Operations leaders</p>
-      </div>
-      
+      <div class="leading-essentials-header"><button class="leading-essentials-close" onclick="closeLeadingEssentials()">✕</button><h2>📖 Leading Essentials</h2><p>Rapid preparation for new Operations leaders</p></div>
       <div class="leading-essentials-body">
-        <div class="info-block blue-highlight">
-          <h3>👥 Who Should Attend</h3>
-          <p><strong>New leaders in Operations</strong> with 2-6 months tenure in their leadership role.</p>
-        </div>
-
-        <div class="info-block blue-block">
-          <h3>💻 How It Works</h3>
-          <p>Both <strong>in-person</strong> and <strong>virtual</strong> sessions are offered.</p>
-        </div>
-
-        <div class="info-block blue-block">
-          <h3>⏱️ Time Commitment</h3>
-          <p><strong>In-Person:</strong> 3 days, 8 hours each (24 hours total)</p>
-          <p style="margin-top: 10px;"><strong>Virtual:</strong> 4 days, 6 hours each (24 hours total)</p>
-        </div>
-
-        <div class="info-block blue-block">
-          <h3>📅 When Sessions Are Offered</h3>
-          <p>Classes are offered <strong>quarterly</strong></p>
-          <p style="margin-top: 10px;"><strong>Enrollment:</strong> New leaders are automatically enrolled in a session based on location and hire date.</p>
-        </div>
-
-        <div class="info-block blue-highlight">
-          <h3>📚 What You'll Learn</h3>
-          <p>This course is designed to quickly prepare new Operations leaders to manage their employees and demonstrate professionalism and to represent Paylocity in all they do.</p>
-          <p style="margin-top: 15px;"><strong>New leaders will learn:</strong></p>
-          <ul>
-            <li>The expectations of a Team Lead, and how those expectations translate into managing situations related to employment law</li>
-            <li>Techniques for fostering accountability on their teams through leading by example</li>
-            <li>How to prioritize competing priorities</li>
-            <li>Upskilling SOAR program</li>
-            <li>Handling and managing Escalations</li>
-            <li>Playbooks review</li>
-            <li>How to leverage delegation and use it as a development opportunity</li>
-            <li>Performance management techniques including soft skills and related system/tools</li>
-            <li>The standard for delivering on our client commitment and how to coach to those behaviors</li>
-          </ul>
-          <p style="margin-top: 15px;"><strong>Hands-On Experience:</strong></p>
-          <p>Participants will gain experience role-playing common employee scenarios faced in Operations under the guidance of a seasoned leader and people relations partner.</p>
-        </div>
-
-        <div class="info-block blue-block">
-          <h3>🎯 Resources</h3>
-          <div class="resource-links">
-            <a href="https://paylocity1.sharepoint.com/:x:/s/TalentManagementDocuments/EXF3awnorRZNnPJl5EiyvigBZrcQ43zBGIZL0YnFT5MnVA?e=Ms1GA3" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);">
-              <span>📅</span>
-              <span>Program Calendar</span>
-            </a>
-            <a href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);">
-              <span>📖</span>
-              <span>Best Practices Guide</span>
-            </a>
-          </div>
-        </div>
+        <div class="info-block blue-highlight"><h3>👥 Who Should Attend</h3><p><strong>New leaders in Operations</strong> with 2-6 months tenure.</p></div>
+        <div class="info-block blue-block"><h3>💻 How It Works</h3><p>Both <strong>in-person</strong> and <strong>virtual</strong> sessions are offered.</p></div>
+        <div class="info-block blue-block"><h3>⏱️ Time Commitment</h3><p><strong>In-Person:</strong> 3 days (24 hours) | <strong>Virtual:</strong> 4 days (24 hours)</p></div>
+        <div class="info-block blue-highlight"><h3>📚 What You'll Learn</h3><p>Team Lead expectations, accountability techniques, delegation, performance management, and more.</p></div>
+        <div class="info-block blue-block"><h3>🎯 Resources</h3><div class="resource-links"><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);"><span>📅</span><span>Program Calendar</span></a><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);"><span>📖</span><span>Best Practices Guide</span></a></div></div>
       </div>
     </div>
   </div>
@@ -2197,63 +350,13 @@
   <!-- Leading Exploration Modal -->
   <div class="leading-exploration-modal" id="leadingExplorationModal" onclick="closeLeadingExplorationOnBackdrop(event)">
     <div class="leading-exploration-content" onclick="event.stopPropagation()">
-      <div class="leading-exploration-header">
-        <button class="leading-exploration-close" onclick="closeLeadingExploration()">✕</button>
-        <h2>🔍 Leading Exploration</h2>
-        <p>Self-Discovery Kit for aspiring leaders</p>
-      </div>
-      
+      <div class="leading-exploration-header"><button class="leading-exploration-close" onclick="closeLeadingExploration()">✕</button><h2>🔍 Leading Exploration</h2><p>Self-Discovery Kit for aspiring leaders</p></div>
       <div class="leading-exploration-body">
-        <div class="info-block green-highlight">
-          <h3>👥 Who Should Participate</h3>
-          <p>Individual contributors in Operations who are interested in a leadership role and want to take immediate action to prepare for an opportunity.</p>
-        </div>
-
-        <div class="info-block green-block">
-          <h3>💻 How It Works</h3>
-          <p>Self-paced e-learning & coaching with direct leader</p>
-        </div>
-
-        <div class="info-block green-block">
-          <h3>⏱️ Time Commitment</h3>
-          <p>Collectively, all content is about <strong>four hours</strong>.</p>
-          <p style="margin-top: 10px;">Consumed at learner's pace - complete when it works best for you!</p>
-        </div>
-
-        <div class="info-block green-highlight">
-          <h3>📚 What You'll Learn</h3>
-          <p>Unlock your leadership potential with the Leading Exploration: Self-Discovery Kit, a practical curriculum for aspiring Paylocity leaders.</p>
-          <p style="margin-top: 15px;"><strong>This mixed media course includes:</strong></p>
-          <ul>
-            <li>Self-paced videos, assessments, and hands-on exercises</li>
-            <li><strong>"So, You Want to Be a Leader?"</strong> - Understand the realities of leadership</li>
-            <li><strong>Leader Readiness Assessment</strong> - Evaluate your strengths and growth areas</li>
-            <li>Essential topics: Crucial Conversations, Getting Things Done, and Situational Leadership</li>
-            <li><strong>Self-Discovery Worksheet</strong> - Guide yourself through self-assessment, skill development, and goal setting</li>
-          </ul>
-          <p style="margin-top: 15px;"><strong>Your Journey:</strong></p>
-          <ul>
-            <li>Complete the self-assessment</li>
-            <li>Discuss your findings with your manager</li>
-            <li>Take charge of your career development</li>
-            <li>Embrace continuous learning, practical experiences, and networking</li>
-          </ul>
-          <p style="margin-top: 15px;"><em>Confidently prepare for future leadership roles!</em></p>
-        </div>
-
-        <div class="info-block green-block">
-          <h3>🎯 Get Started</h3>
-          <div class="resource-links">
-            <a href="https://2000learning.paylocity.com/LMS/TrainingDescription/10261/1" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-green), #90ee90);">
-              <span>📖</span>
-              <span>Access E-Learnings</span>
-            </a>
-            <a href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-green), #90ee90);">
-              <span>📋</span>
-              <span>Best Practices Guide</span>
-            </a>
-          </div>
-        </div>
+        <div class="info-block green-highlight"><h3>👥 Who Should Participate</h3><p>Individual contributors interested in a leadership role.</p></div>
+        <div class="info-block green-block"><h3>💻 How It Works</h3><p>Self-paced e-learning & coaching with direct leader</p></div>
+        <div class="info-block green-block"><h3>⏱️ Time Commitment</h3><p>About <strong>four hours</strong> total, at your own pace.</p></div>
+        <div class="info-block green-highlight"><h3>📚 What You'll Learn</h3><p>Leader Readiness Assessment, Crucial Conversations, Getting Things Done, Situational Leadership.</p></div>
+        <div class="info-block green-block"><h3>🎯 Get Started</h3><div class="resource-links"><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-green), #90ee90);"><span>📖</span><span>Access E-Learnings</span></a><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-green), #90ee90);"><span>📋</span><span>Best Practices Guide</span></a></div></div>
       </div>
     </div>
   </div>
@@ -2261,76 +364,13 @@
   <!-- Leading Advantage Modal -->
   <div class="leading-advantage-modal" id="leadingAdvantageModal" onclick="closeLeadingAdvantageOnBackdrop(event)">
     <div class="leading-advantage-content" onclick="event.stopPropagation()">
-      <div class="leading-advantage-header">
-        <button class="leading-advantage-close" onclick="closeLeadingAdvantage()">✕</button>
-        <h2>⚡ Leading Advantage</h2>
-        <p>Six-month journey to your first leadership position</p>
-      </div>
-      
+      <div class="leading-advantage-header"><button class="leading-advantage-close" onclick="closeLeadingAdvantage()">✕</button><h2>⚡ Leading Advantage</h2><p>Six-month journey to your first leadership position</p></div>
       <div class="leading-advantage-body">
-        <div class="info-block purple-highlight">
-          <h3>👥 Who Can Participate</h3>
-          <p>Individual contributors who have leadership aspirations and are <strong>nominated and selected</strong> by their leadership team to participate in the program.</p>
-        </div>
-
-        <div class="info-block purple-block">
-          <h3>💻 How It Works</h3>
-          <p>Virtual Instructor-Led Training and On-The-Job Experiences</p>
-        </div>
-
-        <div class="info-block purple-block">
-          <h3>⏱️ Program Duration</h3>
-          <p>The program is <strong>six months long</strong></p>
-        </div>
-
-        <div class="info-block purple-block">
-          <h3>📅 When Programs Run</h3>
-          <p>The program runs <strong>two times each year</strong> with kickoffs in:</p>
-          <ul>
-            <li><strong>September Cohort</strong> - Kickoff in September</li>
-            <li><strong>March Cohort</strong> - Kickoff in March</li>
-          </ul>
-        </div>
-
-        <div class="info-block purple-block">
-          <h3>📝 Nomination Process</h3>
-          <p><strong>Nomination Window:</strong> The nomination survey is open and available year-round.</p>
-          <ul>
-            <li><strong>September Cohort:</strong> Nomination cut-off date <strong>June 30th</strong></li>
-            <li><strong>March Cohort:</strong> Nomination cut-off date <strong>December 31st</strong></li>
-          </ul>
-          <p style="margin-top: 15px;"><strong>Enrollment:</strong> Those who are selected to participate in the program will be auto-enrolled in program activities.</p>
-          
-          <div class="resource-links">
-            <a href="https://corp.url.paylocity.com/m/surveys/link/7zt91dprx3em0zentnn?q=e228853f02f54fb582ff24a39c34d9f3" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-purple), #b19cd9);">
-              <span>📝</span>
-              <span>Nomination Survey</span>
-            </a>
-            <a href="https://paylocity1.sharepoint.com/:x:/s/TalentManagementDocuments/EXF3awnorRZNnPJl5EiyvigBZrcQ43zBGIZL0YnFT5MnVA?e=Ms1GA3" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-purple), #b19cd9);">
-              <span>📅</span>
-              <span>Program Calendar</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="info-block purple-highlight">
-          <h3>📚 What You'll Learn</h3>
-          <p>Leading Advantage is a six-month learning journey of instructor-led training and on-the-job experiences designed to provide participants the professional growth and insight needed to successfully interview for and potentially earn their first leadership position.</p>
-          <p style="margin-top: 15px;"><strong>The Learning Journey:</strong></p>
-          <ul>
-            <li><strong>Months 1-2:</strong> Leading Self</li>
-            <li><strong>Months 3-4:</strong> Leading Teams</li>
-            <li><strong>Months 5-6:</strong> Leading the Business</li>
-          </ul>
-          <p style="margin-top: 15px;">The learners will have a <strong>capstone experience</strong> to share what they have learned and accomplished throughout the journey.</p>
-          
-          <div class="resource-links" style="margin-top: 20px;">
-            <a href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf" target="_blank" class="resource-link" style="background: linear-gradient(135deg, var(--brand-purple), #b19cd9);">
-              <span>📖</span>
-              <span>Best Practices Guide</span>
-            </a>
-          </div>
-        </div>
+        <div class="info-block purple-highlight"><h3>👥 Who Can Participate</h3><p>Individual contributors <strong>nominated and selected</strong> by their leadership team.</p></div>
+        <div class="info-block purple-block"><h3>💻 How It Works</h3><p>Virtual Instructor-Led Training and On-The-Job Experiences</p></div>
+        <div class="info-block purple-block"><h3>⏱️ Program Duration</h3><p><strong>Six months long</strong> - runs twice yearly (September and March).</p></div>
+        <div class="info-block purple-highlight"><h3>📚 What You'll Learn</h3><p>Months 1-2: Leading Self | Months 3-4: Leading Teams | Months 5-6: Leading the Business</p></div>
+        <div class="info-block purple-block"><h3>🎯 Resources</h3><div class="resource-links"><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-purple), #b19cd9);"><span>📝</span><span>Nomination Survey</span></a><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-purple), #b19cd9);"><span>📅</span><span>Program Calendar</span></a></div></div>
       </div>
     </div>
   </div>
@@ -2338,489 +378,92 @@
   <!-- Leading Now Modal -->
   <div class="leading-now-modal" id="leadingNowModal" onclick="closeLeadingNowOnBackdrop(event)">
     <div class="leading-now-content" onclick="event.stopPropagation()">
-      <div class="leading-now-header">
-        <button class="leading-now-close" onclick="closeLeadingNow()">✕</button>
-        <h2>🔥 Leading Now</h2>
-        <p>Real-time leadership development for today's challenges</p>
-      </div>
-      
+      <div class="leading-now-header"><button class="leading-now-close" onclick="closeLeadingNow()">✕</button><h2>🔥 Leading Now</h2><p>Real-time leadership development</p></div>
       <div class="leading-now-body">
-        <div class="info-block highlight-box">
-          <h3>👥 Who Should Attend</h3>
-          <p><strong>Required:</strong> Team Leads, Managers, and Sr. Managers<br>
-          <strong>All leaders are welcome!</strong></p>
-        </div>
-
-        <div class="info-block">
-          <h3>💻 How It Works</h3>
-          <p>Virtual Instructor-Led Sessions</p>
-        </div>
-
-        <div class="info-block">
-          <h3>⏱️ Time Commitment</h3>
-          <p><strong>Duration:</strong> 2 hours per session</p>
-        </div>
-
-        <div class="info-block">
-          <h3>📅 When & How Often</h3>
-          <p><strong>Starting:</strong> February<br>
-          <strong>Frequency:</strong> First full week of every other month (except November, December, and January for year-end focus)</p>
-          <p style="margin-top: 15px;"><strong>Daily Session Times (CST):</strong></p>
-          <ul>
-            <li>9:00 AM - 11:00 AM</li>
-            <li>11:30 AM - 1:30 PM</li>
-            <li>2:00 PM - 4:00 PM</li>
-          </ul>
-        </div>
-
-        <div class="info-block">
-          <h3>📝 How to Register</h3>
-          <p>Every month, the next month's topic and self-enrollment links are posted to the <strong>TL+ Community group</strong>.</p>
-          <p style="margin-top: 10px;"><em>Note: If required leaders do not self-enroll, L&D will auto-enroll them in a session.</em></p>
-        </div>
-
-        <div class="info-block highlight-box">
-          <h3>📚 What You'll Learn</h3>
-          <p>This continuing education series provides Operations leaders with the tools and information needed to navigate real-time business challenges.</p>
-          <p style="margin-top: 15px;"><strong>Topics are determined by the Operations Sr. Leadership team and change each month.</strong></p>
-          <p style="margin-top: 15px;"><strong>Example Topics:</strong></p>
-          <ul>
-            <li>Navigating the performance management cycle</li>
-            <li>Conducting mid-year reviews</li>
-            <li>Setting strategic goals</li>
-            <li>Addressing real-time business issues and challenges</li>
-          </ul>
-        </div>
+        <div class="info-block highlight-box"><h3>👥 Who Should Attend</h3><p><strong>Required:</strong> Team Leads, Managers, Sr. Managers. All leaders welcome!</p></div>
+        <div class="info-block"><h3>💻 How It Works</h3><p>Virtual Instructor-Led Sessions</p></div>
+        <div class="info-block"><h3>⏱️ Time Commitment</h3><p><strong>Duration:</strong> 2 hours per session</p></div>
+        <div class="info-block highlight-box"><h3>📚 What You'll Learn</h3><p>Topics change monthly: performance management, mid-year reviews, strategic goals, and more.</p></div>
       </div>
     </div>
   </div>
 
-  <!-- Professional Development Modal -->
+  <!-- Professional Development Modal - RED STYLING -->
   <div class="prof-dev-modal" id="profDevModal" onclick="closeProfDevOnBackdrop(event)">
     <div class="prof-dev-content" onclick="event.stopPropagation()">
-      <div class="prof-dev-header">
-        <button class="prof-dev-close" onclick="closeProfDev()">✕</button>
-        <h2>🎓 Professional Development</h2>
-        <p>Enterprise-wide courses to refine your workplace skills</p>
-      </div>
-      
+      <div class="prof-dev-header"><button class="prof-dev-close" onclick="closeProfDev()">✕</button><h2>🎓 Professional Development</h2><p>Enterprise-wide courses to refine your workplace skills</p></div>
       <div class="prof-dev-body">
-        <div class="info-block purple-highlight">
-          <h3>👥 Who Can Participate</h3>
-          <p><strong>Paylocity Enterprise Wide</strong><br>
-          All Paylocity employees are welcome to self-enroll in any available class!</p>
-        </div>
-
-        <div class="info-block purple-block">
-          <h3>💻 How It Works</h3>
-          <p>Virtual Instructor-Led Sessions</p>
-        </div>
-
-        <div class="info-block purple-block">
-          <h3>⏱️ Time Commitment</h3>
-          <p>Varies by topic, typically 2 hours per session</p>
-        </div>
-
-        <div class="info-block purple-block">
-          <h3>📝 How to Register</h3>
-          <p><strong>Three convenient ways to enroll:</strong></p>
-          <ul>
-            <li>Access the <strong>Enterprise Calendar</strong> on ESS</li>
-            <li>Visit the <strong>Virtual PCTY Events! Community Group</strong></li>
-            <li>Use the <strong>Schedule and Registration link</strong> below</li>
-          </ul>
-          
-          <div class="resource-links">
-            <a href="https://paylocity1-my.sharepoint.com/:b:/g/personal/rkash_paylocity_com/ERiDY0iOyadDg1e-qakDFtwB4Fux7ho9EIso_qoB_iwauQ?e=rkYfTl" target="_blank" class="resource-link">
-              <span>📅</span>
-              <span>Schedule & Registration</span>
-            </a>
-            <a href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf" target="_blank" class="resource-link">
-              <span>📖</span>
-              <span>Best Practices Guide</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="info-block purple-highlight">
-          <h3>📚 What You'll Learn</h3>
-          <p>Professional Development courses help refine core skills needed to thrive in the workplace. Leverage these courses to own your development and focus on topics you're most interested in!</p>
-          <p style="margin-top: 15px;"><strong>Example Topics Include:</strong></p>
-          <ul>
-            <li>Crucial Conversations</li>
-            <li>Emotional Intelligence</li>
-            <li>Managing Up, Down, & Around</li>
-            <li>Growth Mindset</li>
-            <li>Discovering Your Next Destination</li>
-            <li>Delegation</li>
-            <li>...and many more!</li>
-          </ul>
-          <p style="margin-top: 15px;"><em>Offerings vary based on time of year, so keep checking in to stay current on your development!</em></p>
-        </div>
+        <div class="info-block red-highlight"><h3>👥 Who Can Participate</h3><p><strong>Paylocity Enterprise Wide</strong> - All employees are welcome to self-enroll!</p></div>
+        <div class="info-block red-block"><h3>💻 How It Works</h3><p>Virtual Instructor-Led Sessions</p></div>
+        <div class="info-block red-block"><h3>⏱️ Time Commitment</h3><p>Varies by topic, typically 2 hours per session</p></div>
+        <div class="info-block red-block"><h3>📝 How to Register</h3><p><strong>Three ways:</strong> Enterprise Calendar on ESS, Virtual PCTY Events Community Group, or Schedule link below.</p></div>
+        <div class="info-block red-highlight"><h3>📚 What You'll Learn</h3><p>Crucial Conversations, Emotional Intelligence, Managing Up/Down/Around, Growth Mindset, Delegation, and more!</p></div>
+        <div class="info-block red-block"><h3>🎯 Resources</h3><div class="resource-links"><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-red), #ff6b9d);"><span>📅</span><span>Schedule & Registration</span></a><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-red), #ff6b9d);"><span>📖</span><span>Best Practices Guide</span></a></div></div>
       </div>
     </div>
   </div>
 
-  <!-- FAQ Floating Button -->
-  <div class="faq-button" onclick="openFAQ()" title="Frequently Asked Questions">
-    ❓
-  </div>
-
-  <!-- FAQ Modal -->
+  <!-- FAQ Button and Modal -->
+  <div class="faq-button" onclick="openFAQ()" title="FAQ">❓</div>
   <div class="faq-modal" id="faqModal" onclick="closeFAQOnBackdrop(event)">
     <div class="faq-content" onclick="event.stopPropagation()">
-      <div class="faq-header">
-        <h2>💡 Frequently Asked Questions</h2>
-        <button class="faq-close" onclick="closeFAQ()">✕</button>
-      </div>
-      
+      <div class="faq-header"><h2>💡 FAQ</h2><button class="faq-close" onclick="closeFAQ()">✕</button></div>
       <div class="faq-body">
-        <!-- Leadership Contacts -->
-        <div class="faq-contacts">
-          <h3>👥 Leadership Development Contacts for Operations</h3>
-          <p><strong>Sophia Valentin:</strong> Program Manager</p>
-          <p><strong>Angela Ostermann:</strong> Sr. Manager</p>
-          <p><strong>Matty Braden:</strong> Sr. Director</p>
-        </div>
-
-        <!-- General FAQs -->
-        <div class="faq-category">
-          <div class="faq-category-title">📋 General Questions</div>
-          
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              <span>What are the approved reasons to miss training?</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-              <p>PTO</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              <span>What happens if I can't attend a training I am scheduled for?</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-              <p>Email LDCommunications, copy your Manager and Director and include the reason why. If possible, the LDCommunications team will reschedule your session.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              <span>Are there any makeup sessions for Leading Essentials?</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-              <p>No. It is important for new leaders to take these sessions within their first six months of tenure. The multi-day session must be taken in its entirety to get credit for the course. If you miss any one of the days, you will be re-enrolled in the next session. If you have PTO any days of the experience, please email LDCommunications for potential rescheduling.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              <span>Are there any makeup sessions for Leading Now?</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-              <p>Yes. There are placeholders for live makeup sessions the Monday after the full week. If a leader misses the live sessions and the makeup sessions, he or she will be assigned an LMS module that will require completion.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Leading Advantage FAQs -->
-        <div class="faq-category">
-          <div class="faq-category-title">⚡ Leading Advantage FAQs</div>
-
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              <span>What happens if I am in a program and can't attend one of the sessions?</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-              <p>If you are in a Leading Advantage cohort, contact Sophia Valentin for arrangements.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              <span>How many people are selected for each Leading Advantage cohort?</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-              <p>The number of participants for each fiscal year are determined at the start of each fiscal year and is based on business need.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              <span>How do I qualify to participate in Leading Advantage?</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-              <ul>
-                <li>Share your interest of pursuing leadership with your direct leader and discuss your interest in Leading Advantage.</li>
-                <li>Leverage the Leading Exploration experience to validate your interest.</li>
-                <li>Complete the self-assessment in Leading Exploration and compare your entries with your managers entries to identify strengths and opportunities.</li>
-                <li>Work with your direct leader to contribute your identified strengths and improve any identified opportunities.</li>
-                <li>Team Leads and Managers should bring their sponsorship of your participation in the program to their Director/Sr. Director team and include why.</li>
-                <li>If you have earned sponsorship, the Manager should submit a nomination on your behalf.</li>
-                <li>Cohort decisions are finalized and communicated in August and February, respectively.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              <span>What does the nomination process look like?</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-              <p>To nominate you, your leader will complete a survey that assesses your capabilities in key skills needed for Operations leaders. In partnership with Ops Leadership, the Program Office will review all nominations and progress the highest qualified individuals to round two. Nominees who make it to round two will receive a survey with five essay questions, your responses will be scored by our HRBP teams. The top scoring nominees by business unit will be accepted into the program.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              <span>What if I am not selected to participate in Leading Advantage? Can I re-apply?</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-              <p>Yes! Please do not be discouraged if you are not selected, there are limited seats. We encourage you to re-apply for the next cohort. Leaders can reach out to the leadership development contacts to avoid resubmitting nomination assuming their assessment remains the same. In the meantime, leverage Leading Exploration to take ownership of your development.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              <span>What if I am nominated for Leading Advantage and I don't want to participate?</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-              <p>Do not complete the survey that will be assigned to you and discuss your career plans with your leader.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              <span>What is my leader's role in my development as a Leading Advantage participant?</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-              <p>A big part of the Leading Advantage program is on the job experience of the lesson topics. Your leader will work with you to provide opportunities to practice these skills on the job. They may also serve as a mentor and an advisor, providing you feedback to aid in your development.</p>
-            </div>
-          </div>
+        <div class="faq-contacts"><h3>👥 Leadership Development Contacts</h3><p><strong>Sophia Valentin:</strong> Program Manager</p><p><strong>Angela Ostermann:</strong> Sr. Manager</p><p><strong>Matty Braden:</strong> Sr. Director</p></div>
+        <div class="faq-category"><div class="faq-category-title">📋 General Questions</div>
+          <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>What are approved reasons to miss training?</span><span class="faq-toggle">▼</span></div><div class="faq-answer"><p>PTO</p></div></div>
+          <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>What if I can't attend a scheduled training?</span><span class="faq-toggle">▼</span></div><div class="faq-answer"><p>Email LDCommunications, copy your Manager and Director with the reason.</p></div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <footer>
-    <p>&copy; 2025 Leading. Empowering leaders at every stage.</p>
-    <p>Questions? Contact the L&D team at Paylocity</p>
-  </footer>
-
-  <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-    ↑
-  </div>
+  <footer><p>&copy; 2025 Leading. Empowering leaders at every stage.</p><p>Questions? Contact the L&D team at Paylocity</p></footer>
+  <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
 
   <script>
-    // Active navigation highlighting
     const sections = document.querySelectorAll('section');
     const navTabs = document.querySelectorAll('.tab');
-
     function updateActiveNav() {
       let current = '';
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.pageYOffset >= sectionTop - 200) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      navTabs.forEach(tab => {
-        tab.classList.remove('active');
-        if (tab.getAttribute('data-section') === current) {
-          tab.classList.add('active');
-        }
-      });
+      sections.forEach(section => { if (window.pageYOffset >= section.offsetTop - 200) current = section.getAttribute('id'); });
+      navTabs.forEach(tab => { tab.classList.remove('active'); if (tab.getAttribute('data-section') === current) tab.classList.add('active'); });
     }
-
-    // Back to top button visibility
     const backToTop = document.querySelector('.back-to-top');
-    
-    function updateBackToTop() {
-      if (window.pageYOffset > 500) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    }
+    function updateBackToTop() { backToTop.classList.toggle('visible', window.pageYOffset > 500); }
+    window.addEventListener('scroll', () => { updateActiveNav(); updateBackToTop(); });
+    updateActiveNav(); updateBackToTop();
 
-    // Scroll event listener
-    window.addEventListener('scroll', () => {
-      updateActiveNav();
-      updateBackToTop();
-    });
+    function openFAQ() { document.getElementById('faqModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeFAQ() { document.getElementById('faqModal').classList.remove('active'); document.body.style.overflow = ''; }
+    function closeFAQOnBackdrop(e) { if (e.target.id === 'faqModal') closeFAQ(); }
+    function toggleFAQ(el) { el.classList.toggle('active'); el.nextElementSibling.classList.toggle('active'); }
 
-    // Initialize on load
-    updateActiveNav();
-    updateBackToTop();
+    function openNewLeaderOnboarding() { document.getElementById('nloModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeNLO() { document.getElementById('nloModal').classList.remove('active'); document.body.style.overflow = ''; }
+    function closeNLOOnBackdrop(e) { if (e.target.id === 'nloModal') closeNLO(); }
 
-    // FAQ Functions
-    function openFAQ() {
-      document.getElementById('faqModal').classList.add('active');
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    }
+    function openLeadingEssentials() { document.getElementById('leadingEssentialsModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLeadingEssentials() { document.getElementById('leadingEssentialsModal').classList.remove('active'); document.body.style.overflow = ''; }
+    function closeLeadingEssentialsOnBackdrop(e) { if (e.target.id === 'leadingEssentialsModal') closeLeadingEssentials(); }
 
-    function closeFAQ() {
-      document.getElementById('faqModal').classList.remove('active');
-      document.body.style.overflow = ''; // Restore scrolling
-    }
+    function openLeadingExploration() { document.getElementById('leadingExplorationModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLeadingExploration() { document.getElementById('leadingExplorationModal').classList.remove('active'); document.body.style.overflow = ''; }
+    function closeLeadingExplorationOnBackdrop(e) { if (e.target.id === 'leadingExplorationModal') closeLeadingExploration(); }
 
-    function closeFAQOnBackdrop(event) {
-      if (event.target.id === 'faqModal') {
-        closeFAQ();
-      }
-    }
+    function openLeadingAdvantage() { document.getElementById('leadingAdvantageModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLeadingAdvantage() { document.getElementById('leadingAdvantageModal').classList.remove('active'); document.body.style.overflow = ''; }
+    function closeLeadingAdvantageOnBackdrop(e) { if (e.target.id === 'leadingAdvantageModal') closeLeadingAdvantage(); }
 
-    function toggleFAQ(element) {
-      const answer = element.nextElementSibling;
-      const allQuestions = document.querySelectorAll('.faq-question');
-      const allAnswers = document.querySelectorAll('.faq-answer');
-      
-      // Close all other FAQs
-      allQuestions.forEach(q => {
-        if (q !== element) {
-          q.classList.remove('active');
-        }
-      });
-      allAnswers.forEach(a => {
-        if (a !== answer) {
-          a.classList.remove('active');
-        }
-      });
-      
-      // Toggle current FAQ
-      element.classList.toggle('active');
-      answer.classList.toggle('active');
-    }
+    function openLeadingNow() { document.getElementById('leadingNowModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLeadingNow() { document.getElementById('leadingNowModal').classList.remove('active'); document.body.style.overflow = ''; }
+    function closeLeadingNowOnBackdrop(e) { if (e.target.id === 'leadingNowModal') closeLeadingNow(); }
 
-    // Close modals with Escape key
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeFAQ();
-        closeLeadingNow();
-        closeProfDev();
-        closeLeadingExploration();
-        closeLeadingAdvantage();
-        closeNLO();
-        closeLeadingEssentials();
-      }
-    });
+    function openProfDev() { document.getElementById('profDevModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeProfDev() { document.getElementById('profDevModal').classList.remove('active'); document.body.style.overflow = ''; }
+    function closeProfDevOnBackdrop(e) { if (e.target.id === 'profDevModal') closeProfDev(); }
 
-    // New Leader Onboarding Modal Functions
-    function openNewLeaderOnboarding() {
-      document.getElementById('nloModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeNLO() {
-      document.getElementById('nloModal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    function closeNLOOnBackdrop(event) {
-      if (event.target.id === 'nloModal') {
-        closeNLO();
-      }
-    }
-
-    // Leading Essentials Modal Functions
-    function openLeadingEssentials() {
-      document.getElementById('leadingEssentialsModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLeadingEssentials() {
-      document.getElementById('leadingEssentialsModal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    function closeLeadingEssentialsOnBackdrop(event) {
-      if (event.target.id === 'leadingEssentialsModal') {
-        closeLeadingEssentials();
-      }
-    }
-
-    // Leading Exploration Modal Functions
-    function openLeadingExploration() {
-      document.getElementById('leadingExplorationModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLeadingExploration() {
-      document.getElementById('leadingExplorationModal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    function closeLeadingExplorationOnBackdrop(event) {
-      if (event.target.id === 'leadingExplorationModal') {
-        closeLeadingExploration();
-      }
-    }
-
-    // Leading Advantage Modal Functions
-    function openLeadingAdvantage() {
-      document.getElementById('leadingAdvantageModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLeadingAdvantage() {
-      document.getElementById('leadingAdvantageModal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    function closeLeadingAdvantageOnBackdrop(event) {
-      if (event.target.id === 'leadingAdvantageModal') {
-        closeLeadingAdvantage();
-      }
-    }
-
-    // Leading Now Modal Functions
-    function openLeadingNow() {
-      document.getElementById('leadingNowModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLeadingNow() {
-      document.getElementById('leadingNowModal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    function closeLeadingNowOnBackdrop(event) {
-      if (event.target.id === 'leadingNowModal') {
-        closeLeadingNow();
-      }
-    }
-
-    // Professional Development Modal Functions
-    function openProfDev() {
-      document.getElementById('profDevModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeProfDev() {
-      document.getElementById('profDevModal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    function closeProfDevOnBackdrop(event) {
-      if (event.target.id === 'profDevModal') {
-        closeProfDev();
-      }
-    }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeFAQ(); closeLeadingNow(); closeProfDev(); closeLeadingExploration(); closeLeadingAdvantage(); closeNLO(); closeLeadingEssentials(); } });
   </script>
 </body>
 </html>
