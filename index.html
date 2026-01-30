@@ -60,6 +60,7 @@
     @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
     .hero-content { text-align: center; z-index: 10; }
     .hero-content p { font-size: 1.3rem; color: var(--ink-2); margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .hero-subheading { font-size: 1.8rem; font-weight: 700; color: var(--brand-orange); margin: 0 0 15px; animation: fadeInDown 1s ease-out 0.3s both; }
     .bubble { position: absolute; border-radius: 50%; opacity: 0.3; animation: float 20s ease-in-out infinite; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, inset 0 0 20px rgba(255,255,255,0.2); filter: blur(0.5px); }
     .bubble::after { content: '→'; color: white; font-size: 2em; font-weight: 900; opacity: 1; text-shadow: 0 0 10px currentColor; filter: brightness(1.5); }
     @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(30px, -30px) rotate(90deg); } 50% { transform: translate(-20px, 20px) rotate(180deg); } 75% { transform: translate(40px, 10px) rotate(270deg); } }
@@ -249,13 +250,14 @@
     <div class="bubble bubble-1"></div><div class="bubble bubble-2"></div><div class="bubble bubble-3"></div><div class="bubble bubble-4"></div><div class="bubble bubble-5"></div><div class="bubble bubble-6"></div>
     <div class="hero-content">
       <img src="logo.png" alt="Leading Logo" class="hero-logo">
+      <h2 class="hero-subheading">Operations Leadership</h2>
       <p>Your roadmap to leadership success. Follow our structured path from foundational skills to confident leadership.</p>
       <div class="path-options">
         <div class="path-card" onclick="document.querySelector('#new-leader').scrollIntoView({behavior: 'smooth'})">
-          <div class="path-circle orange"><div class="path-icon">🎯</div><div class="path-title">Get Started In Your<br>Early Career</div></div>
+          <div class="path-circle orange"><div class="path-icon">🎯</div><div class="path-title">I'm an Aspiring<br>Leader</div></div>
         </div>
         <div class="path-card" onclick="document.querySelector('#continuing-education').scrollIntoView({behavior: 'smooth'})">
-          <div class="path-circle blue"><div class="path-icon">📚</div><div class="path-title">Get Continuing<br>Leader Education</div></div>
+          <div class="path-circle blue"><div class="path-icon">📚</div><div class="path-title">I'm Already<br>a Leader</div></div>
         </div>
       </div>
     </div>
