@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,9 +21,10 @@
       --bg-gray: #e8eaed;
       --line: #e6e8eb;
       --radius: 18px;
-      --shadow: 0 10px 24px rgba(0,0,0,.10);
-      --shadow-sm: 0 4px 12px rgba(0,0,0,.08);
+      --shadow: 0 10px 24px rgba(0, 0, 0, .10);
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, .08);
     }
+
     @media (prefers-color-scheme: dark) {
       :root {
         --ink: #ffffff;
@@ -33,231 +35,1941 @@
         --line: #404040;
       }
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font: 16px/1.55 system-ui, -apple-system, sans-serif; color: var(--ink); background: var(--bg); overflow-x: hidden; }
-    a { color: var(--brand-blue); text-decoration: none; transition: color 0.2s ease; }
-    a:hover { color: var(--brand-orange); }
-    header { position: sticky; top: 0; z-index: 1000; padding: 20px; background: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 100%); border-bottom: 3px solid transparent; background-image: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 100%), linear-gradient(90deg, var(--brand-blue), var(--brand-green), var(--brand-orange), var(--brand-purple), var(--brand-red), var(--brand-yellow)); background-origin: border-box; background-clip: padding-box, border-box; backdrop-filter: blur(15px); box-shadow: 0 8px 32px rgba(0,0,0,.1); }
-    .nav { display: flex; gap: 20px; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; }
-    .brand { display: flex; align-items: center; gap: 12px; font-size: 28px; font-weight: 700; color: var(--ink); transition: transform 0.3s ease; cursor: pointer; }
-    .brand:hover { transform: scale(1.05) rotate(2deg); }
-    .brand-logo { height: 70px; width: auto; object-fit: contain; transition: all 0.3s ease; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15)); }
-    .brand:hover .brand-logo { transform: rotate(-2deg); filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25)) brightness(1.1); }
-    .tabs { display: flex; gap: 12px; flex-wrap: wrap; padding: 8px; background: rgba(255,255,255,0.1); border-radius: 50px; backdrop-filter: blur(10px); }
-    .tab { padding: 12px 20px; border-radius: 30px; font-weight: 700; font-size: 14px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 2px solid transparent; background: var(--bg); color: var(--ink); display: flex; align-items: center; gap: 8px; cursor: pointer; position: relative; overflow: hidden; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    .tab:nth-child(1) { background: linear-gradient(135deg, var(--brand-blue), #7bb3f0); color: white; }
-    .tab:nth-child(2) { background: linear-gradient(135deg, var(--brand-orange), #ffb347); color: white; }
-    .tab:nth-child(3) { background: linear-gradient(135deg, var(--brand-purple), #b19cd9); color: white; }
-    .tab:nth-child(4) { background: linear-gradient(135deg, var(--brand-green), #90ee90); color: white; }
-    .tab:nth-child(5) { background: linear-gradient(135deg, var(--brand-red), #ff6b9d); color: white; }
-    .tab:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 8px 25px rgba(0,0,0,0.2); filter: brightness(1.1) saturate(1.2); }
-    .tab.active { transform: translateY(-2px) scale(1.02); box-shadow: 0 6px 20px rgba(0,0,0,0.15), 0 0 0 3px rgba(255,255,255,0.3), inset 0 1px 0 rgba(255,255,255,0.2); }
-    section { min-height: 100vh; padding: 100px 20px; position: relative; scroll-margin-top: 120px; }
-    .section-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
-    #home { background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 50%, var(--bg-gray) 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-    .hero-logo { height: 250px; width: auto; object-fit: contain; margin-bottom: 30px; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15)); animation: fadeInDown 1s ease-out; }
-    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-    .hero-content { text-align: center; z-index: 10; }
-    .hero-content p { font-size: 1.3rem; color: var(--ink-2); margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
-    .hero-subheading { font-size: 1.8rem; font-weight: 700; color: var(--brand-orange); margin: 0 0 15px; animation: fadeInDown 1s ease-out 0.3s both; }
-    .bubble { position: absolute; border-radius: 50%; opacity: 0.3; animation: float 20s ease-in-out infinite; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, inset 0 0 20px rgba(255,255,255,0.2); filter: blur(0.5px); }
-    .bubble::after { content: '→'; color: white; font-size: 2em; font-weight: 900; opacity: 1; text-shadow: 0 0 10px currentColor; filter: brightness(1.5); }
-    @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(30px, -30px) rotate(90deg); } 50% { transform: translate(-20px, 20px) rotate(180deg); } 75% { transform: translate(40px, 10px) rotate(270deg); } }
-    .bubble-1 { width: 80px; height: 80px; background: var(--brand-blue); color: var(--brand-blue); top: 15%; left: 10%; animation-delay: 0s; }
-    .bubble-2 { width: 120px; height: 120px; background: var(--brand-yellow); color: var(--brand-yellow); top: 20%; right: 15%; animation-delay: -5s; }
-    .bubble-3 { width: 60px; height: 60px; background: var(--brand-red); color: var(--brand-red); bottom: 25%; left: 8%; animation-delay: -10s; }
-    .bubble-4 { width: 100px; height: 100px; background: var(--brand-green); color: var(--brand-green); bottom: 35%; right: 20%; animation-delay: -3s; }
-    .bubble-5 { width: 150px; height: 150px; background: var(--brand-purple); color: var(--brand-purple); top: 50%; left: 50%; animation-delay: -8s; }
-    .bubble-6 { width: 70px; height: 70px; background: var(--brand-orange); color: var(--brand-orange); top: 40%; left: 25%; animation-delay: -12s; }
-    .card-bubbles { position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; z-index: 1; }
-    .card-bubble { position: absolute; border-radius: 50%; opacity: 0.25; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, inset 0 0 20px rgba(255,255,255,0.2); filter: blur(0.5px); }
-    .card-bubble::after { content: '→'; color: white; font-size: 1.5em; font-weight: 900; opacity: 1; text-shadow: 0 0 10px currentColor; filter: brightness(1.5); }
-    .card-bubble:nth-child(1) { animation: floatRandom1 18s ease-in-out infinite; }
-    .card-bubble:nth-child(2) { animation: floatRandom2 22s ease-in-out infinite; }
-    .card-bubble:nth-child(3) { animation: floatRandom3 15s ease-in-out infinite; }
-    .card-bubble:nth-child(4) { animation: floatRandom4 25s ease-in-out infinite; }
-    .card-bubble:nth-child(5) { animation: floatRandom5 20s ease-in-out infinite; }
-    @keyframes floatRandom1 { 0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); } 20% { transform: translate(40px, -25px) rotate(72deg) scale(1.1); } 40% { transform: translate(-15px, 35px) rotate(144deg) scale(0.9); } 60% { transform: translate(25px, 15px) rotate(216deg) scale(1.15); } 80% { transform: translate(-30px, -20px) rotate(288deg) scale(0.95); } }
-    @keyframes floatRandom2 { 0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); } 25% { transform: translate(-35px, 30px) rotate(90deg) scale(0.85); } 50% { transform: translate(45px, -10px) rotate(180deg) scale(1.2); } 75% { transform: translate(-20px, -40px) rotate(270deg) scale(1.05); } }
-    @keyframes floatRandom3 { 0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); } 15% { transform: translate(20px, 40px) rotate(54deg) scale(1.25); } 35% { transform: translate(-40px, 10px) rotate(126deg) scale(0.8); } 55% { transform: translate(15px, -35px) rotate(198deg) scale(1.1); } 75% { transform: translate(35px, 20px) rotate(270deg) scale(0.9); } 90% { transform: translate(-25px, -15px) rotate(324deg) scale(1.05); } }
-    @keyframes floatRandom4 { 0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); } 33% { transform: translate(-45px, -30px) rotate(120deg) scale(1.15); } 66% { transform: translate(30px, 45px) rotate(240deg) scale(0.85); } }
-    @keyframes floatRandom5 { 0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); } 20% { transform: translate(50px, 20px) rotate(72deg) scale(0.9); } 40% { transform: translate(-10px, -45px) rotate(144deg) scale(1.2); } 60% { transform: translate(-40px, 25px) rotate(216deg) scale(1.0); } 80% { transform: translate(25px, -30px) rotate(288deg) scale(1.1); } }
-    .card-bubble.yellow-bubble { background: var(--brand-yellow); color: var(--brand-yellow); }
-    .card-bubble.blue-bubble { background: var(--brand-blue); color: var(--brand-blue); }
-    .card-bubble.green-bubble { background: var(--brand-green); color: var(--brand-green); }
-    .card-bubble.purple-bubble { background: var(--brand-purple); color: var(--brand-purple); }
-    .card-bubble.orange-bubble { background: var(--brand-orange); color: var(--brand-orange); }
-    .card-bubble.red-bubble { background: var(--brand-red); color: var(--brand-red); }
-    .section-bubbles { display: none; }
-    .path-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
-    .path-card { text-align: center; cursor: pointer; transition: transform 0.3s ease; }
-    .path-card:hover { transform: translateY(-10px); }
-    .path-circle { width: 250px; height: 250px; margin: 0 auto 20px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-weight: 700; box-shadow: var(--shadow); transition: all 0.3s ease; position: relative; }
-    .path-circle:hover { transform: scale(1.05); box-shadow: 0 15px 40px rgba(0,0,0,.2); }
-    .path-circle.orange { background: linear-gradient(135deg, var(--brand-orange), #ffb347); }
-    .path-circle.blue { background: linear-gradient(135deg, var(--brand-blue), #7bb3f0); }
-    .path-icon { font-size: 4rem; margin-bottom: 15px; }
-    .path-title { font-size: 1.3rem; line-height: 1.2; padding: 0 20px; }
-    .section-header { text-align: center; margin-bottom: 60px; }
-    .section-header h2 { font-size: 3rem; font-weight: 700; margin-bottom: 20px; }
-    .section-header.orange h2 { background: linear-gradient(135deg, var(--brand-orange), #ffb347); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .section-header.green h2 { background: linear-gradient(135deg, var(--brand-green), #90ee90); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .section-header.purple h2 { background: linear-gradient(135deg, var(--brand-purple), #b19cd9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .section-header p { font-size: 1.2rem; color: var(--ink-2); max-width: 700px; margin: 0 auto; }
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 60px; }
-    .stat-card { text-align: center; padding: 30px; background: var(--bg); border-radius: var(--radius); box-shadow: var(--shadow-sm); transition: transform 0.3s ease; }
-    .stat-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
-    .stat-number { font-size: 3rem; font-weight: 800; margin-bottom: 10px; display: block; }
-    .stat-number.orange { background: linear-gradient(135deg, var(--brand-orange), #ffb347); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .stat-number.green { background: linear-gradient(135deg, var(--brand-green), #90ee90); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .stat-label { font-size: 1.1rem; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
-    .stat-description { font-size: 0.9rem; color: var(--ink-2); }
-    .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 50px; align-items: stretch; }
-    .option-card { text-align: center; display: flex; flex-direction: column; height: 100%; position: relative; overflow: hidden; }
-    .visual-circle { width: 280px; height: 280px; margin: 0 auto 30px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; box-shadow: var(--shadow); transition: all 0.3s ease; }
-    .visual-circle:hover { transform: scale(1.05) rotate(5deg); box-shadow: 0 15px 40px rgba(0,0,0,.2); }
-    .visual-circle.orange { background: linear-gradient(135deg, var(--brand-orange), #ffb347); }
-    .visual-circle.blue { background: linear-gradient(135deg, var(--brand-blue), #7bb3f0); }
-    .visual-circle.green { background: linear-gradient(135deg, var(--brand-green), #90ee90); }
-    .visual-circle.purple { background: linear-gradient(135deg, var(--brand-purple), #b19cd9); }
-    .timeline-label-text { font-size: 0.9rem; font-weight: 600; opacity: 0.9; margin-bottom: 10px; }
-    .option-icon { font-size: 4rem; margin-bottom: 15px; }
-    .program-logo { max-width: 250px; width: 100%; height: auto; display: block; margin: 0 auto; }
-    .option-title { font-size: 1.5rem; font-weight: 700; line-height: 1.2; padding: 0 15px; }
-    .option-details { padding: 30px; background: var(--bg); border-radius: var(--radius); box-shadow: var(--shadow-sm); text-align: left; display: flex; flex-direction: column; min-height: 320px; }
-    .option-details h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 15px; color: var(--ink); }
-    .option-details p { font-size: 1.1rem; color: var(--ink-2); line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
-    .option-details ul { margin: 15px 0 25px 20px; color: var(--ink-2); }
-    .option-details li { margin-bottom: 10px; line-height: 1.6; }
-    .cta-button { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 30px; font-weight: 700; font-size: 1rem; color: white; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: none; cursor: pointer; }
-    .cta-button.orange { background: linear-gradient(135deg, var(--brand-orange), #ffb347); }
-    .cta-button.blue { background: linear-gradient(135deg, var(--brand-blue), #7bb3f0); }
-    .cta-button.green { background: linear-gradient(135deg, var(--brand-green), #90ee90); }
-    .cta-button.purple { background: linear-gradient(135deg, var(--brand-purple), #b19cd9); }
-    .cta-button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); filter: brightness(1.1); }
-    #new-leader { background: linear-gradient(to bottom, var(--bg) 0%, #fff5eb 100%); }
-    #leadership-development { background: linear-gradient(to bottom, #f0fff4 0%, var(--bg) 100%); }
-    #continuing-education { background: linear-gradient(to bottom, #f5f0ff 0%, var(--bg) 100%); }
-    footer { text-align: center; padding: 60px 20px; background: var(--bg-light); border-top: 1px solid var(--line); }
-    footer p { color: var(--ink-2); margin-bottom: 15px; }
-    .faq-button { position: fixed; bottom: 120px; right: 40px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--brand-yellow), #ffd700); color: var(--ink); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: var(--shadow); cursor: pointer; opacity: 1; transition: all 0.3s ease; z-index: 998; font-weight: 700; }
-    .faq-button:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 15px 40px rgba(0,0,0,.3); }
-    .faq-modal, .leading-now-modal, .prof-dev-modal, .leading-exploration-modal, .leading-advantage-modal, .nlo-modal, .leading-essentials-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); display: none; align-items: center; justify-content: center; z-index: 9999; padding: 20px; }
-    .faq-modal.active, .leading-now-modal.active, .prof-dev-modal.active, .leading-exploration-modal.active, .leading-advantage-modal.active, .nlo-modal.active, .leading-essentials-modal.active { display: flex; }
-    .faq-content, .leading-now-content, .prof-dev-content, .leading-exploration-content, .leading-advantage-content, .nlo-content, .leading-essentials-content { background: var(--bg); border-radius: var(--radius); max-width: 800px; width: 100%; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.3); position: relative; }
-    .faq-content { max-width: 900px; }
-    .faq-header { position: sticky; top: 0; background: linear-gradient(135deg, var(--brand-yellow), #ffd700); padding: 30px; border-radius: var(--radius) var(--radius) 0 0; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
-    .faq-header h2 { margin: 0; font-size: 2rem; color: var(--ink); }
-    .faq-close, .leading-now-close, .prof-dev-close, .leading-exploration-close, .leading-advantage-close, .nlo-close, .leading-essentials-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; color: white; }
-    .faq-close { position: relative; top: auto; right: auto; color: var(--ink); }
-    .faq-close:hover, .leading-now-close:hover, .prof-dev-close:hover, .leading-exploration-close:hover, .leading-advantage-close:hover, .nlo-close:hover, .leading-essentials-close:hover { background: rgba(255,255,255,0.5); transform: rotate(90deg); }
-    .faq-body, .leading-now-body, .prof-dev-body, .leading-exploration-body, .leading-advantage-body, .nlo-body, .leading-essentials-body { padding: 40px; }
-    .faq-body { padding: 30px; }
-    .faq-category { margin-bottom: 30px; }
-    .faq-category-title { font-size: 1.3rem; font-weight: 700; color: var(--brand-orange); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-    .faq-item { background: var(--bg-light); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.3s ease; }
-    .faq-item:hover { box-shadow: var(--shadow-sm); }
-    .faq-question { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 15px; font-weight: 600; color: var(--ink); transition: all 0.3s ease; }
-    .faq-question:hover { background: var(--bg-gray); }
-    .faq-question.active { background: var(--bg-gray); color: var(--brand-blue); }
-    .faq-toggle { font-size: 1.5rem; transition: transform 0.3s ease; flex-shrink: 0; }
-    .faq-question.active .faq-toggle { transform: rotate(180deg); }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 20px; }
-    .faq-answer.active { max-height: 500px; padding: 0 20px 20px 20px; }
-    .faq-answer p { color: var(--ink-2); line-height: 1.6; margin: 0; }
-    .faq-answer ul { margin: 10px 0 0 20px; color: var(--ink-2); }
-    .faq-answer li { margin-bottom: 8px; line-height: 1.5; }
-    .faq-contacts { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); padding: 20px; border-radius: 12px; margin-bottom: 20px; }
-    .faq-contacts h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--brand-blue); }
-    .faq-contacts p { margin: 5px 0; color: var(--ink-2); }
-    .faq-contacts strong { color: var(--ink); }
-    .leading-now-header { background: linear-gradient(135deg, var(--brand-orange), #ffb347); padding: 40px; border-radius: var(--radius) var(--radius) 0 0; position: relative; }
-    .prof-dev-header { background: linear-gradient(135deg, var(--brand-red), #ff6b9d); padding: 40px; border-radius: var(--radius) var(--radius) 0 0; position: relative; }
-    .leading-exploration-header { background: linear-gradient(135deg, var(--brand-green), #90ee90); padding: 40px; border-radius: var(--radius) var(--radius) 0 0; position: relative; }
-    .leading-advantage-header { background: linear-gradient(135deg, var(--brand-purple), #b19cd9); padding: 40px; border-radius: var(--radius) var(--radius) 0 0; position: relative; }
-    .nlo-header { background: linear-gradient(135deg, var(--brand-orange), #ffb347); padding: 40px; border-radius: var(--radius) var(--radius) 0 0; position: relative; }
-    .leading-essentials-header { background: linear-gradient(135deg, var(--brand-blue), #7bb3f0); padding: 40px; border-radius: var(--radius) var(--radius) 0 0; position: relative; }
-    .leading-now-header h2, .prof-dev-header h2, .leading-exploration-header h2, .leading-advantage-header h2, .nlo-header h2, .leading-essentials-header h2 { margin: 0 0 10px 0; font-size: 2.5rem; color: white; display: flex; align-items: center; gap: 15px; }
-    .leading-now-header p, .prof-dev-header p, .leading-exploration-header p, .leading-advantage-header p, .nlo-header p, .leading-essentials-header p { margin: 0; font-size: 1.1rem; color: rgba(255,255,255,0.9); }
-    .info-block { margin-bottom: 30px; padding: 25px; background: var(--bg-light); border-radius: 12px; border-left: 4px solid var(--brand-orange); transition: all 0.3s ease; }
-    .info-block:hover { transform: translateX(5px); box-shadow: var(--shadow-sm); }
-    .info-block h3 { font-size: 1.3rem; font-weight: 700; color: var(--brand-orange); margin: 0 0 10px 0; display: flex; align-items: center; gap: 10px; }
-    .info-block p { color: var(--ink-2); line-height: 1.7; margin: 0; font-size: 1.05rem; }
-    .info-block ul { color: var(--ink-2); line-height: 1.7; margin: 10px 0 0 20px; font-size: 1.05rem; }
-    .info-block li { margin-bottom: 8px; }
-    .info-block strong { color: var(--ink); font-weight: 600; }
-    .highlight-box { background: linear-gradient(135deg, #fff5eb 0%, #ffe8d1 100%); border-left-color: var(--brand-orange); }
-    .info-block.purple-block { border-left-color: var(--brand-purple); }
-    .info-block.purple-block h3 { color: var(--brand-purple); }
-    .info-block.purple-highlight { background: linear-gradient(135deg, #f5f0ff 0%, #e9dcff 100%); border-left-color: var(--brand-purple); }
-    .info-block.red-block { border-left-color: var(--brand-red); }
-    .info-block.red-block h3 { color: var(--brand-red); }
-    .info-block.red-highlight { background: linear-gradient(135deg, #fff0f0 0%, #ffe0e0 100%); border-left-color: var(--brand-red); }
-    .info-block.green-block { border-left-color: var(--brand-green); }
-    .info-block.green-block h3 { color: var(--brand-green); }
-    .info-block.green-highlight { background: linear-gradient(135deg, #f0fff4 0%, #dcffdc 100%); border-left-color: var(--brand-green); }
-    .info-block.blue-block { border-left-color: var(--brand-blue); }
-    .info-block.blue-block h3 { color: var(--brand-blue); }
-    .info-block.blue-highlight { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left-color: var(--brand-blue); }
-    .info-block.orange-block { border-left-color: var(--brand-orange); }
-    .info-block.orange-block h3 { color: var(--brand-orange); }
-    .info-block.orange-highlight { background: linear-gradient(135deg, #fff5eb 0%, #ffe8d1 100%); border-left-color: var(--brand-orange); }
-    .resource-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px; }
-    .resource-link { display: flex; align-items: center; gap: 10px; padding: 15px 20px; background: linear-gradient(135deg, var(--brand-purple), #b19cd9); color: white; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(144, 19, 254, 0.2); }
-    .resource-link:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(144, 19, 254, 0.3); filter: brightness(1.1); }
-    .resource-link span:first-child { font-size: 1.5rem; }
-    .back-to-top { position: fixed; bottom: 40px; right: 40px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--brand-purple), var(--brand-blue)); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: var(--shadow); cursor: pointer; opacity: 0; transform: translateY(100px); transition: all 0.3s ease; z-index: 999; }
-    .back-to-top.visible { opacity: 1; transform: translateY(0); }
-    .back-to-top:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,.3); }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font: 16px/1.55 system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--brand-blue);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--brand-orange);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 20px;
+      background: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 100%);
+      border-bottom: 3px solid transparent;
+      background-image: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 100%), linear-gradient(90deg, var(--brand-blue), var(--brand-green), var(--brand-orange), var(--brand-purple), var(--brand-red), var(--brand-yellow));
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .1);
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ink);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .brand:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    .brand-logo {
+      height: 70px;
+      width: auto;
+      object-fit: contain;
+      transition: all 0.3s ease;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+    }
+
+    .brand:hover .brand-logo {
+      transform: rotate(-2deg);
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25)) brightness(1.1);
+    }
+
+    .hamburger {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: none;
+      background: var(--bg-light);
+      border-radius: 12px;
+      cursor: pointer;
+      padding: 10px;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2.5px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: center;
+    }
+
+    .hamburger.active {
+      background: var(--bg-gray);
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+    }
+
+    .tab {
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+      background: var(--bg);
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .tab:nth-child(1) {
+      background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);
+      color: white;
+    }
+
+    .tab:nth-child(2) {
+      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
+      color: white;
+    }
+
+    .tab:nth-child(3) {
+      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
+      color: white;
+    }
+
+    .tab:nth-child(4) {
+      background: linear-gradient(135deg, var(--brand-green), #90ee90);
+      color: white;
+    }
+
+    .tab:nth-child(5) {
+      background: linear-gradient(135deg, var(--brand-red), #ff6b9d);
+      color: white;
+    }
+
+    .tab:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      filter: brightness(1.1) saturate(1.2);
+    }
+
+    .tab.active {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15), 0 0 0 3px rgba(255, 255, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    section {
+      min-height: auto;
+      padding: 80px 20px;
+      position: relative;
+      scroll-margin-top: 120px;
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal-left.revealed {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .section-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    #home {
+      background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 50%, var(--bg-gray) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-logo {
+      height: 250px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 30px;
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.15));
+      animation: fadeInDown 1s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 10;
+    }
+
+    .hero-content p {
+      font-size: 1.3rem;
+      color: var(--ink-2);
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-subheading {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--brand-orange);
+      margin: 0 0 15px;
+      animation: fadeInDown 1s ease-out 0.3s both;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 20s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, inset 0 0 20px rgba(255, 255, 255, 0.2);
+      filter: blur(0.5px);
+    }
+
+    .bubble::after {
+      content: '→';
+      color: white;
+      font-size: 2em;
+      font-weight: 900;
+      opacity: 1;
+      text-shadow: 0 0 10px currentColor;
+      filter: brightness(1.5);
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      25% {
+        transform: translate(30px, -30px) rotate(90deg);
+      }
+
+      50% {
+        transform: translate(-20px, 20px) rotate(180deg);
+      }
+
+      75% {
+        transform: translate(40px, 10px) rotate(270deg);
+      }
+    }
+
+    .bubble-1 {
+      width: 80px;
+      height: 80px;
+      background: var(--brand-blue);
+      color: var(--brand-blue);
+      top: 15%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .bubble-2 {
+      width: 120px;
+      height: 120px;
+      background: var(--brand-yellow);
+      color: var(--brand-yellow);
+      top: 20%;
+      right: 15%;
+      animation-delay: -5s;
+    }
+
+    .bubble-3 {
+      width: 60px;
+      height: 60px;
+      background: var(--brand-red);
+      color: var(--brand-red);
+      bottom: 25%;
+      left: 8%;
+      animation-delay: -10s;
+    }
+
+    .bubble-4 {
+      width: 100px;
+      height: 100px;
+      background: var(--brand-green);
+      color: var(--brand-green);
+      bottom: 35%;
+      right: 20%;
+      animation-delay: -3s;
+    }
+
+    .bubble-5 {
+      width: 150px;
+      height: 150px;
+      background: var(--brand-purple);
+      color: var(--brand-purple);
+      top: 50%;
+      left: 50%;
+      animation-delay: -8s;
+    }
+
+    .bubble-6 {
+      width: 70px;
+      height: 70px;
+      background: var(--brand-orange);
+      color: var(--brand-orange);
+      top: 40%;
+      left: 25%;
+      animation-delay: -12s;
+    }
+
+    .card-bubbles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .card-bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.25;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, inset 0 0 20px rgba(255, 255, 255, 0.2);
+      filter: blur(0.5px);
+    }
+
+    .card-bubble::after {
+      content: '→';
+      color: white;
+      font-size: 1.5em;
+      font-weight: 900;
+      opacity: 1;
+      text-shadow: 0 0 10px currentColor;
+      filter: brightness(1.5);
+    }
+
+    .card-bubble:nth-child(1) {
+      animation: floatRandom1 18s ease-in-out infinite;
+    }
+
+    .card-bubble:nth-child(2) {
+      animation: floatRandom2 22s ease-in-out infinite;
+    }
+
+    .card-bubble:nth-child(3) {
+      animation: floatRandom3 15s ease-in-out infinite;
+    }
+
+    .card-bubble:nth-child(4) {
+      animation: floatRandom4 25s ease-in-out infinite;
+    }
+
+    .card-bubble:nth-child(5) {
+      animation: floatRandom5 20s ease-in-out infinite;
+    }
+
+    @keyframes floatRandom1 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+      }
+
+      20% {
+        transform: translate(40px, -25px) rotate(72deg) scale(1.1);
+      }
+
+      40% {
+        transform: translate(-15px, 35px) rotate(144deg) scale(0.9);
+      }
+
+      60% {
+        transform: translate(25px, 15px) rotate(216deg) scale(1.15);
+      }
+
+      80% {
+        transform: translate(-30px, -20px) rotate(288deg) scale(0.95);
+      }
+    }
+
+    @keyframes floatRandom2 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+      }
+
+      25% {
+        transform: translate(-35px, 30px) rotate(90deg) scale(0.85);
+      }
+
+      50% {
+        transform: translate(45px, -10px) rotate(180deg) scale(1.2);
+      }
+
+      75% {
+        transform: translate(-20px, -40px) rotate(270deg) scale(1.05);
+      }
+    }
+
+    @keyframes floatRandom3 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+      }
+
+      15% {
+        transform: translate(20px, 40px) rotate(54deg) scale(1.25);
+      }
+
+      35% {
+        transform: translate(-40px, 10px) rotate(126deg) scale(0.8);
+      }
+
+      55% {
+        transform: translate(15px, -35px) rotate(198deg) scale(1.1);
+      }
+
+      75% {
+        transform: translate(35px, 20px) rotate(270deg) scale(0.9);
+      }
+
+      90% {
+        transform: translate(-25px, -15px) rotate(324deg) scale(1.05);
+      }
+    }
+
+    @keyframes floatRandom4 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+      }
+
+      33% {
+        transform: translate(-45px, -30px) rotate(120deg) scale(1.15);
+      }
+
+      66% {
+        transform: translate(30px, 45px) rotate(240deg) scale(0.85);
+      }
+    }
+
+    @keyframes floatRandom5 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+      }
+
+      20% {
+        transform: translate(50px, 20px) rotate(72deg) scale(0.9);
+      }
+
+      40% {
+        transform: translate(-10px, -45px) rotate(144deg) scale(1.2);
+      }
+
+      60% {
+        transform: translate(-40px, 25px) rotate(216deg) scale(1.0);
+      }
+
+      80% {
+        transform: translate(25px, -30px) rotate(288deg) scale(1.1);
+      }
+    }
+
+    .card-bubble.yellow-bubble {
+      background: var(--brand-yellow);
+      color: var(--brand-yellow);
+    }
+
+    .card-bubble.blue-bubble {
+      background: var(--brand-blue);
+      color: var(--brand-blue);
+    }
+
+    .card-bubble.green-bubble {
+      background: var(--brand-green);
+      color: var(--brand-green);
+    }
+
+    .card-bubble.purple-bubble {
+      background: var(--brand-purple);
+      color: var(--brand-purple);
+    }
+
+    .card-bubble.orange-bubble {
+      background: var(--brand-orange);
+      color: var(--brand-orange);
+    }
+
+    .card-bubble.red-bubble {
+      background: var(--brand-red);
+      color: var(--brand-red);
+    }
+
+    .section-bubbles {
+      display: none;
+    }
+
+    .path-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .path-card {
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .path-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .path-circle {
+      width: 250px;
+      height: 250px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .path-circle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, .2);
+    }
+
+    .path-circle.orange {
+      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
+    }
+
+    .path-circle.blue {
+      background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);
+    }
+
+    .path-icon {
+      font-size: 4rem;
+      margin-bottom: 15px;
+    }
+
+    .path-title {
+      font-size: 1.3rem;
+      line-height: 1.2;
+      padding: 0 20px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .section-header.orange h2 {
+      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-header.green h2 {
+      background: linear-gradient(135deg, var(--brand-green), #90ee90);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-header.purple h2 {
+      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-header p {
+      font-size: 1.2rem;
+      color: var(--ink-2);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 30px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .stat-number.orange {
+      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-number.green {
+      background: linear-gradient(135deg, var(--brand-green), #90ee90);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 5px;
+    }
+
+    .stat-description {
+      font-size: 0.9rem;
+      color: var(--ink-2);
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 50px;
+      align-items: stretch;
+    }
+
+    .option-card {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .visual-circle {
+      width: 280px;
+      height: 280px;
+      margin: 0 auto 30px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .visual-circle:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, .2);
+    }
+
+    .visual-circle.orange {
+      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
+    }
+
+    .visual-circle.blue {
+      background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);
+    }
+
+    .visual-circle.green {
+      background: linear-gradient(135deg, var(--brand-green), #90ee90);
+    }
+
+    .visual-circle.purple {
+      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
+    }
+
+    .timeline-label-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      opacity: 0.9;
+      margin-bottom: 10px;
+    }
+
+    .option-icon {
+      font-size: 4rem;
+      margin-bottom: 15px;
+    }
+
+    .program-logo {
+      max-width: 250px;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .option-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      padding: 0 15px;
+    }
+
+    .option-details {
+      padding: 30px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      min-height: 320px;
+    }
+
+    .option-details h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--ink);
+    }
+
+    .option-details p {
+      font-size: 1.1rem;
+      color: var(--ink-2);
+      line-height: 1.6;
+      margin-bottom: 25px;
+      flex-grow: 1;
+    }
+
+    .option-details ul {
+      margin: 15px 0 25px 20px;
+      color: var(--ink-2);
+    }
+
+    .option-details li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1rem;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button.orange {
+      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
+    }
+
+    .cta-button.blue {
+      background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);
+    }
+
+    .cta-button.green {
+      background: linear-gradient(135deg, var(--brand-green), #90ee90);
+    }
+
+    .cta-button.purple {
+      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      filter: brightness(1.1);
+    }
+
+    #new-leader {
+      background: linear-gradient(to bottom, var(--bg) 0%, #fff5eb 100%);
+    }
+
+    #leadership-development {
+      background: linear-gradient(to bottom, #f0fff4 0%, var(--bg) 100%);
+    }
+
+    #continuing-education {
+      background: linear-gradient(to bottom, #f5f0ff 0%, var(--bg) 100%);
+    }
+
+    footer {
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--bg-light);
+      border-top: 1px solid var(--line);
+    }
+
+    footer p {
+      color: var(--ink-2);
+      margin-bottom: 15px;
+    }
+
+    .faq-button {
+      position: fixed;
+      bottom: 120px;
+      right: 40px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand-yellow), #ffd700);
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      opacity: 1;
+      transition: all 0.3s ease;
+      z-index: 998;
+      font-weight: 700;
+    }
+
+    .faq-button:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, .3);
+    }
+
+    .faq-modal,
+    .leading-now-modal,
+    .prof-dev-modal,
+    .leading-exploration-modal,
+    .leading-advantage-modal,
+    .nlo-modal,
+    .leading-essentials-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .faq-modal.active,
+    .leading-now-modal.active,
+    .prof-dev-modal.active,
+    .leading-exploration-modal.active,
+    .leading-advantage-modal.active,
+    .nlo-modal.active,
+    .leading-essentials-modal.active {
+      display: flex;
+    }
+
+    .faq-content,
+    .leading-now-content,
+    .prof-dev-content,
+    .leading-exploration-content,
+    .leading-advantage-content,
+    .nlo-content,
+    .leading-essentials-content {
+      background: var(--bg);
+      border-radius: var(--radius);
+      max-width: 800px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+      position: relative;
+    }
+
+    .faq-content {
+      max-width: 900px;
+    }
+
+    .faq-header {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(135deg, var(--brand-yellow), #ffd700);
+      padding: 30px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .faq-header h2 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--ink);
+    }
+
+    .faq-close,
+    .leading-now-close,
+    .prof-dev-close,
+    .leading-exploration-close,
+    .leading-advantage-close,
+    .nlo-close,
+    .leading-essentials-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: white;
+    }
+
+    .faq-close {
+      position: relative;
+      top: auto;
+      right: auto;
+      color: var(--ink);
+    }
+
+    .faq-close:hover,
+    .leading-now-close:hover,
+    .prof-dev-close:hover,
+    .leading-exploration-close:hover,
+    .leading-advantage-close:hover,
+    .nlo-close:hover,
+    .leading-essentials-close:hover {
+      background: rgba(255, 255, 255, 0.5);
+      transform: rotate(90deg);
+    }
+
+    .faq-body,
+    .leading-now-body,
+    .prof-dev-body,
+    .leading-exploration-body,
+    .leading-advantage-body,
+    .nlo-body,
+    .leading-essentials-body {
+      padding: 40px;
+    }
+
+    .faq-body {
+      padding: 30px;
+    }
+
+    .faq-category {
+      margin-bottom: 30px;
+    }
+
+    .faq-category-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--brand-orange);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .faq-item {
+      background: var(--bg-light);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      transition: all 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background: var(--bg-gray);
+    }
+
+    .faq-question.active {
+      background: var(--bg-gray);
+      color: var(--brand-blue);
+    }
+
+    .faq-toggle {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .faq-question.active .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 20px;
+    }
+
+    .faq-answer.active {
+      max-height: 500px;
+      padding: 0 20px 20px 20px;
+    }
+
+    .faq-answer p {
+      color: var(--ink-2);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .faq-answer ul {
+      margin: 10px 0 0 20px;
+      color: var(--ink-2);
+    }
+
+    .faq-answer li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .faq-contacts {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .faq-contacts h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: var(--brand-blue);
+    }
+
+    .faq-contacts p {
+      margin: 5px 0;
+      color: var(--ink-2);
+    }
+
+    .faq-contacts strong {
+      color: var(--ink);
+    }
+
+    .leading-now-header {
+      background: linear-gradient(135deg, var(--brand-orange), #ffb347);
+      padding: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative;
+    }
+
+    .prof-dev-header {
+      background: linear-gradient(135deg, var(--brand-red), #ff6b9d);
+      padding: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative;
+    }
+
+    .leading-exploration-header {
+      background: linear-gradient(135deg, var(--brand-green), #90ee90);
+      padding: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative;
+    }
+
+    .leading-advantage-header {
+      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
+      padding: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative;
+    }
+
+    .nlo-header {
+      background: linear-gradient(135deg, var(--brand-yellow), #ffd700);
+      padding: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative;
+    }
+
+    .leading-essentials-header {
+      background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);
+      padding: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative;
+    }
+
+    .leading-now-header h2,
+    .prof-dev-header h2,
+    .leading-exploration-header h2,
+    .leading-advantage-header h2,
+    .nlo-header h2,
+    .leading-essentials-header h2 {
+      margin: 0 0 10px 0;
+      font-size: 2.5rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .leading-now-header p,
+    .prof-dev-header p,
+    .leading-exploration-header p,
+    .leading-advantage-header p,
+    .nlo-header p,
+    .leading-essentials-header p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .info-block {
+      margin-bottom: 30px;
+      padding: 25px;
+      background: var(--bg-light);
+      border-radius: 12px;
+      border-left: 4px solid var(--brand-orange);
+      transition: all 0.3s ease;
+    }
+
+    .info-block:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-block h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--brand-orange);
+      margin: 0 0 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .info-block p {
+      color: var(--ink-2);
+      line-height: 1.7;
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .info-block ul {
+      color: var(--ink-2);
+      line-height: 1.7;
+      margin: 10px 0 0 20px;
+      font-size: 1.05rem;
+    }
+
+    .info-block li {
+      margin-bottom: 8px;
+    }
+
+    .info-block strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #fff5eb 0%, #ffe8d1 100%);
+      border-left-color: var(--brand-orange);
+    }
+
+    .info-block.purple-block {
+      border-left-color: var(--brand-purple);
+    }
+
+    .info-block.purple-block h3 {
+      color: var(--brand-purple);
+    }
+
+    .info-block.purple-highlight {
+      background: linear-gradient(135deg, #f5f0ff 0%, #e9dcff 100%);
+      border-left-color: var(--brand-purple);
+    }
+
+    .info-block.red-block {
+      border-left-color: var(--brand-red);
+    }
+
+    .info-block.red-block h3 {
+      color: var(--brand-red);
+    }
+
+    .info-block.red-highlight {
+      background: linear-gradient(135deg, #fff0f0 0%, #ffe0e0 100%);
+      border-left-color: var(--brand-red);
+    }
+
+    .info-block.green-block {
+      border-left-color: var(--brand-green);
+    }
+
+    .info-block.green-block h3 {
+      color: var(--brand-green);
+    }
+
+    .info-block.green-highlight {
+      background: linear-gradient(135deg, #f0fff4 0%, #dcffdc 100%);
+      border-left-color: var(--brand-green);
+    }
+
+    .info-block.blue-block {
+      border-left-color: var(--brand-blue);
+    }
+
+    .info-block.blue-block h3 {
+      color: var(--brand-blue);
+    }
+
+    .info-block.blue-highlight {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      border-left-color: var(--brand-blue);
+    }
+
+    .info-block.orange-block {
+      border-left-color: var(--brand-orange);
+    }
+
+    .info-block.orange-block h3 {
+      color: var(--brand-orange);
+    }
+
+    .info-block.orange-highlight {
+      background: linear-gradient(135deg, #fff5eb 0%, #ffe8d1 100%);
+      border-left-color: var(--brand-orange);
+    }
+
+    .info-block.yellow-block {
+      border-left-color: var(--brand-yellow);
+    }
+
+    .info-block.yellow-block h3 {
+      color: var(--brand-yellow);
+    }
+
+    .info-block.yellow-highlight {
+      background: linear-gradient(135deg, #fffde7 0%, #fff9c4 100%);
+      border-left-color: var(--brand-yellow);
+    }
+
+    .resource-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .resource-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 20px;
+      background: linear-gradient(135deg, var(--brand-purple), #b19cd9);
+      color: white;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(144, 19, 254, 0.2);
+    }
+
+    .resource-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(144, 19, 254, 0.3);
+      filter: brightness(1.1);
+    }
+
+    .resource-link.disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      pointer-events: none;
+      position: relative;
+    }
+
+    .resource-link.disabled::after {
+      content: 'Coming Soon';
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--brand-yellow);
+      color: var(--ink);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .resource-link span:first-child {
+      font-size: 1.5rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand-purple), var(--brand-blue));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, .3);
+    }
+
+    /* ===== MOBILE RESPONSIVE ===== */
     @media (max-width: 768px) {
-      .nav { flex-direction: column; gap: 15px; }
-      .tabs { gap: 8px; justify-content: center; }
-      .brand-logo { height: 50px; }
-      .hero-logo { height: 150px; }
-      .hero-content p { font-size: 1.1rem; }
-      section { padding: 60px 15px; }
-      .section-header h2 { font-size: 2rem; }
-      .path-circle, .visual-circle { width: 200px; height: 200px; }
-      .path-icon, .option-icon { font-size: 3rem; }
-      .options-grid { grid-template-columns: 1fr; }
-      .bubble-5, .bubble-6 { display: none; }
-      .faq-button { bottom: 100px; right: 20px; width: 50px; height: 50px; font-size: 1.5rem; }
-      .faq-header h2, .leading-now-header h2, .prof-dev-header h2, .leading-exploration-header h2, .leading-advantage-header h2, .nlo-header h2, .leading-essentials-header h2 { font-size: 1.8rem; }
-      .faq-body, .leading-now-body, .prof-dev-body, .leading-exploration-body, .leading-advantage-body, .nlo-body, .leading-essentials-body { padding: 20px 15px; }
-      .info-block { padding: 20px; margin-bottom: 20px; }
-      .info-block h3 { font-size: 1.1rem; }
-      .info-block p, .info-block ul { font-size: 0.95rem; }
-      .resource-links { grid-template-columns: 1fr; }
+
+      /* --- Header & Navigation --- */
+      header {
+        padding: 12px 16px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav {
+        flex-direction: row;
+        gap: 0;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+      }
+
+      .brand-logo {
+        height: 42px;
+      }
+
+      /* Slide-down drawer menu */
+      .tabs {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0;
+        background: var(--bg);
+        border-radius: 0 0 var(--radius) var(--radius);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.25s ease,
+          padding 0.3s ease;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .tabs {
+          background: #222;
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+        }
+      }
+
+      .tabs.open {
+        max-height: 400px;
+        opacity: 1;
+        pointer-events: auto;
+        padding: 8px 0;
+      }
+
+      .tab {
+        width: 100%;
+        border-radius: 0;
+        padding: 18px 24px;
+        font-size: 16px;
+        justify-content: flex-start;
+        gap: 14px;
+        box-shadow: none;
+        background: transparent !important;
+        color: var(--ink) !important;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .tab:last-child {
+        border-bottom: none;
+      }
+
+      .tab:nth-child(1),
+      .tab:nth-child(2),
+      .tab:nth-child(3),
+      .tab:nth-child(4),
+      .tab:nth-child(5) {
+        background: transparent !important;
+        color: var(--ink) !important;
+      }
+
+      .tab span:first-child {
+        font-size: 1.3rem;
+      }
+
+      .tab:active {
+        background: var(--bg-light) !important;
+      }
+
+      .tab.active {
+        font-weight: 800;
+        color: var(--brand-blue) !important;
+        background: var(--bg-light) !important;
+      }
+
+      .tab:hover {
+        transform: none;
+        box-shadow: none;
+        filter: none;
+      }
+
+      /* --- Overlay for closing menu by tapping outside --- */
+      .mobile-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 999;
+      }
+
+      .mobile-overlay.active {
+        display: block;
+      }
+
+      /* --- Hero Section --- */
+      #home {
+        min-height: auto;
+        padding: 40px 16px 50px;
+      }
+
+      .hero-logo {
+        height: 120px;
+        margin-bottom: 16px;
+      }
+
+      .hero-subheading {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+      }
+
+      .hero-content p {
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+        padding: 0 8px;
+      }
+
+      /* Path option circles on hero */
+      .path-options {
+        gap: 20px;
+        margin-top: 30px;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .path-circle {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 10px;
+      }
+
+      .path-icon {
+        font-size: 2rem;
+        margin-bottom: 4px;
+      }
+
+      .path-title {
+        font-size: 0.82rem;
+        padding: 0 10px;
+        line-height: 1.2;
+      }
+
+      /* --- Sections --- */
+      section {
+        min-height: auto;
+        padding: 40px 16px;
+        scroll-margin-top: 70px;
+      }
+
+      .section-header {
+        margin-bottom: 30px;
+      }
+
+      .section-header h2 {
+        font-size: 1.7rem;
+        margin-bottom: 12px;
+      }
+
+      .section-header p {
+        font-size: 1rem;
+      }
+
+      /* --- Stats Grid --- */
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+
+      .stat-card {
+        padding: 16px 12px;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+      }
+
+      .stat-description {
+        font-size: 0.78rem;
+      }
+
+      /* --- Program Cards --- */
+      .options-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 30px !important;
+      }
+
+      .option-card {
+        position: relative;
+      }
+
+      .card-bubbles {
+        display: none;
+      }
+
+      .visual-circle {
+        width: 170px;
+        height: 170px;
+        margin-bottom: 16px;
+      }
+
+      .option-icon {
+        font-size: 2rem;
+        margin-bottom: 4px;
+      }
+
+      .option-title {
+        font-size: 0.9rem;
+        padding: 0 12px;
+        line-height: 1.2;
+      }
+
+      .timeline-label-text {
+        font-size: 0.7rem;
+        margin-bottom: 4px;
+      }
+
+      .option-details {
+        padding: 20px 16px;
+        min-height: auto;
+      }
+
+      .option-details h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+      }
+
+      .option-details p {
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+      }
+
+      .program-logo {
+        max-width: 180px;
+        margin-bottom: 12px !important;
+      }
+
+      .cta-button {
+        width: 100%;
+        justify-content: center;
+        padding: 16px 24px;
+        font-size: 1rem;
+      }
+
+      /* --- Decorative Bubbles --- */
+      .bubble {
+        opacity: 0.15;
+      }
+
+      .bubble-1 {
+        width: 50px;
+        height: 50px;
+      }
+
+      .bubble-2 {
+        width: 70px;
+        height: 70px;
+      }
+
+      .bubble-3 {
+        width: 40px;
+        height: 40px;
+      }
+
+      .bubble-4 {
+        width: 60px;
+        height: 60px;
+      }
+
+      .bubble-5,
+      .bubble-6 {
+        display: none;
+      }
+
+      /* --- Modals (full-screen on mobile) --- */
+      .faq-modal,
+      .leading-now-modal,
+      .prof-dev-modal,
+      .leading-exploration-modal,
+      .leading-advantage-modal,
+      .nlo-modal,
+      .leading-essentials-modal {
+        padding: 0;
+        align-items: flex-end;
+      }
+
+      .faq-content,
+      .leading-now-content,
+      .prof-dev-content,
+      .leading-exploration-content,
+      .leading-advantage-content,
+      .nlo-content,
+      .leading-essentials-content {
+        max-width: 100%;
+        max-height: 92vh;
+        border-radius: var(--radius) var(--radius) 0 0;
+        width: 100%;
+      }
+
+      .faq-header h2,
+      .leading-now-header h2,
+      .prof-dev-header h2,
+      .leading-exploration-header h2,
+      .leading-advantage-header h2,
+      .nlo-header h2,
+      .leading-essentials-header h2 {
+        font-size: 1.4rem;
+      }
+
+      .leading-now-header,
+      .prof-dev-header,
+      .leading-exploration-header,
+      .leading-advantage-header,
+      .nlo-header,
+      .leading-essentials-header {
+        padding: 24px 20px;
+      }
+
+      .leading-now-header p,
+      .prof-dev-header p,
+      .leading-exploration-header p,
+      .leading-advantage-header p,
+      .nlo-header p,
+      .leading-essentials-header p {
+        font-size: 0.9rem;
+      }
+
+      .faq-body,
+      .leading-now-body,
+      .prof-dev-body,
+      .leading-exploration-body,
+      .leading-advantage-body,
+      .nlo-body,
+      .leading-essentials-body {
+        padding: 16px;
+      }
+
+      .info-block {
+        padding: 16px;
+        margin-bottom: 12px;
+      }
+
+      .info-block h3 {
+        font-size: 1rem;
+        gap: 6px;
+      }
+
+      .info-block p,
+      .info-block ul {
+        font-size: 0.9rem;
+      }
+
+      .resource-links {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      /* --- FAQ --- */
+      .faq-button {
+        bottom: 24px;
+        right: 16px;
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
+      }
+
+      .faq-header {
+        padding: 20px;
+      }
+
+      .faq-header h2 {
+        font-size: 1.3rem;
+      }
+
+      .faq-question {
+        padding: 14px 16px;
+        font-size: 0.9rem;
+      }
+
+      .faq-answer.active {
+        padding: 0 16px 14px 16px;
+      }
+
+      /* --- Back to Top --- */
+      .back-to-top {
+        bottom: 24px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+      }
+
+      /* --- Footer --- */
+      footer {
+        padding: 30px 16px;
+      }
+
+      footer p {
+        font-size: 0.9rem;
+      }
+
+      /* --- Choose Your Starting Point sub-header --- */
+      .section-header h3 {
+        font-size: 1.4rem !important;
+        margin-top: 20px !important;
+      }
     }
   </style>
 </head>
+
 <body>
+  <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
   <header>
     <nav class="nav">
       <a href="#home" class="brand"><img src="logo.png" alt="Leading Logo" class="brand-logo"></a>
-      <div class="tabs">
-        <a class="tab active" href="#home" data-section="home"><span>🏠</span><span>Home</span></a>
-        <a class="tab" href="#new-leader" data-section="new-leader"><span>🎯</span><span>New Leader</span></a>
-        <a class="tab" href="https://paylocity1.sharepoint.com/sites/LeadershipResourceHub2/Operations%20RoleBased%20Playbooks/Forms/AllItems.aspx" target="_blank" data-section="playbooks"><span>📖</span><span>Playbooks</span></a>
-        <a class="tab" href="#leadership-development" data-section="leadership-development"><span>🌱</span><span>Leadership Development</span></a>
-        <a class="tab" href="#continuing-education" data-section="continuing-education"><span>⭐</span><span>Continuing Education</span></a>
+      <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="tabs" id="navTabs">
+        <a class="tab active" href="#home" data-section="home"
+          onclick="closeMobileMenu()"><span>🏠</span><span>Home</span></a>
+        <a class="tab" href="#new-leader" data-section="new-leader" onclick="closeMobileMenu()"><span>🎯</span><span>New
+            Leader</span></a>
+        <a class="tab"
+          href="https://paylocity1.sharepoint.com/sites/LeadershipResourceHub2/Operations%20RoleBased%20Playbooks/Forms/AllItems.aspx"
+          target="_blank" data-section="playbooks" onclick="closeMobileMenu()"><span>📖</span><span>Playbooks</span></a>
+        <a class="tab" href="#leadership-development" data-section="leadership-development"
+          onclick="closeMobileMenu()"><span>🌱</span><span>Leadership Development</span></a>
+        <a class="tab" href="#continuing-education" data-section="continuing-education"
+          onclick="closeMobileMenu()"><span>⭐</span><span>Continuing Education</span></a>
       </div>
     </nav>
   </header>
 
   <section id="home">
-    <div class="bubble bubble-1"></div><div class="bubble bubble-2"></div><div class="bubble bubble-3"></div><div class="bubble bubble-4"></div><div class="bubble bubble-5"></div><div class="bubble bubble-6"></div>
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+    <div class="bubble bubble-3"></div>
+    <div class="bubble bubble-4"></div>
+    <div class="bubble bubble-5"></div>
+    <div class="bubble bubble-6"></div>
     <div class="hero-content">
       <img src="logo.png" alt="Leading Logo" class="hero-logo">
       <h2 class="hero-subheading">Operations Leadership</h2>
-      <p>Your roadmap to leadership success. Follow our structured path from foundational skills to confident leadership.</p>
+      <p>Your roadmap to leadership success. Follow our structured path from foundational skills to confident
+        leadership.</p>
       <div class="path-options">
         <div class="path-card" onclick="document.querySelector('#new-leader').scrollIntoView({behavior: 'smooth'})">
-          <div class="path-circle orange"><div class="path-icon">🎯</div><div class="path-title">I'm an Aspiring<br>Leader</div></div>
+          <div class="path-circle orange">
+            <div class="path-icon">🎯</div>
+            <div class="path-title">I'm an Aspiring<br>Leader</div>
+          </div>
         </div>
-        <div class="path-card" onclick="document.querySelector('#continuing-education').scrollIntoView({behavior: 'smooth'})">
-          <div class="path-circle blue"><div class="path-icon">📚</div><div class="path-title">I'm Already<br>a Leader</div></div>
+        <div class="path-card"
+          onclick="document.querySelector('#continuing-education').scrollIntoView({behavior: 'smooth'})">
+          <div class="path-circle blue">
+            <div class="path-icon">📚</div>
+            <div class="path-title">I'm Already<br>a Leader</div>
+          </div>
         </div>
       </div>
     </div>
@@ -265,24 +1977,74 @@
 
   <section id="new-leader">
     <div class="section-content">
-      <div class="section-header orange"><h2>New Leader Journey</h2><p>Your roadmap to leadership success. Follow our structured path from foundational skills to confident leadership.</p></div>
-      <div class="stats-grid">
-        <div class="stat-card"><span class="stat-number orange">90</span><div class="stat-label">Days to Confidence</div><div class="stat-description">Structured learning path</div></div>
-        <div class="stat-card"><span class="stat-number orange">94%</span><div class="stat-label">Success Rate</div><div class="stat-description">Leaders who complete the journey</div></div>
-        <div class="stat-card"><span class="stat-number orange">500+</span><div class="stat-label">New Leaders</div><div class="stat-description">Trained this year</div></div>
-        <div class="stat-card"><span class="stat-number orange">4.8</span><div class="stat-label">Average Rating</div><div class="stat-description">Program satisfaction</div></div>
+      <div class="section-header orange">
+        <h2>New Leader Journey</h2>
+        <p>Your roadmap to leadership success. Follow our structured path from foundational skills to confident
+          leadership.</p>
       </div>
-      <div class="section-header"><h3 style="font-size: 2rem; margin-top: 40px; color: var(--ink);">Choose Your Starting Point</h3><p>Two proven paths to leadership success, designed for your schedule and learning style.</p></div>
-      <div class="options-grid">
-        <div class="option-card">
-          <div class="card-bubbles"><div class="card-bubble yellow-bubble" style="width: 45px; height: 45px; top: 8%; left: 3%;"></div><div class="card-bubble yellow-bubble" style="width: 95px; height: 95px; top: 55%; left: 8%;"></div><div class="card-bubble yellow-bubble" style="width: 35px; height: 35px; top: 25%; left: 18%;"></div><div class="card-bubble yellow-bubble" style="width: 70px; height: 70px; bottom: 15%; left: 5%;"></div><div class="card-bubble yellow-bubble" style="width: 55px; height: 55px; top: 70%; left: 20%;"></div></div>
-          <div class="visual-circle orange" style="background: linear-gradient(135deg, var(--brand-yellow), #ffd700);"><div class="timeline-label-text">1st Month</div><div class="option-icon">🎯</div><div class="option-title">New Leader<br>Onboarding</div></div>
-          <div class="option-details"><img src="edge-logo-graphite.png" alt="New Leader Onboarding" class="program-logo" style="margin-bottom: 20px;"><h3>New Leader Onboarding</h3><p>Paylocity's universal leadership tools, processes, and resources. Inclusive of all departments.</p><button class="cta-button orange" onclick="openNewLeaderOnboarding()" style="background: linear-gradient(135deg, var(--brand-yellow), #ffd700);">🚀 View Details</button></div>
+      <div class="stats-grid">
+        <div class="stat-card reveal" data-delay="0"><span class="stat-number orange">90</span>
+          <div class="stat-label">Days to Confidence</div>
+          <div class="stat-description">Structured learning path</div>
         </div>
-        <div class="option-card">
-          <div class="card-bubbles"><div class="card-bubble blue-bubble" style="width: 50px; height: 50px; top: 12%; right: 8%;"></div><div class="card-bubble blue-bubble" style="width: 85px; height: 85px; top: 48%; right: 5%;"></div><div class="card-bubble blue-bubble" style="width: 40px; height: 40px; top: 30%; right: 18%;"></div><div class="card-bubble blue-bubble" style="width: 65px; height: 65px; bottom: 20%; right: 12%;"></div><div class="card-bubble blue-bubble" style="width: 30px; height: 30px; top: 65%; right: 22%;"></div></div>
-          <div class="visual-circle blue"><div class="timeline-label-text">Weeks 1 & 2</div><div class="option-icon">📚</div><div class="option-title">Leading<br>Essentials</div></div>
-          <div class="option-details"><img src="essentials-logo-graphite.png" alt="Leading Essentials" class="program-logo" style="margin-bottom: 20px;"><h3>Leading Essentials</h3><p>A development course to prepare Operations leaders to represent Paylocity professionally.</p><button class="cta-button blue" onclick="openLeadingEssentials()">🔍 View Details</button></div>
+        <div class="stat-card reveal" data-delay="100"><span class="stat-number orange">94%</span>
+          <div class="stat-label">Success Rate</div>
+          <div class="stat-description">Leaders who complete the journey</div>
+        </div>
+        <div class="stat-card reveal" data-delay="200"><span class="stat-number orange">500+</span>
+          <div class="stat-label">New Leaders</div>
+          <div class="stat-description">Trained this year</div>
+        </div>
+        <div class="stat-card reveal" data-delay="300"><span class="stat-number orange">4.8</span>
+          <div class="stat-label">Average Rating</div>
+          <div class="stat-description">Program satisfaction</div>
+        </div>
+      </div>
+      <div class="section-header reveal">
+        <h3 style="font-size: 2rem; margin-top: 40px; color: var(--ink);">Choose Your Starting Point</h3>
+        <p>Two proven paths to leadership success, designed for your schedule and learning style.</p>
+      </div>
+      <div class="options-grid">
+        <div class="option-card reveal" data-delay="0">
+          <div class="card-bubbles">
+            <div class="card-bubble yellow-bubble" style="width: 45px; height: 45px; top: 8%; left: 3%;"></div>
+            <div class="card-bubble yellow-bubble" style="width: 95px; height: 95px; top: 55%; left: 8%;"></div>
+            <div class="card-bubble yellow-bubble" style="width: 35px; height: 35px; top: 25%; left: 18%;"></div>
+            <div class="card-bubble yellow-bubble" style="width: 70px; height: 70px; bottom: 15%; left: 5%;"></div>
+            <div class="card-bubble yellow-bubble" style="width: 55px; height: 55px; top: 70%; left: 20%;"></div>
+          </div>
+          <div class="visual-circle orange" style="background: linear-gradient(135deg, var(--brand-yellow), #ffd700);">
+            <div class="timeline-label-text">1st Month</div>
+            <div class="option-icon">🎯</div>
+            <div class="option-title">New Leader<br>Onboarding</div>
+          </div>
+          <div class="option-details"><img src="edge-logo-graphite.png" alt="New Leader Onboarding" class="program-logo"
+              style="margin-bottom: 20px;">
+            <h3>New Leader Onboarding</h3>
+            <p>Paylocity's universal leadership tools, processes, and resources. Inclusive of all departments.</p>
+            <button class="cta-button orange" onclick="openNewLeaderOnboarding()"
+              style="background: linear-gradient(135deg, var(--brand-yellow), #ffd700);">🚀 View Details</button>
+          </div>
+        </div>
+        <div class="option-card reveal" data-delay="0">
+          <div class="card-bubbles">
+            <div class="card-bubble blue-bubble" style="width: 50px; height: 50px; top: 12%; right: 8%;"></div>
+            <div class="card-bubble blue-bubble" style="width: 85px; height: 85px; top: 48%; right: 5%;"></div>
+            <div class="card-bubble blue-bubble" style="width: 40px; height: 40px; top: 30%; right: 18%;"></div>
+            <div class="card-bubble blue-bubble" style="width: 65px; height: 65px; bottom: 20%; right: 12%;"></div>
+            <div class="card-bubble blue-bubble" style="width: 30px; height: 30px; top: 65%; right: 22%;"></div>
+          </div>
+          <div class="visual-circle blue">
+            <div class="timeline-label-text">Weeks 1 & 2</div>
+            <div class="option-icon">📚</div>
+            <div class="option-title">Leading<br>Essentials</div>
+          </div>
+          <div class="option-details"><img src="essentials-logo-graphite.png" alt="Leading Essentials"
+              class="program-logo" style="margin-bottom: 20px;">
+            <h3>Leading Essentials</h3>
+            <p>A development course to prepare Operations leaders to represent Paylocity professionally.</p><button
+              class="cta-button blue" onclick="openLeadingEssentials()">🔍 View Details</button>
+          </div>
         </div>
       </div>
     </div>
@@ -290,23 +2052,66 @@
 
   <section id="leadership-development">
     <div class="section-content">
-      <div class="section-header green"><h2>Leadership Development</h2><p>Self-paced programs designed to help aspiring leaders develop their skills.</p></div>
+      <div class="section-header green">
+        <h2>Leadership Development</h2>
+        <p>Self-paced programs designed to help aspiring leaders develop their skills.</p>
+      </div>
       <div class="stats-grid">
-        <div class="stat-card"><span class="stat-number green">~4</span><div class="stat-label">Total Hours</div><div class="stat-description">Self-paced learning</div></div>
-        <div class="stat-card"><span class="stat-number green">100%</span><div class="stat-label">Self-Paced</div><div class="stat-description">Learn at your speed</div></div>
-        <div class="stat-card"><span class="stat-number green">4</span><div class="stat-label">Key Areas</div><div class="stat-description">What, Who, How, When</div></div>
-        <div class="stat-card"><span class="stat-number green">∞</span><div class="stat-label">Access</div><div class="stat-description">Available anytime</div></div>
+        <div class="stat-card reveal" data-delay="0"><span class="stat-number green">~4</span>
+          <div class="stat-label">Total Hours</div>
+          <div class="stat-description">Self-paced learning</div>
+        </div>
+        <div class="stat-card reveal" data-delay="100"><span class="stat-number green">100%</span>
+          <div class="stat-label">Self-Paced</div>
+          <div class="stat-description">Learn at your speed</div>
+        </div>
+        <div class="stat-card reveal" data-delay="200"><span class="stat-number green">4</span>
+          <div class="stat-label">Key Areas</div>
+          <div class="stat-description">What, Who, How, When</div>
+        </div>
+        <div class="stat-card reveal" data-delay="300"><span class="stat-number green">∞</span>
+          <div class="stat-label">Access</div>
+          <div class="stat-description">Available anytime</div>
+        </div>
       </div>
       <div class="options-grid" style="margin-top: 60px;">
-        <div class="option-card">
-          <div class="card-bubbles"><div class="card-bubble green-bubble" style="width: 42px; height: 42px; top: 5%; left: 4%;"></div><div class="card-bubble green-bubble" style="width: 88px; height: 88px; top: 50%; left: 10%;"></div><div class="card-bubble green-bubble" style="width: 55px; height: 55px; top: 22%; left: 15%;"></div><div class="card-bubble green-bubble" style="width: 35px; height: 35px; bottom: 25%; left: 6%;"></div><div class="card-bubble green-bubble" style="width: 72px; height: 72px; top: 68%; left: 18%;"></div></div>
-          <div class="visual-circle green"><div class="option-icon">🔍</div><div class="option-title">Leading<br>Exploration</div></div>
-          <div class="option-details"><img src="exploration-logo-graphite.png" alt="Leading Exploration" class="program-logo" style="margin-bottom: 20px;"><h3>Leading Exploration</h3><p>A comprehensive self-paced leadership development program for aspiring leaders.</p><button class="cta-button green" onclick="openLeadingExploration()">🔍 View Details</button></div>
+        <div class="option-card reveal" data-delay="0">
+          <div class="card-bubbles">
+            <div class="card-bubble green-bubble" style="width: 42px; height: 42px; top: 5%; left: 4%;"></div>
+            <div class="card-bubble green-bubble" style="width: 88px; height: 88px; top: 50%; left: 10%;"></div>
+            <div class="card-bubble green-bubble" style="width: 55px; height: 55px; top: 22%; left: 15%;"></div>
+            <div class="card-bubble green-bubble" style="width: 35px; height: 35px; bottom: 25%; left: 6%;"></div>
+            <div class="card-bubble green-bubble" style="width: 72px; height: 72px; top: 68%; left: 18%;"></div>
+          </div>
+          <div class="visual-circle green">
+            <div class="option-icon">🔍</div>
+            <div class="option-title">Leading<br>Exploration</div>
+          </div>
+          <div class="option-details"><img src="exploration-logo-graphite.png" alt="Leading Exploration"
+              class="program-logo" style="margin-bottom: 20px;">
+            <h3>Leading Exploration</h3>
+            <p>A comprehensive self-paced leadership development program for aspiring leaders.</p><button
+              class="cta-button green" onclick="openLeadingExploration()">🔍 View Details</button>
+          </div>
         </div>
-        <div class="option-card">
-          <div class="card-bubbles"><div class="card-bubble purple-bubble" style="width: 48px; height: 48px; top: 10%; right: 4%;"></div><div class="card-bubble purple-bubble" style="width: 92px; height: 92px; top: 45%; right: 8%;"></div><div class="card-bubble purple-bubble" style="width: 38px; height: 38px; top: 28%; right: 20%;"></div><div class="card-bubble purple-bubble" style="width: 60px; height: 60px; bottom: 18%; right: 6%;"></div><div class="card-bubble purple-bubble" style="width: 75px; height: 75px; top: 72%; right: 16%;"></div></div>
-          <div class="visual-circle purple"><div class="option-icon">⚡</div><div class="option-title">Leading<br>Advantage</div></div>
-          <div class="option-details"><img src="advantage-logo-graphite.png" alt="Leading Advantage" class="program-logo" style="margin-bottom: 20px;"><h3>Leading Advantage</h3><p>Advanced leadership development program to accelerate your growth.</p><button class="cta-button purple" onclick="openLeadingAdvantage()">⚡ View Details</button></div>
+        <div class="option-card reveal" data-delay="0">
+          <div class="card-bubbles">
+            <div class="card-bubble purple-bubble" style="width: 48px; height: 48px; top: 10%; right: 4%;"></div>
+            <div class="card-bubble purple-bubble" style="width: 92px; height: 92px; top: 45%; right: 8%;"></div>
+            <div class="card-bubble purple-bubble" style="width: 38px; height: 38px; top: 28%; right: 20%;"></div>
+            <div class="card-bubble purple-bubble" style="width: 60px; height: 60px; bottom: 18%; right: 6%;"></div>
+            <div class="card-bubble purple-bubble" style="width: 75px; height: 75px; top: 72%; right: 16%;"></div>
+          </div>
+          <div class="visual-circle purple">
+            <div class="option-icon">⚡</div>
+            <div class="option-title">Leading<br>Advantage</div>
+          </div>
+          <div class="option-details"><img src="advantage-logo-graphite.png" alt="Leading Advantage"
+              class="program-logo" style="margin-bottom: 20px;">
+            <h3>Leading Advantage</h3>
+            <p>Advanced leadership development program to accelerate your growth.</p><button class="cta-button purple"
+              onclick="openLeadingAdvantage()">⚡ View Details</button>
+          </div>
         </div>
       </div>
     </div>
@@ -314,17 +2119,49 @@
 
   <section id="continuing-education">
     <div class="section-content">
-      <div class="section-header purple"><h2>Leadership Continuing Education</h2><p>Ongoing development opportunities for experienced leaders.</p></div>
+      <div class="section-header purple">
+        <h2>Leadership Continuing Education</h2>
+        <p>Ongoing development opportunities for experienced leaders.</p>
+      </div>
       <div class="options-grid">
-        <div class="option-card">
-          <div class="card-bubbles"><div class="card-bubble orange-bubble" style="width: 44px; height: 44px; top: 8%; left: 5%;"></div><div class="card-bubble orange-bubble" style="width: 86px; height: 86px; top: 52%; left: 10%;"></div><div class="card-bubble orange-bubble" style="width: 58px; height: 58px; top: 20%; left: 16%;"></div><div class="card-bubble orange-bubble" style="width: 32px; height: 32px; bottom: 22%; left: 4%;"></div><div class="card-bubble orange-bubble" style="width: 68px; height: 68px; top: 65%; left: 20%;"></div></div>
-          <div class="visual-circle orange"><div class="option-icon">🔥</div><div class="option-title">Leading<br>Now</div></div>
-          <div class="option-details"><img src="now-logo-graphite.png" alt="Leading Now" class="program-logo" style="margin-bottom: 20px;"><h3>Leading Now</h3><p>Real-time leadership development for current challenges.</p><button class="cta-button orange" onclick="openLeadingNow()">🔍 View Details</button></div>
+        <div class="option-card reveal" data-delay="0">
+          <div class="card-bubbles">
+            <div class="card-bubble orange-bubble" style="width: 44px; height: 44px; top: 8%; left: 5%;"></div>
+            <div class="card-bubble orange-bubble" style="width: 86px; height: 86px; top: 52%; left: 10%;"></div>
+            <div class="card-bubble orange-bubble" style="width: 58px; height: 58px; top: 20%; left: 16%;"></div>
+            <div class="card-bubble orange-bubble" style="width: 32px; height: 32px; bottom: 22%; left: 4%;"></div>
+            <div class="card-bubble orange-bubble" style="width: 68px; height: 68px; top: 65%; left: 20%;"></div>
+          </div>
+          <div class="visual-circle orange">
+            <div class="option-icon">🔥</div>
+            <div class="option-title">Leading<br>Now</div>
+          </div>
+          <div class="option-details"><img src="now-logo-graphite.png" alt="Leading Now" class="program-logo"
+              style="margin-bottom: 20px;">
+            <h3>Leading Now</h3>
+            <p>Real-time leadership development for current challenges.</p><button class="cta-button orange"
+              onclick="openLeadingNow()">🔍 View Details</button>
+          </div>
         </div>
-        <div class="option-card">
-          <div class="card-bubbles"><div class="card-bubble red-bubble" style="width: 52px; height: 52px; top: 9%; right: 5%;"></div><div class="card-bubble red-bubble" style="width: 90px; height: 90px; top: 48%; right: 9%;"></div><div class="card-bubble red-bubble" style="width: 36px; height: 36px; top: 25%; right: 18%;"></div><div class="card-bubble red-bubble" style="width: 62px; height: 62px; bottom: 20%; right: 4%;"></div><div class="card-bubble red-bubble" style="width: 78px; height: 78px; top: 70%; right: 15%;"></div></div>
-          <div class="visual-circle red" style="background: linear-gradient(135deg, var(--brand-red), #ff6b9d); color: white;"><div class="option-icon">🎓</div><div class="option-title">Professional<br>Development</div></div>
-          <div class="option-details"><h3>Paylocity's Professional Development</h3><p>Comprehensive professional development resources and programs.</p><button class="cta-button red" onclick="openProfDev()" style="background: linear-gradient(135deg, var(--brand-red), #ff6b9d);">🔍 View Details</button></div>
+        <div class="option-card reveal" data-delay="0">
+          <div class="card-bubbles">
+            <div class="card-bubble red-bubble" style="width: 52px; height: 52px; top: 9%; right: 5%;"></div>
+            <div class="card-bubble red-bubble" style="width: 90px; height: 90px; top: 48%; right: 9%;"></div>
+            <div class="card-bubble red-bubble" style="width: 36px; height: 36px; top: 25%; right: 18%;"></div>
+            <div class="card-bubble red-bubble" style="width: 62px; height: 62px; bottom: 20%; right: 4%;"></div>
+            <div class="card-bubble red-bubble" style="width: 78px; height: 78px; top: 70%; right: 15%;"></div>
+          </div>
+          <div class="visual-circle red"
+            style="background: linear-gradient(135deg, var(--brand-red), #ff6b9d); color: white;">
+            <div class="option-icon">🎓</div>
+            <div class="option-title">Professional<br>Development</div>
+          </div>
+          <div class="option-details">
+            <h3>Paylocity's Professional Development</h3>
+            <p>Comprehensive professional development resources and programs.</p><button class="cta-button red"
+              onclick="openProfDev()" style="background: linear-gradient(135deg, var(--brand-red), #ff6b9d);">🔍 View
+              Details</button>
+          </div>
         </div>
       </div>
     </div>
@@ -333,14 +2170,46 @@
   <!-- NLO Modal -->
   <div class="nlo-modal" id="nloModal" onclick="closeNLOOnBackdrop(event)">
     <div class="nlo-content" onclick="event.stopPropagation()">
-      <div class="nlo-header"><button class="nlo-close" onclick="closeNLO()">✕</button><h2>🚀 New Leader Onboarding</h2><p>Foundation for leadership success at Paylocity</p></div>
+      <div class="nlo-header"><button class="nlo-close" onclick="closeNLO()">✕</button>
+        <h2>🚀 New Leader Onboarding</h2>
+        <p>Foundation for leadership success at Paylocity</p>
+      </div>
       <div class="nlo-body">
-        <div class="info-block orange-highlight"><h3>👥 Who Should Attend</h3><p><strong>New leaders at Paylocity</strong> - Enterprise-wide program for external hires and internal promotions.</p></div>
-        <div class="info-block orange-block"><h3>💻 How It Works</h3><p>Virtual Instructor-Led Sessions</p></div>
-        <div class="info-block orange-block"><h3>⏱️ Time Commitment</h3><p><strong>Duration:</strong> 2 days, 5 hours each day (10 hours total)</p></div>
-        <div class="info-block orange-block"><h3>📅 When Sessions Are Offered</h3><p>Classes are offered <strong>monthly</strong>. New leaders are automatically enrolled based on hire date.</p></div>
-        <div class="info-block orange-highlight"><h3>📚 What You'll Learn</h3><p>Foundational managerial skills, employment law guidelines, employee policy overviews, and Paylocity culture.</p></div>
-        <div class="info-block orange-block"><h3>🎯 Resources</h3><div class="resource-links"><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-orange), #ffb347);"><span>🏠</span><span>NLO Experience Hub</span></a><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-orange), #ffb347);"><span>📖</span><span>Best Practices Guide</span></a></div></div>
+        <div class="info-block yellow-highlight">
+          <h3>👥 Who Should Attend</h3>
+          <p><strong>New leaders at Paylocity</strong> - Enterprise-wide program for external hires and internal
+            promotions.</p>
+        </div>
+        <div class="info-block yellow-block">
+          <h3>💻 How It Works</h3>
+          <p>Virtual Instructor-Led Sessions</p>
+        </div>
+        <div class="info-block yellow-block">
+          <h3>⏱️ Time Commitment</h3>
+          <p><strong>Duration:</strong> 2 days, 5 hours each day (10 hours total)</p>
+        </div>
+        <div class="info-block yellow-block">
+          <h3>📅 When Sessions Are Offered</h3>
+          <p>Classes are offered <strong>monthly</strong>. New leaders are automatically enrolled based on hire date.
+          </p>
+        </div>
+        <div class="info-block yellow-highlight">
+          <h3>📚 What You'll Learn</h3>
+          <p>Foundational managerial skills, employment law guidelines, employee policy overviews, and Paylocity
+            culture.</p>
+        </div>
+        <div class="info-block yellow-block">
+          <h3>🎯 Resources</h3>
+          <div class="resource-links"><a
+              href="https://paylocity1.sharepoint.com/sites/LeadershipResourceHub2/SitePages/New-Leader.aspx"
+              target="_blank" class="resource-link"
+              style="background: linear-gradient(135deg, var(--brand-yellow), #ffd700);"><span>🏠</span><span>NLO
+                Experience Hub</span></a><a
+              href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf"
+              target="_blank" class="resource-link"
+              style="background: linear-gradient(135deg, var(--brand-yellow), #ffd700);"><span>📖</span><span>Best
+                Practices Guide</span></a></div>
+        </div>
       </div>
     </div>
   </div>
@@ -348,27 +2217,77 @@
   <!-- Leading Essentials Modal -->
   <div class="leading-essentials-modal" id="leadingEssentialsModal" onclick="closeLeadingEssentialsOnBackdrop(event)">
     <div class="leading-essentials-content" onclick="event.stopPropagation()">
-      <div class="leading-essentials-header"><button class="leading-essentials-close" onclick="closeLeadingEssentials()">✕</button><h2>📖 Leading Essentials</h2><p>Rapid preparation for new Operations leaders</p></div>
+      <div class="leading-essentials-header"><button class="leading-essentials-close"
+          onclick="closeLeadingEssentials()">✕</button>
+        <h2>📖 Leading Essentials</h2>
+        <p>Rapid preparation for new Operations leaders</p>
+      </div>
       <div class="leading-essentials-body">
-        <div class="info-block blue-highlight"><h3>👥 Who Should Attend</h3><p><strong>New leaders in Operations</strong> with 2-6 months tenure.</p></div>
-        <div class="info-block blue-block"><h3>💻 How It Works</h3><p>Both <strong>in-person</strong> and <strong>virtual</strong> sessions are offered.</p></div>
-        <div class="info-block blue-block"><h3>⏱️ Time Commitment</h3><p><strong>In-Person:</strong> 3 days (24 hours) | <strong>Virtual:</strong> 4 days (24 hours)</p></div>
-        <div class="info-block blue-highlight"><h3>📚 What You'll Learn</h3><p>Team Lead expectations, accountability techniques, delegation, performance management, and more.</p></div>
-        <div class="info-block blue-block"><h3>🎯 Resources</h3><div class="resource-links"><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);"><span>📅</span><span>Program Calendar</span></a><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);"><span>📖</span><span>Best Practices Guide</span></a></div></div>
+        <div class="info-block blue-highlight">
+          <h3>👥 Who Should Attend</h3>
+          <p><strong>New leaders in Operations</strong> with 2-6 months tenure.</p>
+        </div>
+        <div class="info-block blue-block">
+          <h3>💻 How It Works</h3>
+          <p>Both <strong>in-person</strong> and <strong>virtual</strong> sessions are offered.</p>
+        </div>
+        <div class="info-block blue-block">
+          <h3>⏱️ Time Commitment</h3>
+          <p><strong>In-Person:</strong> 3 days (24 hours) | <strong>Virtual:</strong> 4 days (24 hours)</p>
+        </div>
+        <div class="info-block blue-highlight">
+          <h3>📚 What You'll Learn</h3>
+          <p>Team Lead expectations, accountability techniques, delegation, performance management, and more.</p>
+        </div>
+        <div class="info-block blue-block">
+          <h3>🎯 Resources</h3>
+          <div class="resource-links"><a
+              href="https://paylocity1.sharepoint.com/:x:/s/TalentManagementDocuments/EXF3awnorRZNnPJl5EiyvigBZrcQ43zBGIZL0YnFT5MnVA?e=Ms1GA3"
+              target="_blank" class="resource-link"
+              style="background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);"><span>📅</span><span>Program
+                Calendar</span></a><a
+              href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf"
+              target="_blank" class="resource-link"
+              style="background: linear-gradient(135deg, var(--brand-blue), #7bb3f0);"><span>📖</span><span>Best
+                Practices Guide</span></a></div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Leading Exploration Modal -->
-  <div class="leading-exploration-modal" id="leadingExplorationModal" onclick="closeLeadingExplorationOnBackdrop(event)">
+  <div class="leading-exploration-modal" id="leadingExplorationModal"
+    onclick="closeLeadingExplorationOnBackdrop(event)">
     <div class="leading-exploration-content" onclick="event.stopPropagation()">
-      <div class="leading-exploration-header"><button class="leading-exploration-close" onclick="closeLeadingExploration()">✕</button><h2>🔍 Leading Exploration</h2><p>Self-Discovery Kit for aspiring leaders</p></div>
+      <div class="leading-exploration-header"><button class="leading-exploration-close"
+          onclick="closeLeadingExploration()">✕</button>
+        <h2>🔍 Leading Exploration</h2>
+        <p>Self-Discovery Kit for aspiring leaders</p>
+      </div>
       <div class="leading-exploration-body">
-        <div class="info-block green-highlight"><h3>👥 Who Should Participate</h3><p>Individual contributors interested in a leadership role.</p></div>
-        <div class="info-block green-block"><h3>💻 How It Works</h3><p>Self-paced e-learning & coaching with direct leader</p></div>
-        <div class="info-block green-block"><h3>⏱️ Time Commitment</h3><p>About <strong>four hours</strong> total, at your own pace.</p></div>
-        <div class="info-block green-highlight"><h3>📚 What You'll Learn</h3><p>Leader Readiness Assessment, Crucial Conversations, Getting Things Done, Situational Leadership.</p></div>
-        <div class="info-block green-block"><h3>🎯 Get Started</h3><div class="resource-links"><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-green), #90ee90);"><span>📖</span><span>Access E-Learnings</span></a><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-green), #90ee90);"><span>📋</span><span>Best Practices Guide</span></a></div></div>
+        <div class="info-block green-highlight">
+          <h3>👥 Who Should Participate</h3>
+          <p>Individual contributors interested in a leadership role.</p>
+        </div>
+        <div class="info-block green-block">
+          <h3>💻 How It Works</h3>
+          <p>Self-paced e-learning & coaching with direct leader</p>
+        </div>
+        <div class="info-block green-block">
+          <h3>⏱️ Time Commitment</h3>
+          <p>About <strong>four hours</strong> total, at your own pace.</p>
+        </div>
+        <div class="info-block green-highlight">
+          <h3>📚 What You'll Learn</h3>
+          <p>Leader Readiness Assessment, Crucial Conversations, Getting Things Done, Situational Leadership.</p>
+        </div>
+        <div class="info-block green-block">
+          <h3>🎯 Get Started</h3>
+          <div class="resource-links"><a href="https://2000learning.paylocity.com/LMS/TrainingDescription/10261/1"
+              target="_blank" class="resource-link"
+              style="background: linear-gradient(135deg, var(--brand-green), #90ee90);"><span>🎓</span><span>Access
+                E-Learnings</span></a></div>
+        </div>
       </div>
     </div>
   </div>
@@ -376,13 +2295,44 @@
   <!-- Leading Advantage Modal -->
   <div class="leading-advantage-modal" id="leadingAdvantageModal" onclick="closeLeadingAdvantageOnBackdrop(event)">
     <div class="leading-advantage-content" onclick="event.stopPropagation()">
-      <div class="leading-advantage-header"><button class="leading-advantage-close" onclick="closeLeadingAdvantage()">✕</button><h2>⚡ Leading Advantage</h2><p>Six-month journey to your first leadership position</p></div>
+      <div class="leading-advantage-header"><button class="leading-advantage-close"
+          onclick="closeLeadingAdvantage()">✕</button>
+        <h2>⚡ Leading Advantage</h2>
+        <p>Six-month journey to your first leadership position</p>
+      </div>
       <div class="leading-advantage-body">
-        <div class="info-block purple-highlight"><h3>👥 Who Can Participate</h3><p>Individual contributors <strong>nominated and selected</strong> by their leadership team.</p></div>
-        <div class="info-block purple-block"><h3>💻 How It Works</h3><p>Virtual Instructor-Led Training and On-The-Job Experiences</p></div>
-        <div class="info-block purple-block"><h3>⏱️ Program Duration</h3><p><strong>Six months long</strong> - runs twice yearly (September and March).</p></div>
-        <div class="info-block purple-highlight"><h3>📚 What You'll Learn</h3><p>Months 1-2: Leading Self | Months 3-4: Leading Teams | Months 5-6: Leading the Business</p></div>
-        <div class="info-block purple-block"><h3>🎯 Resources</h3><div class="resource-links"><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-purple), #b19cd9);"><span>📝</span><span>Nomination Survey</span></a><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-purple), #b19cd9);"><span>📅</span><span>Program Calendar</span></a></div></div>
+        <div class="info-block purple-highlight">
+          <h3>👥 Who Can Participate</h3>
+          <p>Individual contributors <strong>nominated and selected</strong> by their leadership team.</p>
+        </div>
+        <div class="info-block purple-block">
+          <h3>💻 How It Works</h3>
+          <p>Virtual Instructor-Led Training and On-The-Job Experiences</p>
+        </div>
+        <div class="info-block purple-block">
+          <h3>⏱️ Program Duration</h3>
+          <p><strong>Six months long</strong> - runs twice yearly (September and March).</p>
+        </div>
+        <div class="info-block purple-highlight">
+          <h3>📚 What You'll Learn</h3>
+          <p>Months 1-2: Leading Self | Months 3-4: Leading Teams | Months 5-6: Leading the Business</p>
+        </div>
+        <div class="info-block purple-block">
+          <h3>🎯 Resources</h3>
+          <div class="resource-links"><a
+              href="https://corp.url.paylocity.com/m/surveys/link/7zt91dprx3em0zentnn?q=e228853f02f54fb582ff24a39c34d9f3"
+              target="_blank" class="resource-link"
+              style="background: linear-gradient(135deg, var(--brand-purple), #b19cd9);"><span>📝</span><span>Nomination
+                Survey</span></a><a
+              href="https://paylocity1.sharepoint.com/:x:/s/TalentManagementDocuments/EXF3awnorRZNnPJl5EiyvigBZrcQ43zBGIZL0YnFT5MnVA?e=Ms1GA3"
+              target="_blank" class="resource-link"
+              style="background: linear-gradient(135deg, var(--brand-purple), #b19cd9);"><span>📅</span><span>Program
+                Calendar</span></a><a
+              href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf"
+              target="_blank" class="resource-link"
+              style="background: linear-gradient(135deg, var(--brand-purple), #b19cd9);"><span>📖</span><span>Best
+                Practices Guide</span></a></div>
+        </div>
       </div>
     </div>
   </div>
@@ -390,12 +2340,41 @@
   <!-- Leading Now Modal -->
   <div class="leading-now-modal" id="leadingNowModal" onclick="closeLeadingNowOnBackdrop(event)">
     <div class="leading-now-content" onclick="event.stopPropagation()">
-      <div class="leading-now-header"><button class="leading-now-close" onclick="closeLeadingNow()">✕</button><h2>🔥 Leading Now</h2><p>Real-time leadership development</p></div>
+      <div class="leading-now-header"><button class="leading-now-close" onclick="closeLeadingNow()">✕</button>
+        <h2>🔥 Leading Now</h2>
+        <p>Real-time leadership development</p>
+      </div>
       <div class="leading-now-body">
-        <div class="info-block highlight-box"><h3>👥 Who Should Attend</h3><p><strong>Required:</strong> Team Leads, Managers, Sr. Managers. All leaders welcome!</p></div>
-        <div class="info-block"><h3>💻 How It Works</h3><p>Virtual Instructor-Led Sessions</p></div>
-        <div class="info-block"><h3>⏱️ Time Commitment</h3><p><strong>Duration:</strong> 2 hours per session</p></div>
-        <div class="info-block highlight-box"><h3>📚 What You'll Learn</h3><p>Topics change monthly: performance management, mid-year reviews, strategic goals, and more.</p></div>
+        <div class="info-block highlight-box">
+          <h3>👥 Who Should Attend</h3>
+          <p><strong>Required:</strong> Team Leads, Managers, Sr. Managers. All leaders welcome!</p>
+        </div>
+        <div class="info-block">
+          <h3>💻 How It Works</h3>
+          <p>Virtual Instructor-Led Sessions</p>
+        </div>
+        <div class="info-block">
+          <h3>⏱️ Time Commitment</h3>
+          <p><strong>Duration:</strong> 2 hours per session</p>
+        </div>
+        <div class="info-block highlight-box">
+          <h3>📚 What You'll Learn</h3>
+          <p>Topics change monthly: performance management, mid-year reviews, strategic goals, and more.</p>
+        </div>
+        <div class="info-block">
+          <h3>🎯 Resources</h3>
+          <div class="resource-links"><a
+              href="https://paylocity1.sharepoint.com/:x:/s/TalentManagementDocuments/EXF3awnorRZNnPJl5EiyvigBZrcQ43zBGIZL0YnFT5MnVA?e=Ms1GA3"
+              target="_blank" class="resource-link"
+              style="background: linear-gradient(135deg, var(--brand-orange), #ffb347);"><span>📅</span><span>Program
+                Calendar</span></a><a
+              href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf"
+              target="_blank" class="resource-link"
+              style="background: linear-gradient(135deg, var(--brand-orange), #ffb347);"><span>📖</span><span>Best
+                Practices Guide</span></a><a href="https://shiftyourcoaching.com/" target="_blank" class="resource-link"
+              style="background: linear-gradient(135deg, var(--brand-orange), #ffb347);"><span>🚀</span><span>SHIFT
+                Coaching</span></a></div>
+        </div>
       </div>
     </div>
   </div>
@@ -403,14 +2382,45 @@
   <!-- Professional Development Modal - RED STYLING -->
   <div class="prof-dev-modal" id="profDevModal" onclick="closeProfDevOnBackdrop(event)">
     <div class="prof-dev-content" onclick="event.stopPropagation()">
-      <div class="prof-dev-header"><button class="prof-dev-close" onclick="closeProfDev()">✕</button><h2>🎓 Professional Development</h2><p>Enterprise-wide courses to refine your workplace skills</p></div>
+      <div class="prof-dev-header"><button class="prof-dev-close" onclick="closeProfDev()">✕</button>
+        <h2>🎓 Professional Development</h2>
+        <p>Enterprise-wide courses to refine your workplace skills</p>
+      </div>
       <div class="prof-dev-body">
-        <div class="info-block red-highlight"><h3>👥 Who Can Participate</h3><p><strong>Paylocity Enterprise Wide</strong> - All employees are welcome to self-enroll!</p></div>
-        <div class="info-block red-block"><h3>💻 How It Works</h3><p>Virtual Instructor-Led Sessions</p></div>
-        <div class="info-block red-block"><h3>⏱️ Time Commitment</h3><p>Varies by topic, typically 2 hours per session</p></div>
-        <div class="info-block red-block"><h3>📝 How to Register</h3><p><strong>Three ways:</strong> Enterprise Calendar on ESS, Virtual PCTY Events Community Group, or Schedule link below.</p></div>
-        <div class="info-block red-highlight"><h3>📚 What You'll Learn</h3><p>Crucial Conversations, Emotional Intelligence, Managing Up/Down/Around, Growth Mindset, Delegation, and more!</p></div>
-        <div class="info-block red-block"><h3>🎯 Resources</h3><div class="resource-links"><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-red), #ff6b9d);"><span>📅</span><span>Schedule & Registration</span></a><a href="#" class="resource-link" style="background: linear-gradient(135deg, var(--brand-red), #ff6b9d);"><span>📖</span><span>Best Practices Guide</span></a></div></div>
+        <div class="info-block red-highlight">
+          <h3>👥 Who Can Participate</h3>
+          <p><strong>Paylocity Enterprise Wide</strong> - All employees are welcome to self-enroll!</p>
+        </div>
+        <div class="info-block red-block">
+          <h3>💻 How It Works</h3>
+          <p>Virtual Instructor-Led Sessions</p>
+        </div>
+        <div class="info-block red-block">
+          <h3>⏱️ Time Commitment</h3>
+          <p>Varies by topic, typically 2 hours per session</p>
+        </div>
+        <div class="info-block red-block">
+          <h3>📝 How to Register</h3>
+          <p><strong>Three ways:</strong> Enterprise Calendar on ESS, Virtual PCTY Events Community Group, or Schedule
+            link below.</p>
+        </div>
+        <div class="info-block red-highlight">
+          <h3>📚 What You'll Learn</h3>
+          <p>Crucial Conversations, Emotional Intelligence, Managing Up/Down/Around, Growth Mindset, Delegation, and
+            more!</p>
+        </div>
+        <div class="info-block red-block">
+          <h3>🎯 Resources</h3>
+          <div class="resource-links"><a
+              href="https://paylocity1-my.sharepoint.com/:b:/g/personal/rkash_paylocity_com/ERiDY0iOyadDg1e-qakDFtwB4Fux7ho9EIso_qoB_iwauQ?e=rkYfTl"
+              target="_blank" class="resource-link"
+              style="background: linear-gradient(135deg, var(--brand-red), #ff6b9d);"><span>📅</span><span>Schedule &
+                Registration</span></a><a
+              href="https://docs.paylocity.com/leadership_development/docs/BestPractices_SupportGrowth_LE.pdf"
+              target="_blank" class="resource-link"
+              style="background: linear-gradient(135deg, var(--brand-red), #ff6b9d);"><span>📖</span><span>Best
+                Practices Guide</span></a></div>
+        </div>
       </div>
     </div>
   </div>
@@ -419,18 +2429,41 @@
   <div class="faq-button" onclick="openFAQ()" title="FAQ">❓</div>
   <div class="faq-modal" id="faqModal" onclick="closeFAQOnBackdrop(event)">
     <div class="faq-content" onclick="event.stopPropagation()">
-      <div class="faq-header"><h2>💡 FAQ</h2><button class="faq-close" onclick="closeFAQ()">✕</button></div>
+      <div class="faq-header">
+        <h2>💡 FAQ</h2><button class="faq-close" onclick="closeFAQ()">✕</button>
+      </div>
       <div class="faq-body">
-        <div class="faq-contacts"><h3>👥 Leadership Development Contacts</h3><p><strong>Sophia Valentin:</strong> Program Manager</p><p><strong>Angela Ostermann:</strong> Sr. Manager</p><p><strong>Matty Braden:</strong> Sr. Director</p></div>
-        <div class="faq-category"><div class="faq-category-title">📋 General Questions</div>
-          <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>What are approved reasons to miss training?</span><span class="faq-toggle">▼</span></div><div class="faq-answer"><p>PTO</p></div></div>
-          <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>What if I can't attend a scheduled training?</span><span class="faq-toggle">▼</span></div><div class="faq-answer"><p>Email LDCommunications, copy your Manager and Director with the reason.</p></div></div>
+        <div class="faq-contacts">
+          <h3>👥 Leadership Development Contacts</h3>
+          <p><strong>Sophia Valentin:</strong> Program Manager</p>
+          <p><strong>Angela Ostermann:</strong> Sr. Manager</p>
+          <p><strong>Matty Braden:</strong> Sr. Director</p>
+        </div>
+        <div class="faq-category">
+          <div class="faq-category-title">📋 General Questions</div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)"><span>What are approved reasons to miss
+                training?</span><span class="faq-toggle">▼</span></div>
+            <div class="faq-answer">
+              <p>PTO</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)"><span>What if I can't attend a scheduled
+                training?</span><span class="faq-toggle">▼</span></div>
+            <div class="faq-answer">
+              <p>Email LDCommunications, copy your Manager and Director with the reason.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <footer><p>&copy; 2025 Leading. Empowering leaders at every stage.</p><p>Questions? Contact the L&D team at Paylocity</p></footer>
+  <footer>
+    <p>&copy; 2025 Leading. Empowering leaders at every stage.</p>
+    <p>Questions? Contact the L&D team at Paylocity</p>
+  </footer>
   <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
 
   <script>
@@ -445,6 +2478,34 @@
     function updateBackToTop() { backToTop.classList.toggle('visible', window.pageYOffset > 500); }
     window.addEventListener('scroll', () => { updateActiveNav(); updateBackToTop(); });
     updateActiveNav(); updateBackToTop();
+
+    // Scroll Reveal - IntersectionObserver
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => entry.target.classList.add('revealed'), delay);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // Mobile hamburger menu
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    function toggleMobileMenu() {
+      const hamburger = document.querySelector('.hamburger');
+      const tabs = document.getElementById('navTabs');
+      hamburger.classList.toggle('active');
+      tabs.classList.toggle('open');
+      mobileOverlay.classList.toggle('active');
+    }
+    function closeMobileMenu() {
+      document.querySelector('.hamburger').classList.remove('active');
+      document.getElementById('navTabs').classList.remove('open');
+      mobileOverlay.classList.remove('active');
+    }
 
     function openFAQ() { document.getElementById('faqModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
     function closeFAQ() { document.getElementById('faqModal').classList.remove('active'); document.body.style.overflow = ''; }
@@ -478,4 +2539,5 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeFAQ(); closeLeadingNow(); closeProfDev(); closeLeadingExploration(); closeLeadingAdvantage(); closeNLO(); closeLeadingEssentials(); } });
   </script>
 </body>
+
 </html>
